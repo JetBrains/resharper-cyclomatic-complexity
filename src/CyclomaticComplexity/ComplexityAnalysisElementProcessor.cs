@@ -26,19 +26,9 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
 {
   public class ComplexityAnalysisElementProcessor : IRecursiveElementProcessor
   {
-    #region Data
-
-    /// <summary>
-    /// List of highlightings
-    /// </summary>
     private readonly List<HighlightingInfo> myHighlightings = new List<HighlightingInfo>();
-
     private readonly IDaemonProcess myProcess;
     private readonly int myThreshold;
-
-    #endregion
-
-    #region Init
 
     public ComplexityAnalysisElementProcessor(IDaemonProcess process, int threshold)
     {
@@ -46,21 +36,10 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
       myThreshold = threshold;
     }
 
-    #endregion
-
-    #region Attributes
-
     public List<HighlightingInfo> Highlightings
     {
-      get
-      {
-        return myHighlightings;
-      }
+      get { return myHighlightings; }
     }
-
-    #endregion
-
-    #region Implementation
 
     /// <summary>
     /// This method walks the control flow graph counting edges and nodes. Cyclomatic complexity is then calculated from the two values.
@@ -129,10 +108,6 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
       }
     }
 
-    #endregion
-
-    #region IRecursiveElementProcessor Members
-
     public bool InteriorShouldBeProcessed(ITreeNode element)
     {
       return true;
@@ -152,12 +127,7 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
 
     public bool ProcessingIsFinished
     {
-      get
-      {
-        return myProcess.InterruptFlag;
-      }
+      get { return myProcess.InterruptFlag; }
     }
-
-    #endregion
   }
 }
