@@ -33,9 +33,6 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
     private readonly OptionsSettingsSmartContext mySettings;
     private const string PID = "PowerToys.CyclomaticComplexity";
 
-    /// <summary>
-    /// Creates new instance of ComplexityAnalysisOptionPage
-    /// </summary>
     public ComplexityAnalysisOptionPage(Lifetime lifetime, UIApplication environment, OptionsSettingsSmartContext settings)
       : base(lifetime, environment, PID)
     {
@@ -65,7 +62,7 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
       spin.Minimum = new decimal(new[] {1, 0, 0, 0});
       spin.Value = new decimal(new[] {1, 0, 0, 0});
 
-      // This binding will take the initial value from ComplexityAnalysisElementProcessor, put it into the edit, and pass back from UI to the control if the OK button is hit
+      // This binding will take the initial value from ComplexityAnalysisOptionPage, put it into the edit, and pass back from UI to the control if the OK button is hit
       mySettings.SetBinding(myLifetime, (ComplexityAnalysisSettings s) => s.Threshold, spin.IntegerValue);
     }
   }

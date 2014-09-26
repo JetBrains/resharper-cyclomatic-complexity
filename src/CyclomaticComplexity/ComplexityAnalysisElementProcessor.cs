@@ -46,20 +46,20 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
     /// </summary>
     private static int CalcCyclomaticComplexity(ICSharpFunctionDeclaration declaration)
     {
-      ICSharpControlFlowGraf graf = CSharpControlFlowBuilder.Build(declaration);
-      HashSet<IControlFlowRib> ribs = GetRibs(graf);
-      int nodes = GetNodesCount(ribs);
+      var graf = CSharpControlFlowBuilder.Build(declaration);
+      var edges = GetEdges(graf);
+      var nodeCount = GetNodeCount(edges);
 
-      return ribs.Count - nodes + 2;
+      return edges.Count - nodeCount + 2;
     }
 
-    private static int GetNodesCount(IEnumerable<IControlFlowRib> ribs)
+    private static int GetNodeCount(IEnumerable<IControlFlowRib> ribs)
     {
-      bool hasSrcNull = false;
-      bool hasDstNull = false;
+      var hasSrcNull = false;
+      var hasDstNull = false;
 
-      var nodes = new HashSet<ICSharpControlFlowElement>();
-      foreach(ICSharpControlFlowRib rib in ribs)
+      var nodes = new HashSet<IControlFlowElement>();
+      foreach(var rib in ribs)
       {
         if(rib.Source != null)
           nodes.Add(rib.Source);
@@ -74,35 +74,28 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
       return nodes.Count + (hasDstNull ? 1 : 0) + (hasSrcNull ? 1 : 0);
     }
 
-    private static HashSet<IControlFlowRib> GetRibs(ICSharpControlFlowGraf graf)
+    private static HashSet<IControlFlowRib> GetEdges(IControlFlowGraf graf)
     {
       var ribs = new HashSet<IControlFlowRib>();
-      foreach(ICSharpControlFlowElement element in graf.AllElements)
+      foreach(var element in graf.AllElements)
       {
-        foreach(IControlFlowRib rib in element.Exits)
+        foreach(var rib in element.Exits)
           ribs.Add(rib);
-        foreach(IControlFlowRib rib in element.Entries)
+        foreach(var rib in element.Entries)
           ribs.Add(rib);
       }
       return ribs;
     }
 
-    /// <summary>
-    /// Processes the function declaration.
-    /// </summary>
-    /// <param name="declaration">The declaration.</param>
     private void ProcessFunctionDeclaration(ICSharpFunctionDeclaration declaration)
     {
-      // Nothing to calculate
       if(declaration.Body == null)
         return;
 
-      int cyclomatic = CalcCyclomaticComplexity(declaration);
-
-      // Placing highlighting
+      var cyclomatic = CalcCyclomaticComplexity(declaration);
       if(cyclomatic > myThreshold)
       {
-        string message = string.Format("Member has cyclomatic complexity of {0} ({1}%)", cyclomatic, (int)(cyclomatic * 100.0 / myThreshold));
+        var message = string.Format("Member has cyclomatic complexity of {0} ({1}%)", cyclomatic, (int)(cyclomatic * 100.0 / myThreshold));
         var warning = new ComplexityWarning(message);
         myHighlightings.Add(new HighlightingInfo(declaration.GetNameDocumentRange(), warning));
       }

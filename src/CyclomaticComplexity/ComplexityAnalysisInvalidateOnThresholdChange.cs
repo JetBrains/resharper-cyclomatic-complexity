@@ -25,7 +25,7 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
   {
     public ComplexityAnalysisInvalidateOnThresholdChange(Lifetime lifetime, Daemon.Daemon daemon, ISettingsStore settingsStore)
     {
-      SettingsScalarEntry thresholdEntry = settingsStore.Schema.GetScalarEntry((ComplexityAnalysisSettings s) => s.Threshold);
+      var thresholdEntry = settingsStore.Schema.GetScalarEntry((ComplexityAnalysisSettings s) => s.Threshold);
       settingsStore.AdviseChange(lifetime, thresholdEntry, daemon.Invalidate);
     }
   }
