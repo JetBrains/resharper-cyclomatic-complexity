@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+  <ImageDrawing AutomationProperties.Name="ComplexityOptionPage" AutomationProperties.ItemType="-" x:Key="0000">
+    <ToolTipService.ToolTip>
+      <x:Array Type="s:String">
+        <s:String>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAADVklEQVR42ozT3U9bdQDG8ed3zimFrgNpLY04aGxBWOagvtRkpGEaMNPFkexSNCTGOCFKspdsOIgxpDkbJkZ3scWXaLjYfJlZyC7YhRngKAOhkok4RwSKo+LQVUjHoD2/t/PzQjfdnd8/4HP1PEQphTuZMdMnhWjiUjQKLp7gnJczxhYpYwnO6CCltP+zLz5P4z+RO4AZMxuElO2hUHBXRVW10/fAFlLgLsby7zexkEyqmekrcnpyrM+i1gf9F/ov3QOYMbPB7/efqdpaXbKjrk6TNoElbeS4DSYU1nMSmQ2Ky4Nfq5mpyWzy6vju+OWROABoZsz0SSnaq7ZWl0SjUU0jGnSdYGx4CLGjB3Bl9BIK8w24jDw8UvcMKamocVkWfSm8PewFAE1I2RSsqHwu/OQOjUkFRYBzX32J833n8Frr64i93QXd5nA6DWiajspIIyl79NlXKKNPAYAmBW8IVlQ6qCQQCsjmskgkEtjIWSgq9uHD3rPIWDZyzAZXGqA74A1s0yiljwOAxrmI+EvLiCUVbAUc7ejAxYsDmJ+bw7FjMTjcXqxZBlZuc+Q4YAugyBcEYyzwD8DLC4s8kEJBSIXjPe/hZjqNnndPouOt4zhhHsFi6hd0H2yBlArSJshzecAY2wwAGmNs8bflNJhQyKxt4PDhgygrCwAFXvyZyaL51UPobN2LXS/ug9I1SKGw9scqOOdLfwOUTSTn59UGt298OzH53djoCNoOdSHP7cc603HkjRbs7/kIve+8CYMQKEawvPArOBczAGBQxgav/fh98/2Bbfed7v04v6W9kwZrnsatnHByONB9eghEJzjRN471VYHVZY7U3CyE4NMAYDBKL/yQGDnrKN7ywstdJ11caTS1xgECEEOHQQgcQoHdsnHjOsXoQBzT8e52i1nDd5f4/O49O0tCtQOFDz5slNbuBDEcINDg0HU4NQ0iayOdohgfjmPx5wV17dQC+eSbAuzrPEXufqE+Wh+lFm321jS2uUursckbgHOTF2wlg5XrKSzNzuKn0Z4DE53b33d7XKmHIsHyM+Oef88EAOGasIdatJ4yWssYCzHGPJzzJc75rJByyqK5obamiGp9jMBVlJ/8dEqE7gH+b21NEXV16TY25+v7/xoAouC+SULGmPQAAAAASUVORK5CYII=</s:String>
+      </x:Array>
+    </ToolTipService.ToolTip>
+  </ImageDrawing>
+</ResourceDictionary>
