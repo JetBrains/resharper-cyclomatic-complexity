@@ -17,10 +17,7 @@
 using JetBrains.Application.Settings;
 using JetBrains.DataFlow;
 using JetBrains.ReSharper.Features.Environment.Options.Inspections;
-using JetBrains.ReSharper.PowerToys.CyclomaticComplexity.resources;
 using JetBrains.UI.Application;
-using JetBrains.UI.CommonControls.Fonts;
-using JetBrains.UI.Components;
 using JetBrains.UI.Options;
 using JetBrains.UI.Options.Helpers;
 
@@ -53,14 +50,14 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
       Controls.HorzStackPanel stack;
 
       // The upper cue banner, stacked in the first line of our page, docked to full width with word wrapping, as needed
-      Controls.Add(new Controls.Label(Stringtable.Options_Banner));
+      Controls.Add(new Controls.Label(Properties.Resources.Options_Banner));
 
       // Some spacing
       Controls.Add(UI.Options.Helpers.Controls.Separator.DefaultHeight);
 
       // A horizontal stack of a text label and a spin-edit
       Controls.Add(stack = new Controls.HorzStackPanel(Environment));
-      stack.Controls.Add(new Controls.Label(Stringtable.Options_ThresholdLabel)); // The first column of the stack
+      stack.Controls.Add(new Controls.Label(Properties.Resources.Options_ThresholdLabel)); // The first column of the stack
       stack.Controls.Add(spin = new Controls.Spin());
 
       // Set up the spin we've just added

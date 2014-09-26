@@ -52,18 +52,17 @@
     <Compile Include="ComplexityAnalysisSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ComplexityWarning.cs" />
-    <Compile Include="resources\Stringtable.Designer.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Stringtable.resx</DependentUpon>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <ThemedIconPng Include="CyclomaticComplexityIcons\ComplexityOptionPage.png" />
-    <EmbeddedResource Include="resources\Stringtable.resx">
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Stringtable.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
