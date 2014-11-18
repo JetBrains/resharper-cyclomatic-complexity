@@ -16,11 +16,13 @@
 
 using System.Collections.Generic;
 using JetBrains.ReSharper.Daemon;
+using JetBrains.ReSharper.Daemon.UsageChecking;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ControlFlow;
 using JetBrains.ReSharper.Psi.ControlFlow.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using JetBrains.Util;
 
 namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
 {
@@ -71,7 +73,12 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
       var complexity = CalculateCyclomaticComplexity(declaration);
       if(complexity > myThreshold)
       {
-        var message = string.Format("Member has cyclomatic complexity of {0} ({1}%)", complexity, (int)(complexity * 100.0 / myThreshold));
+        var declaredElement = declaration.DeclaredElement;
+        var declarationType = DeclaredElementPresenter.Format(declaration.Language, DeclaredElementPresenter.KIND_PRESENTER, declaredElement);
+        var declaredElementName = DeclaredElementPresenter.Format(declaration.Language, DeclaredElementPresenter.NAME_PRESENTER, declaredElement);
+        var message = string.Format("{0} '{1}' has cyclomatic complexity of {2} ({3}% of threshold)", declarationType.Capitalize(), 
+          declaredElementName, complexity, (int)(complexity * 100.0 / myThreshold));
+
         var warning = new ComplexityWarning(message);
         myHighlightings.Add(new HighlightingInfo(declaration.GetNameDocumentRange(), warning));
       }
