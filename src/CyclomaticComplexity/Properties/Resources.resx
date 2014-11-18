@@ -118,8 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Options_Banner" xml:space="preserve">
-    <value>Options_Banner		
-	Options_ThresholdLabel	Cyclomatic complexity threshold:</value>
+    <value>Cyclomatic complexity threshold:</value>
   </data>
   <data name="Options_ThresholdLabel" xml:space="preserve">
     <value>Cyclomatic complexity threshold:</value>
