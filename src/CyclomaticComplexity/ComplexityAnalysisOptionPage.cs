@@ -33,7 +33,7 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
     private readonly OptionsSettingsSmartContext mySettings;
     private const string PID = "PowerToys.CyclomaticComplexity";
 
-    public ComplexityAnalysisOptionPage(Lifetime lifetime, UIApplication environment, OptionsSettingsSmartContext settings)
+    public ComplexityAnalysisOptionPage(Lifetime lifetime, IUIApplication environment, OptionsSettingsSmartContext settings)
       : base(lifetime, environment, PID)
     {
       myLifetime = lifetime;
