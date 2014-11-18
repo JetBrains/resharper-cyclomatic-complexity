@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JetBrains.ReSharper.PowerToys.CyclomaticComplexity</RootNamespace>
-    <AssemblyName>CyclomaticComplexity</AssemblyName>
+    <AssemblyName>JetBrains.ReSharper.Plugins.CyclomaticComplexity</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
