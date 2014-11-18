@@ -41,6 +41,42 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
       get { return myHighlightings; }
     }
 
+    public bool InteriorShouldBeProcessed(ITreeNode element)
+    {
+      return true;
+    }
+
+    public void ProcessBeforeInterior(ITreeNode element)
+    {
+    }
+
+    public void ProcessAfterInterior(ITreeNode element)
+    {
+      // We are only interested in function declarations (methods, property accessors, etc.)
+      var functionDeclaration = element as ICSharpFunctionDeclaration;
+      if (functionDeclaration != null)
+        ProcessFunctionDeclaration(functionDeclaration);
+    }
+
+    public bool ProcessingIsFinished
+    {
+      get { return myProcess.InterruptFlag; }
+    }
+
+    private void ProcessFunctionDeclaration(ICSharpFunctionDeclaration declaration)
+    {
+      if(declaration.Body == null)
+        return;
+
+      var complexity = CalculateCyclomaticComplexity(declaration);
+      if(complexity > myThreshold)
+      {
+        var message = string.Format("Member has cyclomatic complexity of {0} ({1}%)", complexity, (int)(complexity * 100.0 / myThreshold));
+        var warning = new ComplexityWarning(message);
+        myHighlightings.Add(new HighlightingInfo(declaration.GetNameDocumentRange(), warning));
+      }
+    }
+
     /// <summary>
     /// This method walks the control flow graph counting edges and nodes. Cyclomatic complexity is then calculated from the two values.
     /// </summary>
@@ -51,6 +87,19 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
       var nodeCount = GetNodeCount(edges);
 
       return edges.Count - nodeCount + 2;
+    }
+
+    private static HashSet<IControlFlowRib> GetEdges(IControlFlowGraf graph)
+    {
+      var edges = new HashSet<IControlFlowRib>();
+      foreach(var element in graph.AllElements)
+      {
+        foreach(var edge in element.Exits)
+          edges.Add(edge);
+        foreach(var edge in element.Entries)
+          edges.Add(edge);
+      }
+      return edges;
     }
 
     private static int GetNodeCount(IEnumerable<IControlFlowRib> edges)
@@ -72,55 +121,6 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
           hasNullDestination = true;
       }
       return nodes.Count + (hasNullDestination ? 1 : 0) + (hasNullSource ? 1 : 0);
-    }
-
-    private static HashSet<IControlFlowRib> GetEdges(IControlFlowGraf graph)
-    {
-      var edges = new HashSet<IControlFlowRib>();
-      foreach(var element in graph.AllElements)
-      {
-        foreach(var edge in element.Exits)
-          edges.Add(edge);
-        foreach(var edge in element.Entries)
-          edges.Add(edge);
-      }
-      return edges;
-    }
-
-    private void ProcessFunctionDeclaration(ICSharpFunctionDeclaration declaration)
-    {
-      if(declaration.Body == null)
-        return;
-
-      var complexity = CalculateCyclomaticComplexity(declaration);
-      if(complexity > myThreshold)
-      {
-        var message = string.Format("Member has cyclomatic complexity of {0} ({1}%)", complexity, (int)(complexity * 100.0 / myThreshold));
-        var warning = new ComplexityWarning(message);
-        myHighlightings.Add(new HighlightingInfo(declaration.GetNameDocumentRange(), warning));
-      }
-    }
-
-    public bool InteriorShouldBeProcessed(ITreeNode element)
-    {
-      return true;
-    }
-
-    public void ProcessBeforeInterior(ITreeNode element)
-    {
-    }
-
-    public void ProcessAfterInterior(ITreeNode element)
-    {
-      // We are only interested in function declarations (methods, property accessors, etc.)
-      var functionDeclaration = element as ICSharpFunctionDeclaration;
-      if (functionDeclaration != null)
-        ProcessFunctionDeclaration(functionDeclaration);
-    }
-
-    public bool ProcessingIsFinished
-    {
-      get { return myProcess.InterruptFlag; }
     }
   }
 }
