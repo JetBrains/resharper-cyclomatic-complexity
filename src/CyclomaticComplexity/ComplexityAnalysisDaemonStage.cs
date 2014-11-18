@@ -38,10 +38,10 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
         throw new ArgumentNullException("process");
 
       return new[]
-               {
-                 new ComplexityAnalysisDaemonStageProcess(
-                   process, settings.GetValue((ComplexityAnalysisSettings s) => s.Threshold))
-               };
+      {
+        new ComplexityAnalysisDaemonStageProcess(process,
+          settings.GetValue((ComplexityAnalysisSettings s) => s.Threshold))
+      };
     }
 
     public ErrorStripeRequest NeedsErrorStripe(IPsiSourceFile sourceFile, IContextBoundSettingsStore settings)

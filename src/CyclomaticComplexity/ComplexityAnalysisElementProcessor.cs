@@ -44,47 +44,47 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
     /// <summary>
     /// This method walks the control flow graph counting edges and nodes. Cyclomatic complexity is then calculated from the two values.
     /// </summary>
-    private static int CalcCyclomaticComplexity(ICSharpFunctionDeclaration declaration)
+    private static int CalculateCyclomaticComplexity(ICSharpFunctionDeclaration declaration)
     {
-      var graf = CSharpControlFlowBuilder.Build(declaration);
-      var edges = GetEdges(graf);
+      var graph = CSharpControlFlowBuilder.Build(declaration);
+      var edges = GetEdges(graph);
       var nodeCount = GetNodeCount(edges);
 
       return edges.Count - nodeCount + 2;
     }
 
-    private static int GetNodeCount(IEnumerable<IControlFlowRib> ribs)
+    private static int GetNodeCount(IEnumerable<IControlFlowRib> edges)
     {
-      var hasSrcNull = false;
-      var hasDstNull = false;
+      var hasNullSource = false;
+      var hasNullDestination = false;
 
       var nodes = new HashSet<IControlFlowElement>();
-      foreach(var rib in ribs)
+      foreach(var edge in edges)
       {
-        if(rib.Source != null)
-          nodes.Add(rib.Source);
+        if(edge.Source != null)
+          nodes.Add(edge.Source);
         else
-          hasSrcNull = true;
+          hasNullSource = true;
 
-        if(rib.Target != null)
-          nodes.Add(rib.Target);
+        if(edge.Target != null)
+          nodes.Add(edge.Target);
         else
-          hasDstNull = true;
+          hasNullDestination = true;
       }
-      return nodes.Count + (hasDstNull ? 1 : 0) + (hasSrcNull ? 1 : 0);
+      return nodes.Count + (hasNullDestination ? 1 : 0) + (hasNullSource ? 1 : 0);
     }
 
-    private static HashSet<IControlFlowRib> GetEdges(IControlFlowGraf graf)
+    private static HashSet<IControlFlowRib> GetEdges(IControlFlowGraf graph)
     {
-      var ribs = new HashSet<IControlFlowRib>();
-      foreach(var element in graf.AllElements)
+      var edges = new HashSet<IControlFlowRib>();
+      foreach(var element in graph.AllElements)
       {
-        foreach(var rib in element.Exits)
-          ribs.Add(rib);
-        foreach(var rib in element.Entries)
-          ribs.Add(rib);
+        foreach(var edge in element.Exits)
+          edges.Add(edge);
+        foreach(var edge in element.Entries)
+          edges.Add(edge);
       }
-      return ribs;
+      return edges;
     }
 
     private void ProcessFunctionDeclaration(ICSharpFunctionDeclaration declaration)
@@ -92,10 +92,10 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
       if(declaration.Body == null)
         return;
 
-      var cyclomatic = CalcCyclomaticComplexity(declaration);
-      if(cyclomatic > myThreshold)
+      var complexity = CalculateCyclomaticComplexity(declaration);
+      if(complexity > myThreshold)
       {
-        var message = string.Format("Member has cyclomatic complexity of {0} ({1}%)", cyclomatic, (int)(cyclomatic * 100.0 / myThreshold));
+        var message = string.Format("Member has cyclomatic complexity of {0} ({1}%)", complexity, (int)(complexity * 100.0 / myThreshold));
         var warning = new ComplexityWarning(message);
         myHighlightings.Add(new HighlightingInfo(declaration.GetNameDocumentRange(), warning));
       }
