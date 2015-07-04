@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-using JetBrains.ReSharper.Daemon;
+using JetBrains.DocumentModel;
+using JetBrains.ReSharper.Feature.Services.Daemon;
 
 namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
 {
@@ -25,10 +26,17 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
   public class ComplexityWarning : IHighlighting
   {
     private readonly string myTooltip;
+    private readonly DocumentRange range;
 
-    public ComplexityWarning(string toolTip)
+    public ComplexityWarning(string toolTip, DocumentRange range)
     {
       myTooltip = toolTip;
+      this.range = range;
+    }
+
+    public DocumentRange CalculateRange()
+    {
+      return range;
     }
 
     public string ToolTip

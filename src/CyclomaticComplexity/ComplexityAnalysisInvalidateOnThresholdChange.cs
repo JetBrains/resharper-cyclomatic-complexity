@@ -17,13 +17,14 @@
 using JetBrains.Application.Settings;
 using JetBrains.DataFlow;
 using JetBrains.ProjectModel;
+using JetBrains.ReSharper.Feature.Services.Daemon;
 
 namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
 {
   [SolutionComponent]
   public class ComplexityAnalysisInvalidateOnThresholdChange
   {
-    public ComplexityAnalysisInvalidateOnThresholdChange(Lifetime lifetime, Daemon.Daemon daemon, ISettingsStore settingsStore)
+    public ComplexityAnalysisInvalidateOnThresholdChange(Lifetime lifetime, IDaemon daemon, ISettingsStore settingsStore)
     {
       var thresholdEntry = settingsStore.Schema.GetScalarEntry((ComplexityAnalysisSettings s) => s.Threshold);
       settingsStore.AdviseChange(lifetime, thresholdEntry, daemon.Invalidate);

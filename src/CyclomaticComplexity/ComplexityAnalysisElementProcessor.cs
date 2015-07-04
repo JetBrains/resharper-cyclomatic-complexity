@@ -15,11 +15,9 @@
  */
 
 using System.Collections.Generic;
-using JetBrains.ReSharper.Daemon;
-using JetBrains.ReSharper.Daemon.UsageChecking;
+using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ControlFlow;
-using JetBrains.ReSharper.Psi.ControlFlow.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
@@ -79,8 +77,9 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
         var message = string.Format("{0} '{1}' has cyclomatic complexity of {2} ({3}% of threshold)", declarationType.Capitalize(), 
           declaredElementName, complexity, (int)(complexity * 100.0 / myThreshold));
 
-        var warning = new ComplexityWarning(message);
-        myHighlightings.Add(new HighlightingInfo(declaration.GetNameDocumentRange(), warning));
+        var documentRange = declaration.GetNameDocumentRange();
+        var warning = new ComplexityWarning(message, documentRange);
+        myHighlightings.Add(new HighlightingInfo(documentRange, warning));
       }
     }
 
@@ -89,16 +88,16 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
     /// </summary>
     private static int CalculateCyclomaticComplexity(ICSharpFunctionDeclaration declaration)
     {
-      var graph = CSharpControlFlowBuilder.Build(declaration);
+      var graph = ControlFlowBuilder.GetGraph(declaration);
       var edges = GetEdges(graph);
       var nodeCount = GetNodeCount(edges);
 
       return edges.Count - nodeCount + 2;
     }
 
-    private static HashSet<IControlFlowRib> GetEdges(IControlFlowGraf graph)
+    private static HashSet<IControlFlowEdge> GetEdges(IControlFlowGraph graph)
     {
-      var edges = new HashSet<IControlFlowRib>();
+      var edges = new HashSet<IControlFlowEdge>();
       foreach(var element in graph.AllElements)
       {
         foreach(var edge in element.Exits)
@@ -109,7 +108,7 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
       return edges;
     }
 
-    private static int GetNodeCount(IEnumerable<IControlFlowRib> edges)
+    private static int GetNodeCount(IEnumerable<IControlFlowEdge> edges)
     {
       var hasNullSource = false;
       var hasNullDestination = false;

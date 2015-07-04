@@ -16,7 +16,6 @@
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-using JetBrains.Application.PluginSupport;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -52,7 +51,3 @@ using JetBrains.Application.PluginSupport;
 
 [assembly : AssemblyVersion("3.0.0.0")]
 [assembly : AssemblyFileVersion("3.0.0.0")]
-
-[assembly : PluginTitle("ReSharper PowerToys: Cyclomatic Complexity")]
-[assembly : PluginVendor("JetBrains")]
-[assembly : PluginDescription("Analyses cyclomatic complexity for a member and issues warnings.")]
