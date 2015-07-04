@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>PowerToys.CyclomaticComplexity</id>
+        <version>9.1.0</version>
+        <title>Cyclomatic Complexity</title>
+        <authors>JetBrains, Matt Ellis</authors>
+        <owners>JetBrains, Matt Ellis</owners>
+        <projectUrl>https://github.com/JetBrains/resharper-cyclomatic-complexity</projectUrl>
+        <licenseUrl>https://raw.githubusercontent.com/JetBrains/resharper-cyclomatic-complexity/LICENSE.txt</licenseUrl>
+        <iconUrl>http://resharper-plugins.jetbrains.com/Content/Images/packageReSharper.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Highlights a method if its cyclomatic complexity is greater than a configurable threshold</description>
+        <releaseNotes>Support for ReSharper 9.1</releaseNotes>
+        <copyright>Copyright © 2006-2015 JetBrains</copyright>
+        <tags>PowerToys cyclomatic complexity</tags>
+        <dependencies>
+            <dependency id="Wave" version="[2.0]" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\src\CyclomaticComplexity\bin\Release\JetBrains.ReSharper.Plugins.CyclomaticComplexity.dll" target="DotFiles\" />
+    </files>
+</package>
