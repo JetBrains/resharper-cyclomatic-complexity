@@ -17,7 +17,7 @@
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 
-namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
+namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
   /// <summary>
   /// The highlighting that warns about high complexity

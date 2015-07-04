@@ -17,7 +17,7 @@
 using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Resources.Settings;
 
-namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
+namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
   [SettingsKey(typeof(CodeInspectionSettings), "Complexity Analysis")]
   public class ComplexityAnalysisSettings

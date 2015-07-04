@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity.Properties {
+namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JetBrains.ReSharper.PowerToys.CyclomaticComplexity.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JetBrains.ReSharper.Plugins.CyclomaticComplexity.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

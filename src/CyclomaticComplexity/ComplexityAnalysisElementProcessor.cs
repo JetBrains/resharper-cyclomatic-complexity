@@ -22,7 +22,7 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
-namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
+namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
   public class ComplexityAnalysisElementProcessor : IRecursiveElementProcessor
   {

@@ -8,7 +8,7 @@
     <ProjectGuid>{4FF42D42-187D-4332-8154-49506B1DB698}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JetBrains.ReSharper.PowerToys.CyclomaticComplexity</RootNamespace>
+    <RootNamespace>JetBrains.ReSharper.Plugins.CyclomaticComplexity</RootNamespace>
     <AssemblyName>JetBrains.ReSharper.Plugins.CyclomaticComplexity</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -19,7 +19,7 @@ using JetBrains.DataFlow;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 
-namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
+namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
   [SolutionComponent]
   public class ComplexityAnalysisInvalidateOnThresholdChange

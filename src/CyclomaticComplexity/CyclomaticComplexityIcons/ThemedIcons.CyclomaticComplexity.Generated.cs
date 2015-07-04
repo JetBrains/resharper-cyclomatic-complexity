@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::System.Windows.Markup.XmlnsDefinitionAttribute("urn:shemas-jetbrains-com:ui-application-icons-cyclomatic-complexity", "JetBrains.ReSharper.PowerToys.CyclomaticComplexity")]
+[assembly: global::System.Windows.Markup.XmlnsDefinitionAttribute("urn:shemas-jetbrains-com:ui-application-icons-cyclomatic-complexity", "JetBrains.ReSharper.Plugins.CyclomaticComplexity")]
 [assembly: global::JetBrains.UI.Icons.CompiledIcons.CompiledIconsPackAttribute(IconPackResourceIdentification="JetBrains.ReSharper.Plugins.CyclomaticComplexity;component/CyclomaticComplexityIc" +
 	"ons/ThemedIcons.CyclomaticComplexity.Generated.Xaml", IconNames=new string[] {
 		"ComplexityOptionPage"})]
 
-namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
+namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
 	
 	
@@ -28,17 +28,17 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
 	///  <para>It has two primary goals: load the icons of this assembly to be registered with <see cref="JetBrains.UI.Icons.IThemedIconManager" /> so that they were WPF-accessible and theme-sensitive; and emit early-bound accessors for referencing icons in codebehind in a compile-time-validated manner.</para>
 	///  <h1>XAML</h1>
 	///  <para>For performance reasons, the icons are not individually exposed with application resources. There is a custom markup extension to bind an image source in markup.</para>
-	///  <para>To use an icon from XAML, set an <see cref="System.Windows.Media.ImageSource" /> property to the <see cref="JetBrains.UI.Icons.ThemedIconExtension" /> markup extension, which takes an icon identifier class (nested in <see cref="JetBrains.ReSharper.PowerToys.CyclomaticComplexity.CyclomaticComplexityThemedIcons" /> class) as a parameter.</para>
+	///  <para>To use an icon from XAML, set an <see cref="System.Windows.Media.ImageSource" /> property to the <see cref="JetBrains.UI.Icons.ThemedIconExtension" /> markup extension, which takes an icon identifier class (nested in <see cref="JetBrains.ReSharper.Plugins.CyclomaticComplexity.CyclomaticComplexityThemedIcons" /> class) as a parameter.</para>
 	///  <para>Example:</para>
 	///  <code>&lt;Image Source="{icons:ThemedIcon myres:CyclomaticComplexityThemedIcons+ComplexityOptionPage}" /&gt;</code>
 	///  <h1>Attributes</h1>
 	///  <para>Sometimes you have to reference an icon from a type attriute when you're defining objects in code. Typical examples are Options pages and Tool Windows.</para>
-	///  <para>To avoid the use of string IDs which are not validated very well, we've emitted identifier classes to be used with <c>typeof()</c> expression, one per each icon. Use the attribute overload which takes a <see cref="System.Type" /> for an image, and choose your icon class from nested classes in the <see cref="JetBrains.ReSharper.PowerToys.CyclomaticComplexity.CyclomaticComplexityThemedIcons" /> class.</para>
+	///  <para>To avoid the use of string IDs which are not validated very well, we've emitted identifier classes to be used with <c>typeof()</c> expression, one per each icon. Use the attribute overload which takes a <see cref="System.Type" /> for an image, and choose your icon class from nested classes in the <see cref="JetBrains.ReSharper.Plugins.CyclomaticComplexity.CyclomaticComplexityThemedIcons" /> class.</para>
 	///  <para>Example:</para>
 	///  <code>[Item(Name="Sample", Icon=typeof(CyclomaticComplexityThemedIcons.ComplexityOptionPage))]</code>
 	///  <h1>CodeBehind</h1>
 	///  <para>In codebehind, we have two distinct tasks: (a) specify some icon in the APIs and (b) render icon images onscreen.</para>
-	///  <para>On the APIs stage you should only manipulate icon identifier objects (of type <see cref="JetBrains.UI.Icons.IconId" />, statically defined in <see cref="JetBrains.ReSharper.PowerToys.CyclomaticComplexity.CyclomaticComplexityThemedIcons" /> in <c>Id</c> fields). Icon identifier classes (nested in <see cref="JetBrains.ReSharper.PowerToys.CyclomaticComplexity.CyclomaticComplexityThemedIcons" />) should be turned into icon identifier objects as early as possible. Rendering is about getting an <see cref="System.Windows.Media.ImageSource" /> to assign to WPF, or <see cref="System.Drawing.Bitmap" /> to use with GDI+ / Windows Forms.</para>
+	///  <para>On the APIs stage you should only manipulate icon identifier objects (of type <see cref="JetBrains.UI.Icons.IconId" />, statically defined in <see cref="JetBrains.ReSharper.Plugins.CyclomaticComplexity.CyclomaticComplexityThemedIcons" /> in <c>Id</c> fields). Icon identifier classes (nested in <see cref="JetBrains.ReSharper.Plugins.CyclomaticComplexity.CyclomaticComplexityThemedIcons" />) should be turned into icon identifier objects as early as possible. Rendering is about getting an <see cref="System.Windows.Media.ImageSource" /> to assign to WPF, or <see cref="System.Drawing.Bitmap" /> to use with GDI+ / Windows Forms.</para>
 	///  <para>You should turn an identifier object into a rendered image as late as possible. The identifier is static and lightweight and does not depend on the current theme, while the image is themed and has to be loaded or generated/rasterized. You need an <see cref="JetBrains.UI.Icons.IThemedIconManager" /> instance to get the image out of an icon identifier object. Once you got the image, you should take care to change it with theme changes — either by using a live image property, or by listening to the theme change event. See <see cref="JetBrains.UI.Icons.IThemedIconManager" /> and its extensions for the related facilities.</para>
 	///  <para>Example:</para>
 	///  <code>// Getting IconId identifier object to use with APIs
@@ -58,13 +58,13 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
 		/// <summary>
 		///  <para>
 		///    <para>Autogenerated identifier class for the ComplexityOptionPage Themed Icon.</para>
-		///    <para>Identifier classes should be used in attributes, XAML, or generic parameters. Where an <see cref="JetBrains.UI.Icons.IconId" /> value is expected, use the identifier object in the <see cref="JetBrains.ReSharper.PowerToys.CyclomaticComplexity.CyclomaticComplexityThemedIcons.ComplexityOptionPage.Id" /> field of the identifier class.</para>
+		///    <para>Identifier classes should be used in attributes, XAML, or generic parameters. Where an <see cref="JetBrains.UI.Icons.IconId" /> value is expected, use the identifier object in the <see cref="JetBrains.ReSharper.Plugins.CyclomaticComplexity.CyclomaticComplexityThemedIcons.ComplexityOptionPage.Id" /> field of the identifier class.</para>
 		///  </para>
 		///</summary>
 		///<remarks>
-		///  <para>For details on Themed Icons and their use, see Remarks on <see cref="JetBrains.ReSharper.PowerToys.CyclomaticComplexity.CyclomaticComplexityThemedIcons" /> class.</para>
+		///  <para>For details on Themed Icons and their use, see Remarks on <see cref="JetBrains.ReSharper.Plugins.CyclomaticComplexity.CyclomaticComplexityThemedIcons" /> class.</para>
 		///</remarks>
-		///<seealso cref="JetBrains.ReSharper.PowerToys.CyclomaticComplexity.CyclomaticComplexityThemedIcons" />
+		///<seealso cref="JetBrains.ReSharper.Plugins.CyclomaticComplexity.CyclomaticComplexityThemedIcons" />
 		///<example>
 		///  <code>&lt;Image Source="{icons:ThemedIcon myres:CyclomaticComplexityThemedIcons+ComplexityOptionPage}" /&gt;        &lt;!-- XAML --&gt;</code>
 		///</example>
@@ -85,13 +85,13 @@ namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
 			/// <summary>
 			///  <para>
 			///    <para>Autogenerated identifier object for the ComplexityOptionPage Themed Icon.</para>
-			///    <para>Identifier objects should be used where an <see cref="JetBrains.UI.Icons.IconId" /> value is expected. In attributes, XAML, or generic parameters use the containing <see cref="JetBrains.ReSharper.PowerToys.CyclomaticComplexity.CyclomaticComplexityThemedIcons.ComplexityOptionPage" /> identifier class.</para>
+			///    <para>Identifier objects should be used where an <see cref="JetBrains.UI.Icons.IconId" /> value is expected. In attributes, XAML, or generic parameters use the containing <see cref="JetBrains.ReSharper.Plugins.CyclomaticComplexity.CyclomaticComplexityThemedIcons.ComplexityOptionPage" /> identifier class.</para>
 			///  </para>
 			///</summary>
 			///<remarks>
-			///  <para>For details on Themed Icons and their use, see Remarks on <see cref="JetBrains.ReSharper.PowerToys.CyclomaticComplexity.CyclomaticComplexityThemedIcons" /> class.</para>
+			///  <para>For details on Themed Icons and their use, see Remarks on <see cref="JetBrains.ReSharper.Plugins.CyclomaticComplexity.CyclomaticComplexityThemedIcons" /> class.</para>
 			///</remarks>
-			///<seealso cref="JetBrains.ReSharper.PowerToys.CyclomaticComplexity.CyclomaticComplexityThemedIcons" />
+			///<seealso cref="JetBrains.ReSharper.Plugins.CyclomaticComplexity.CyclomaticComplexityThemedIcons" />
 			///<example>
 			///  <code>&lt;Image Source="{icons:ThemedIcon myres:CyclomaticComplexityThemedIcons+ComplexityOptionPage}" /&gt;        &lt;!-- XAML --&gt;</code>
 			///</example>

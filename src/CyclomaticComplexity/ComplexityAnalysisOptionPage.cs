@@ -21,7 +21,7 @@ using JetBrains.UI.Application;
 using JetBrains.UI.Options;
 using JetBrains.UI.Options.Helpers;
 
-namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
+namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
   /// <summary>
   /// Implements an options page that holds a set of setting editors stacked in lines from top to bottom.

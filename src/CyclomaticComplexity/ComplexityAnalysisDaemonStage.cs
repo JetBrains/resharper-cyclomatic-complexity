@@ -20,7 +20,7 @@ using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi;
 
-namespace JetBrains.ReSharper.PowerToys.CyclomaticComplexity
+namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
   /// <summary>
   /// Daemon stage for comlexity analysis. This class is automatically loaded by ReSharper daemon 
