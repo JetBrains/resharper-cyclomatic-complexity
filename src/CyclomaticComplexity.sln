@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyclomaticComplexity", "CyclomaticComplexity\CyclomaticComplexity.csproj", "{4FF42D42-187D-4332-8154-49506B1DB698}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "..\test\src\tests.csproj", "{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4FF42D42-187D-4332-8154-49506B1DB698}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FF42D42-187D-4332-8154-49506B1DB698}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FF42D42-187D-4332-8154-49506B1DB698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

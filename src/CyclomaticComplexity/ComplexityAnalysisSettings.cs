@@ -23,6 +23,6 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
   public class ComplexityAnalysisSettings
   {
     [SettingsEntry(20, "Threshold")]
-    public readonly int Threshold;
+    public int Threshold;
   }
 }
