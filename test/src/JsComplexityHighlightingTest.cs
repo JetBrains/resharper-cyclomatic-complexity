@@ -23,9 +23,10 @@ using NUnit.Framework;
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
 {
   [TestSettingsKey(typeof(ComplexityAnalysisSettings))]
-  public class CSharpComplexityHighlightingTest : CSharpHighlightingTestNet4Base
+  [TestFileExtension(".js")]
+  public class JsComplexityHighlightingTest : CSharpHighlightingTestNet4Base
   {
-    protected override string RelativeTestDataPath { get { return "CSharp"; } }
+    protected override string RelativeTestDataPath { get { return "JS"; } }
 
     protected override bool HighlightingPredicate(IHighlighting highlighting, IPsiSourceFile sourceFile)
     {
@@ -33,16 +34,29 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     }
 
     [Test]
-    public void TestComplexMethodWithDefaultSettings()
+    public void TestNamedMethodWithDefaultSettings()
     {
-      DoOneTest("ComplexMethodWithDefaultSettings");
+      DoOneTest("NamedMethodWithDefaultSettings");
     }
 
     [Test]
     [TestSettings("{ Threshold: [ 10, 21, 30] }")]
-    public void TestComplexMethodWithNonDefaultSettings()
+    public void TestNamedMethodWithNonDefaultSettings()
     {
-      DoOneTest("ComplexMethodWithModifiedSettings");
+      DoOneTest("NamedMethodWithModifiedSettings");
+    }
+
+    [Test]
+    public void TestAnonynousMethodWithDefaultSettings()
+    {
+      DoOneTest("AnonymousMethodWithDefaultSettings");
+    }
+
+    [Test]
+    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    public void TestAnonymousMethodWithNonDefaultSettings()
+    {
+      DoOneTest("AnonymousMethodWithModifiedSettings");
     }
   }
 }

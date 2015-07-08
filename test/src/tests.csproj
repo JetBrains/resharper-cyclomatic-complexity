@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSharpComplexityHighlightingTest.cs" />
+    <Compile Include="JsComplexityHighlightingTest.cs" />
     <Compile Include="TestEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

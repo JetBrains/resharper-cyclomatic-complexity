@@ -158,9 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CyclomaticComplexityIcons\ThemedIcons.CyclomaticComplexity.Generated.cs" />
-    <Compile Include="ComplexityAnalysisDaemonStageProcess.cs" />
-    <Compile Include="ComplexityAnalysisDaemonStage.cs" />
-    <Compile Include="ComplexityAnalysisElementProcessor.cs" />
+    <Compile Include="ComplexityAnalysisElementProblemAnalyzer.cs" />
     <Compile Include="ComplexityAnalysisInvalidateOnThresholdChange.cs" />
     <Compile Include="ComplexityAnalysisOptionPage.cs">
       <SubType>Component</SubType>
