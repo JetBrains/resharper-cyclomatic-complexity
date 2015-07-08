@@ -29,16 +29,19 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
   [ElementProblemAnalyzer(typeof(ITreeNode))]
   public class ComplexityAnalysisElementProblemAnalyzer : ElementProblemAnalyzer<ITreeNode>
   {
+    private readonly Key<State> key = new Key<State>("ComplexityAnalyzerState");
+
     protected override void Run(ITreeNode element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
     {
-      var file = element.GetContainingFile();
-      if (file == null)
-        return;
+      // We get a fresh data for each file, so we can cache some state to make
+      // things a bit more efficient
+      var state = data.GetOrCreateData(key, () => new State
+      {
+        File = element.GetContainingFile(),
+        ControlFlowBuilder = LanguageManager.Instance.TryGetService<IControlFlowBuilder>(element.Language)
+      });
 
-      // ElementProblemAnalyzers only run on token nodes. Control flow can be built on non-tokens
-      // C# tends to build on IDeclaration
-      var service = LanguageManager.Instance.TryGetService<IControlFlowBuilder>(element.Language);
-      if (service == null || !service.CanBuildFrom(element))
+      if (state.File == null || state.ControlFlowBuilder == null || !state.ControlFlowBuilder.CanBuildFrom(element))
         return;
 
       var graph = ControlFlowDaemonUtil.GetOrBuild(element, data);
@@ -65,7 +68,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
           var documentRange = declaration.GetNameDocumentRange();
           var warning = new ComplexityWarning(message, documentRange);
 
-          consumer.AddHighlighting(warning, file);
+          consumer.AddHighlighting(warning, state.File);
         }
         else
         {
@@ -76,7 +79,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
           var message = string.Format("Element has cyclomatic complexity of {0} ({1}% of threshold)", complexity,
             (int) (complexity*100.0/threshold));
           var warning = new ComplexityWarning(message, documentRange);
-          consumer.AddHighlighting(warning, file);
+          consumer.AddHighlighting(warning, state.File);
         }
       }
     }
@@ -121,6 +124,12 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
           hasNullDestination = true;
       }
       return nodes.Count + (hasNullDestination ? 1 : 0) + (hasNullSource ? 1 : 0);
+    }
+
+    private class State
+    {
+      public IFile File;
+      public IControlFlowBuilder ControlFlowBuilder;
     }
   }
 }
