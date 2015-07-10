@@ -157,6 +157,7 @@
     <Compile Include="JsComplexityHighlightingTest.cs" />
     <Compile Include="TestEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeScriptComplexityHighlightingTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
