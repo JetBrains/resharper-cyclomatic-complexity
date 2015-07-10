@@ -16,6 +16,7 @@
 
 using System.Collections.Generic;
 using JetBrains.Application.Settings;
+using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
 using JetBrains.ReSharper.Daemon.Stages.Utils;
 using JetBrains.ReSharper.Feature.Services.Daemon;
@@ -53,34 +54,10 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       var complexity = CalculateCyclomaticComplexity(graph);
       if (complexity > threshold)
       {
-        var declaration = element as IDeclaration;
-        if (declaration != null && declaration.DeclaredElement != null)
-        {
-          var declaredElement = declaration.DeclaredElement;
-          var declarationType = DeclaredElementPresenter.Format(declaration.Language,
-            DeclaredElementPresenter.KIND_PRESENTER, declaredElement);
-          var declaredElementName = DeclaredElementPresenter.Format(declaration.Language,
-            DeclaredElementPresenter.NAME_PRESENTER, declaredElement);
-          var message = string.Format("{0} '{1}' has cyclomatic complexity of {2} ({3}% of threshold)",
-            declarationType.Capitalize(),
-            declaredElementName, complexity, (int) (complexity*100.0/threshold));
+        var message = GetMessage(element, complexity, threshold);
+        var documentRange = GetDocumentRange(element);
 
-          var documentRange = declaration.GetNameDocumentRange();
-          var warning = new ComplexityWarning(message, documentRange);
-
-          consumer.AddHighlighting(warning, state.File);
-        }
-        else
-        {
-          // Don't have a declared element to highlight. Going to have to guess. Try the 
-          // first meaningful child
-          var bestGuess = element.GetNextMeaningfulChild(null);
-          var documentRange = bestGuess.GetDocumentRange();
-          var message = string.Format("Element has cyclomatic complexity of {0} ({1}% of threshold)", complexity,
-            (int) (complexity*100.0/threshold));
-          var warning = new ComplexityWarning(message, documentRange);
-          consumer.AddHighlighting(warning, state.File);
-        }
+        consumer.AddHighlighting(new ComplexityWarning(message, documentRange), state.File);
       }
     }
 
@@ -124,6 +101,44 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
           hasNullDestination = true;
       }
       return nodes.Count + (hasNullDestination ? 1 : 0) + (hasNullSource ? 1 : 0);
+    }
+
+    private static string GetMessage(ITreeNode element, int complexity, int threshold)
+    {
+      var type = "Element";
+      IDeclaration declaration;
+      GetBestTreeNode(element, out declaration);
+      if (declaration != null && declaration.DeclaredElement != null)
+      {
+        var declaredElement = declaration.DeclaredElement;
+        var declarationType = DeclaredElementPresenter.Format(declaration.Language,
+          DeclaredElementPresenter.KIND_PRESENTER, declaredElement);
+        var declaredElementName = DeclaredElementPresenter.Format(declaration.Language,
+          DeclaredElementPresenter.NAME_PRESENTER, declaredElement);
+
+        type = string.Format("{0} '{1}'", declarationType.Capitalize(), declaredElementName);
+      }
+
+      return string.Format("{0} has cyclomatic complexity of {1} ({2}% of threshold)", type,
+        complexity, (int) (complexity*100.0/threshold));
+    }
+
+    private DocumentRange GetDocumentRange(ITreeNode element)
+    {
+      IDeclaration declaration;
+      var node = GetBestTreeNode(element, out declaration);
+      return declaration != null && declaration.DeclaredElement != null ? declaration.GetNameDocumentRange() : node.GetDocumentRange();
+    }
+
+    private static ITreeNode GetBestTreeNode(ITreeNode element, out IDeclaration declaration)
+    {
+      declaration = element as IDeclaration;
+      if (declaration != null && declaration.DeclaredElement != null)
+        return element;
+
+      // Don't have a declared element to highlight. Going to have to guess. Try the 
+      // first meaningful child
+      return element.GetNextMeaningfulChild(null);
     }
 
     private class State

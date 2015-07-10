@@ -23,8 +23,7 @@ using NUnit.Framework;
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
 {
   [TestSettingsKey(typeof(ComplexityAnalysisSettings))]
-  [TestFileExtension(".js")]
-  public class JsComplexityHighlightingTest : CSharpHighlightingTestNet4Base
+  public class JsComplexityHighlightingTest : JavaScriptHighlightingTestBase
   {
     protected override string RelativeTestDataPath { get { return "JS"; } }
 
