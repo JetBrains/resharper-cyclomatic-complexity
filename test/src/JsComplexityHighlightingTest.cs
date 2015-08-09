@@ -57,5 +57,31 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     {
       DoOneTest("AnonymousMethodWithModifiedSettings");
     }
+
+    [Test]
+    public void TestAssignedFunctionWithDefaultSettings()
+    {
+      DoOneTest("AssignedFunctionWithDefaultSettings");
+    }
+
+    [Test]
+    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    public void TestAssignedFunctionWithNonDefaultSettings()
+    {
+      DoOneTest("AssignedFunctionWithModifiedSettings");
+    }
+
+    [Test]
+    public void TestNestedFunctionWithDefaultSettings()
+    {
+      DoOneTest("NestedFunctionWithDefaultSettings");
+    }
+
+    [Test]
+    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    public void TestNestedFunctionWithNonDefaultSettings()
+    {
+      DoOneTest("NestedFunctionWithModifiedSettings");
+    }
   }
 }
