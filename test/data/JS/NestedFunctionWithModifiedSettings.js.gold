@@ -43,8 +43,8 @@ function |outerFunction|(0)() {
 }
 
 ---------------------------------------------------------
-(0): : Property 'outerFunction' has cyclomatic complexity of 1 (10% of threshold)
-(1): ReSharper Warning: Element has cyclomatic complexity of 14 (140% of threshold)
+(0): Cyclomatic Complexity Highlight: Property 'outerFunction' has cyclomatic complexity of 1 (10% of threshold)
+(1): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (140% of threshold)
 
 ================
 Threshold = 21
@@ -92,8 +92,8 @@ function |outerFunction|(0)() {
 }
 
 ---------------------------------------------------------
-(0): : Property 'outerFunction' has cyclomatic complexity of 1 (4% of threshold)
-(1): : Element has cyclomatic complexity of 14 (66% of threshold)
+(0): Cyclomatic Complexity Highlight: Property 'outerFunction' has cyclomatic complexity of 1 (4% of threshold)
+(1): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (66% of threshold)
 
 ================
 Threshold = 30
@@ -141,5 +141,5 @@ function |outerFunction|(0)() {
 }
 
 ---------------------------------------------------------
-(0): : Property 'outerFunction' has cyclomatic complexity of 1 (3% of threshold)
-(1): : Element has cyclomatic complexity of 14 (46% of threshold)
+(0): Cyclomatic Complexity Highlight: Property 'outerFunction' has cyclomatic complexity of 1 (3% of threshold)
+(1): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (46% of threshold)

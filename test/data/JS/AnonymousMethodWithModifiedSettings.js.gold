@@ -40,7 +40,7 @@
 }
 
 ---------------------------------------------------------
-(0): ReSharper Warning: Element has cyclomatic complexity of 14 (140% of threshold)
+(0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (140% of threshold)
 
 ================
 Threshold = 21
@@ -85,7 +85,7 @@ Threshold = 21
 }
 
 ---------------------------------------------------------
-(0): : Element has cyclomatic complexity of 14 (66% of threshold)
+(0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (66% of threshold)
 
 ================
 Threshold = 30
@@ -130,4 +130,4 @@ Threshold = 30
 }
 
 ---------------------------------------------------------
-(0): : Element has cyclomatic complexity of 14 (46% of threshold)
+(0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (46% of threshold)

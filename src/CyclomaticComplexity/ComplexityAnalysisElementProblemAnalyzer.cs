@@ -63,11 +63,9 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       var message = GetMessage(element, complexity, threshold);
       var documentRange = GetDocumentRange(element);
 
-      IHighlighting highlight = complexity > threshold
-        ? (IHighlighting) new ComplexityWarning(message, documentRange)
-        : new ComplexityInfo(message, documentRange);
-
-      consumer.AddHighlighting(highlight, state.File);
+      var highlight = new ComplexityHighlight(message, documentRange);
+      consumer.AddHighlighting(highlight, highlight.CalculateRange(), state.File,
+        complexity > threshold ? Severity.WARNING : Severity.INFO);
     }
 
     private static int CalculateCyclomaticComplexity(IControlFlowGraph graph)

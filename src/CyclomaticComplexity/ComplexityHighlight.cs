@@ -16,16 +16,22 @@
 
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Feature.Services.Daemon;
+using JetBrains.ReSharper.Plugins.CyclomaticComplexity;
+using JetBrains.TextControl.DocumentMarkup;
+
+[assembly: RegisterHighlighter(ComplexityHighlight.HighlightAttributeId)]
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
-  [StaticSeverityHighlighting(Severity.WARNING, "CSharpInfo")]
-  public class ComplexityWarning : IComplexityHighlighting
+  [StaticSeverityHighlighting(Severity.INFO, "CSharpInfo", AttributeId = HighlightAttributeId)]
+  public class ComplexityHighlight : IHighlighting
   {
+    public const string HighlightAttributeId = "Cyclomatic Complexity Highlight";
+
     private readonly string myTooltip;
     private readonly DocumentRange range;
 
-    public ComplexityWarning(string toolTip, DocumentRange range)
+    public ComplexityHighlight(string toolTip, DocumentRange range)
     {
       myTooltip = toolTip;
       this.range = range;

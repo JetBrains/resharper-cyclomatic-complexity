@@ -39,7 +39,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
 
     protected override bool HighlightingPredicate(IHighlighting highlighting, IPsiSourceFile sourceFile)
     {
-      return highlighting is IComplexityHighlighting;
+      return highlighting is ComplexityHighlight;
     }
 
     public override IProjectProperties GetProjectProperties(PlatformID platformId, ICollection<Guid> flavours)

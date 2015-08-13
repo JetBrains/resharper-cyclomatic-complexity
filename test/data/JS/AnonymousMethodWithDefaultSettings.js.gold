@@ -39,4 +39,4 @@
 }
 
 ---------------------------------------------------------
-(0): : Element has cyclomatic complexity of 14 (70% of threshold)
+(0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (70% of threshold)
