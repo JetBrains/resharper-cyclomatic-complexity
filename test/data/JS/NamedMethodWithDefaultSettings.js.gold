@@ -1,4 +1,4 @@
-﻿function ComplexMethod(age, name, isAdmin) {
+﻿function |ComplexMethod|(0)(age, name, isAdmin) {
   var result = false;
   var value = false;
 
@@ -39,3 +39,4 @@
 }
 
 ---------------------------------------------------------
+(0): : Property 'ComplexMethod' has cyclomatic complexity of 14 (70% of threshold)

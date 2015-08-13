@@ -45,9 +45,9 @@ class MyClass {
 (0): ReSharper Warning: Function member 'ComplexMethod' has cyclomatic complexity of 14 (140% of threshold)
 
 ================
-Threshold = 21,30
+Threshold = 21
 class MyClass {
-  ComplexMethod(age : int, name : string, isAdmin : bool) : bool {
+  |ComplexMethod|(0)(age : int, name : string, isAdmin : bool) : bool {
     var result = false;
     var value = false;
 
@@ -89,3 +89,51 @@ class MyClass {
 }
 
 ---------------------------------------------------------
+(0): : Function member 'ComplexMethod' has cyclomatic complexity of 14 (66% of threshold)
+
+================
+Threshold = 30
+class MyClass {
+  |ComplexMethod|(0)(age : int, name : string, isAdmin : bool) : bool {
+    var result = false;
+    var value = false;
+
+    if (name === "Sarah") {
+      if (age < 20 || age > 100) {
+        if (isAdmin) {
+          result = true;
+          value = true;
+        }
+        else if (age == 42) {
+          result = false;
+        }
+        else {
+          result = true;
+        }
+      }
+    }
+    else if (name == "Gentry" && isAdmin) {
+      result = false;
+    }
+    else {
+      if (age == 50) {
+        if (isAdmin) {
+          if (name == "Amrit") {
+            result = false;
+          }
+          else if (name == "Jane") {
+            result = true;
+          }
+          else {
+            result = false;
+          }
+        }
+      }
+    }
+
+    return result;
+  }
+}
+
+---------------------------------------------------------
+(0): : Function member 'ComplexMethod' has cyclomatic complexity of 14 (46% of threshold)

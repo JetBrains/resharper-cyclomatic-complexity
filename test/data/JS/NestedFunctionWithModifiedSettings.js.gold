@@ -1,6 +1,6 @@
 ﻿Threshold = 10
-function outerFunction() {
-  var myFunction = |function(age, name, isAdmin)|(0) {
+function |outerFunction|(0)() {
+  var myFunction = |function(age, name, isAdmin)|(1) {
     var result = false;
     var value = false;
 
@@ -43,12 +43,13 @@ function outerFunction() {
 }
 
 ---------------------------------------------------------
-(0): ReSharper Warning: Element has cyclomatic complexity of 14 (140% of threshold)
+(0): : Property 'outerFunction' has cyclomatic complexity of 1 (10% of threshold)
+(1): ReSharper Warning: Element has cyclomatic complexity of 14 (140% of threshold)
 
 ================
-Threshold = 21,30
-function outerFunction() {
-  var myFunction = function(age, name, isAdmin) {
+Threshold = 21
+function |outerFunction|(0)() {
+  var myFunction = |function(age, name, isAdmin)|(1) {
     var result = false;
     var value = false;
 
@@ -91,3 +92,54 @@ function outerFunction() {
 }
 
 ---------------------------------------------------------
+(0): : Property 'outerFunction' has cyclomatic complexity of 1 (4% of threshold)
+(1): : Element has cyclomatic complexity of 14 (66% of threshold)
+
+================
+Threshold = 30
+function |outerFunction|(0)() {
+  var myFunction = |function(age, name, isAdmin)|(1) {
+    var result = false;
+    var value = false;
+
+    if (name === "Sarah") {
+      if (age < 20 || age > 100) {
+        if (isAdmin) {
+          result = true;
+          value = true;
+        }
+        else if (age == 42) {
+          result = false;
+        }
+        else {
+          result = true;
+        }
+      }
+    }
+    else if (name == "Gentry" && isAdmin) {
+      result = false;
+    }
+    else {
+      if (age == 50) {
+        if (isAdmin) {
+          if (name == "Amrit") {
+            result = false;
+          }
+          else if (name == "Jane") {
+            result = true;
+          }
+          else {
+            result = false;
+          }
+        }
+      }
+    }
+
+    return result;
+  }
+  myFunction(42, "Matt", true);
+}
+
+---------------------------------------------------------
+(0): : Property 'outerFunction' has cyclomatic complexity of 1 (3% of threshold)
+(1): : Element has cyclomatic complexity of 14 (46% of threshold)

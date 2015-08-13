@@ -29,7 +29,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
 
     protected override bool HighlightingPredicate(IHighlighting highlighting, IPsiSourceFile sourceFile)
     {
-      return highlighting is ComplexityWarning;
+      return highlighting is IComplexityHighlighting;
     }
 
     [Test]

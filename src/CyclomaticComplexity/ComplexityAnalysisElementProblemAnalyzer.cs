@@ -22,6 +22,7 @@ using JetBrains.ReSharper.Daemon.Stages.Utils;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ControlFlow;
+using JetBrains.ReSharper.Psi.JavaScript.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 
@@ -45,6 +46,13 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       if (state.File == null || state.ControlFlowBuilder == null || !state.ControlFlowBuilder.CanBuildFrom(element))
         return;
 
+      // We can build control flow information for a JS file section (e.g. inline event handlers, or <src>
+      // elements in html) and it would be nice to flag these up as being too complex, but there's nowhere
+      // to put the warning - it highlights the whole section. Maybe that's ok for when we're over the threshold,
+      // but it's definitely not ok for the info tooltip.
+      if (element is IJavaScriptFileSection)
+        return;
+
       var graph = ControlFlowDaemonUtil.GetOrBuild(element, data);
       if (graph == null)
         return;
@@ -52,13 +60,14 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       var threshold = data.SettingsStore.GetValue((ComplexityAnalysisSettings s) => s.Threshold);
 
       var complexity = CalculateCyclomaticComplexity(graph);
-      if (complexity > threshold)
-      {
-        var message = GetMessage(element, complexity, threshold);
-        var documentRange = GetDocumentRange(element);
+      var message = GetMessage(element, complexity, threshold);
+      var documentRange = GetDocumentRange(element);
 
-        consumer.AddHighlighting(new ComplexityWarning(message, documentRange), state.File);
-      }
+      IHighlighting highlight = complexity > threshold
+        ? (IHighlighting) new ComplexityWarning(message, documentRange)
+        : new ComplexityInfo(message, documentRange);
+
+      consumer.AddHighlighting(highlight, state.File);
     }
 
     private static int CalculateCyclomaticComplexity(IControlFlowGraph graph)

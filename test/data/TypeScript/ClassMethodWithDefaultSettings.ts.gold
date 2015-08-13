@@ -1,5 +1,5 @@
 ﻿class MyClass {
-  ComplexMethod(age : int, name : string, isAdmin : bool) : bool {
+  |ComplexMethod|(0)(age : int, name : string, isAdmin : bool) : bool {
     var result = false;
     var value = false;
 
@@ -41,3 +41,4 @@
 }
 
 ---------------------------------------------------------
+(0): : Function member 'ComplexMethod' has cyclomatic complexity of 14 (70% of threshold)

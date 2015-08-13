@@ -157,6 +157,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComplexityInfo.cs" />
     <Compile Include="CyclomaticComplexityIcons\ThemedIcons.CyclomaticComplexity.Generated.cs" />
     <Compile Include="ComplexityAnalysisElementProblemAnalyzer.cs" />
     <Compile Include="ComplexityAnalysisInvalidateOnThresholdChange.cs" />
@@ -164,6 +165,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ComplexityAnalysisSettings.cs" />
+    <Compile Include="IComplexityHighlighting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ComplexityWarning.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

@@ -1,5 +1,5 @@
-﻿function outerFunction() {
-  var myFunction = function(age, name, isAdmin) {
+﻿function |outerFunction|(0)() {
+  var myFunction = |function(age, name, isAdmin)|(1) {
     var result = false;
     var value = false;
 
@@ -42,3 +42,5 @@
 }
 
 ---------------------------------------------------------
+(0): : Property 'outerFunction' has cyclomatic complexity of 1 (5% of threshold)
+(1): : Element has cyclomatic complexity of 14 (70% of threshold)

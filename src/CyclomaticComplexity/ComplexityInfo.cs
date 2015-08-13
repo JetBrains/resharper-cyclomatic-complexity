@@ -19,13 +19,13 @@ using JetBrains.ReSharper.Feature.Services.Daemon;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
-  [StaticSeverityHighlighting(Severity.WARNING, "CSharpInfo")]
-  public class ComplexityWarning : IComplexityHighlighting
+  [StaticSeverityHighlighting(Severity.INFO, "CSharpInfo")]
+  public class ComplexityInfo : IComplexityHighlighting
   {
     private readonly string myTooltip;
     private readonly DocumentRange range;
 
-    public ComplexityWarning(string toolTip, DocumentRange range)
+    public ComplexityInfo(string toolTip, DocumentRange range)
     {
       myTooltip = toolTip;
       this.range = range;

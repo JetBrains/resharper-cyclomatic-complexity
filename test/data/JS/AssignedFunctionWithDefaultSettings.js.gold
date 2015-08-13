@@ -1,4 +1,4 @@
-﻿var myFunction = function(age, name, isAdmin) {
+﻿var myFunction = |function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
 
@@ -39,3 +39,4 @@
 }
 
 ---------------------------------------------------------
+(0): : Element has cyclomatic complexity of 14 (70% of threshold)

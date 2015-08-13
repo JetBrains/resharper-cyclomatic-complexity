@@ -1,10 +1,10 @@
 ﻿using System;
 
-class ComplexityExample
+class |ComplexityExample|(0)
 {
     // From http://dontcodetired.com/blog/post/Using-Cyclomatic-Complexity-as-an-Indicator-of-Clean-Code.aspx
     // Used by permission :) https://twitter.com/robertsjason/status/618041977997627392
-    public bool |SomeComplexMethod|(0)(int age, string name, bool isAdmin)
+    public bool |SomeComplexMethod|(1)(int age, string name, bool isAdmin)
     {
         bool result = false;
         bool value = false;
@@ -59,4 +59,5 @@ class ComplexityExample
 }
 
 ---------------------------------------------------------
-(0): ReSharper Warning: Method 'SomeComplexMethod' has cyclomatic complexity of 21 (105% of threshold)
+(0): : Class 'ComplexityExample' has cyclomatic complexity of 1 (5% of threshold)
+(1): ReSharper Warning: Method 'SomeComplexMethod' has cyclomatic complexity of 21 (105% of threshold)

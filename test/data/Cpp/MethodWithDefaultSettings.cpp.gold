@@ -1,7 +1,7 @@
 ﻿#define true 1
 #define false 0
 
-int ComplexMethod(int age, string name, int isAdmin)
+|int ComplexMethod(int age, string name, int isAdmin)|(0)
 {
     int result = false;
     int value = false;
@@ -55,3 +55,4 @@ int ComplexMethod(int age, string name, int isAdmin)
 }
 
 ---------------------------------------------------------
+(0): : Element has cyclomatic complexity of 14 (70% of threshold)
