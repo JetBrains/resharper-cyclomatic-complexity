@@ -14,21 +14,38 @@
  * limitations under the License.
  */
 
+using System.Linq;
 using JetBrains.Application.Settings;
 using JetBrains.DataFlow;
 using JetBrains.ReSharper.Feature.Services.Daemon.OptionPages;
-using JetBrains.UI.Application;
+using JetBrains.ReSharper.Psi;
+using JetBrains.ReSharper.Psi.ControlFlow;
 using JetBrains.UI.Options;
-using JetBrains.UI.Options.Helpers;
+using JetBrains.UI.Options.OptionsDialog2.SimpleOptions;
+using JetBrains.UI.Options.OptionsDialog2.SimpleOptions.ViewModel;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
-  /// <summary>
-  /// Implements an options page that holds a set of setting editors stacked in lines from top to bottom.
-  /// </summary>
-  [OptionsPage(PID, "Complexity Analysis", typeof(CyclomaticComplexityThemedIcons.ComplexityOptionPage), ParentId = CodeInspectionPage.PID)]
-  public class ComplexityAnalysisOptionPage : AStackPanelOptionsPage
+  [OptionsPage(PageId, "Complexity Analysis", typeof(CyclomaticComplexityThemedIcons.ComplexityOptionPage), ParentId = CodeInspectionPage.PID)]
+  public class ComplexityAnalysisOptionPage : SimpleOptionsPage
   {
+    private const string PageId = "PowerToys.CyclomaticComplexity";
+
+    public ComplexityAnalysisOptionPage(Lifetime lifetime, OptionsSettingsSmartContext optionsSettingsSmartContext, 
+                                        ILanguages languages, ILanguageManager languageManager)
+      : base(lifetime, optionsSettingsSmartContext)
+    {
+      var thresholds = OptionsSettingsSmartContext.Schema.GetIndexedEntry((CyclomaticComplexityAnalysisSettings s) => s.Thresholds);
+      foreach (var languageType in languages.All.Where(languageManager.HasService<IControlFlowBuilder>).OrderBy(l => l.PresentableName))
+      {
+        var property = new Property<int>(lifetime, string.Format("{0}_IntOptionViewModel_{1}intValueProperty", GetType(), languageType.Name));
+        OptionsSettingsSmartContext.SetBinding(lifetime, thresholds, languageType.Name, property, CyclomaticComplexityAnalysisSettings.DefaultThreshold);
+        var option = new IntOptionViewModel(property, languageType.PresentableName, string.Format("Threshold for {0}", languageType.PresentableName), 2, 1);
+        OptionEntities.Add(option);
+      }
+    }
+
+#if false
     private readonly Lifetime myLifetime;
     private readonly OptionsSettingsSmartContext mySettings;
     private const string PID = "PowerToys.CyclomaticComplexity";
@@ -65,5 +82,6 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       // This binding will take the initial value from ComplexityAnalysisOptionPage, put it into the edit, and pass back from UI to the control if the OK button is hit
       //mySettings.SetBinding(myLifetime, (CyclomaticComplexityAnalysisSettings s) => s.Threshold, spin.IntegerValue);
     }
+#endif
   }
 }
