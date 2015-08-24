@@ -22,7 +22,7 @@ using NUnit.Framework;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
 {
-  [TestSettingsKey(typeof(ComplexityAnalysisSettings))]
+  [TestSettingsKey(typeof(CyclomaticComplexityAnalysisSettings))]
   public class CSharpComplexityHighlightingTest : CSharpHighlightingTestNet4Base
   {
     protected override string RelativeTestDataPath { get { return "CSharp"; } }
@@ -39,7 +39,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     }
 
     [Test]
-    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    [TestSettings("{ Thresholds: [ { 'CSHARP': 10 }, { 'CSHARP': 21 }, { 'CSHARP': 30 } ] }")]
     public void TestComplexMethodWithNonDefaultSettings()
     {
       DoOneTest("ComplexMethodWithModifiedSettings");

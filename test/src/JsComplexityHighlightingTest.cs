@@ -22,7 +22,7 @@ using NUnit.Framework;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
 {
-  [TestSettingsKey(typeof(ComplexityAnalysisSettings))]
+  [TestSettingsKey(typeof(CyclomaticComplexityAnalysisSettings))]
   public class JsComplexityHighlightingTest : JavaScriptHighlightingTestBase
   {
     protected override string RelativeTestDataPath { get { return "JS"; } }
@@ -39,7 +39,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     }
 
     [Test]
-    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    [TestSettings("{ Thresholds: [ { 'JAVA_SCRIPT': 10 }, { 'JAVA_SCRIPT': 21 }, { 'JAVA_SCRIPT': 30 } ] }")]
     public void TestNamedMethodWithNonDefaultSettings()
     {
       DoOneTest("NamedMethodWithModifiedSettings");
@@ -52,7 +52,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     }
 
     [Test]
-    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    [TestSettings("{ Thresholds: [ { 'JAVA_SCRIPT': 10 }, { 'JAVA_SCRIPT': 21 }, { 'JAVA_SCRIPT': 30 } ] }")]
     public void TestAnonymousMethodWithNonDefaultSettings()
     {
       DoOneTest("AnonymousMethodWithModifiedSettings");
@@ -65,7 +65,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     }
 
     [Test]
-    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    [TestSettings("{ Thresholds: [ { 'JAVA_SCRIPT': 10 }, { 'JAVA_SCRIPT': 21 }, { 'JAVA_SCRIPT': 30 } ] }")]
     public void TestAssignedFunctionWithNonDefaultSettings()
     {
       DoOneTest("AssignedFunctionWithModifiedSettings");
@@ -78,7 +78,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     }
 
     [Test]
-    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    [TestSettings("{ Thresholds: [ { 'JAVA_SCRIPT': 10 }, { 'JAVA_SCRIPT': 21 }, { 'JAVA_SCRIPT': 30 } ] }")]
     public void TestNestedFunctionWithNonDefaultSettings()
     {
       DoOneTest("NestedFunctionWithModifiedSettings");

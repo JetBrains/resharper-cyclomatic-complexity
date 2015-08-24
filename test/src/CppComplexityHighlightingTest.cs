@@ -30,7 +30,7 @@ using PlatformID = JetBrains.Application.platforms.PlatformID;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
 {
-  [TestSettingsKey(typeof(ComplexityAnalysisSettings))]
+  [TestSettingsKey(typeof(CyclomaticComplexityAnalysisSettings))]
   [TestFileExtension(CppProjectFileType.CPP_EXTENSION)]
   public class CppComplexityHighlightingTest : HighlightingTestBase
   {
@@ -59,7 +59,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     }
 
     [Test]
-    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    [TestSettings("{ Thresholds: [ { 'CPP': 10 }, { 'CPP': 21 }, { 'CPP': 30 } ] }")]
     public void TestMethodWithNonDefaultSettings()
     {
       DoOneTest("MethodWithModifiedSettings");

@@ -63,7 +63,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       spin.Value = new decimal(new[] {1, 0, 0, 0});
 
       // This binding will take the initial value from ComplexityAnalysisOptionPage, put it into the edit, and pass back from UI to the control if the OK button is hit
-      mySettings.SetBinding(myLifetime, (ComplexityAnalysisSettings s) => s.Threshold, spin.IntegerValue);
+      //mySettings.SetBinding(myLifetime, (CyclomaticComplexityAnalysisSettings s) => s.Threshold, spin.IntegerValue);
     }
   }
 }

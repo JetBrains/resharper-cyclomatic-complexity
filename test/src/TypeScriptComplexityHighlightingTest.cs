@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
 {
-  [TestSettingsKey(typeof(ComplexityAnalysisSettings))]
+  [TestSettingsKey(typeof(CyclomaticComplexityAnalysisSettings))]
   public class TypeScriptComplexityHighlightingTest : TypeScriptHighlightingTestBase
   {
     protected override string RelativeTestDataPath { get { return "TypeScript"; } }
@@ -23,7 +23,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     }
 
     [Test]
-    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    [TestSettings("{ Thresholds: [ { 'TYPE_SCRIPT': 10 }, { 'TYPE_SCRIPT': 21 }, { 'TYPE_SCRIPT': 30 } ] }")]
     public void TestClassMethodWithNonDefaultSettings()
     {
       DoOneTest("ClassMethodWithModifiedSettings");
@@ -36,7 +36,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     }
 
     [Test]
-    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    [TestSettings("{ Thresholds: [ { 'TYPE_SCRIPT': 10 }, { 'TYPE_SCRIPT': 21 }, { 'TYPE_SCRIPT': 30 } ] }")]
     public void TestModuleMethodWithNonDefaultSettings()
     {
       DoOneTest("ModuleMethodWithModifiedSettings");
@@ -49,7 +49,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     }
 
     [Test]
-    [TestSettings("{ Threshold: [ 10, 21, 30] }")]
+    [TestSettings("{ Thresholds: [ { 'TYPE_SCRIPT': 10 }, { 'TYPE_SCRIPT': 21 }, { 'TYPE_SCRIPT': 30 } ] }")]
     public void TestAnonymousMethodWithNonDefaultSettings()
     {
       DoOneTest("AnonymousMethodWithModifiedSettings");

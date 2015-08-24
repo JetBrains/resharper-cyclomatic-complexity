@@ -1,4 +1,4 @@
-﻿Threshold = 10
+﻿Thresholds = CPP:10,
 #define true 1
 #define false 0
 
@@ -59,7 +59,7 @@
 (0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (140% of threshold)
 
 ================
-Threshold = 21
+Thresholds = CPP:21,
 #define true 1
 #define false 0
 
@@ -120,7 +120,7 @@ Threshold = 21
 (0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (66% of threshold)
 
 ================
-Threshold = 30
+Thresholds = CPP:30,
 #define true 1
 #define false 0
 

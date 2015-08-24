@@ -1,4 +1,4 @@
-﻿Threshold = 10
+﻿Thresholds = JAVA_SCRIPT:10,
 |function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
@@ -43,7 +43,7 @@
 (0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (140% of threshold)
 
 ================
-Threshold = 21
+Thresholds = JAVA_SCRIPT:21,
 |function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
@@ -88,7 +88,7 @@ Threshold = 21
 (0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (66% of threshold)
 
 ================
-Threshold = 30
+Thresholds = JAVA_SCRIPT:30,
 |function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;

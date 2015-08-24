@@ -15,14 +15,17 @@
  */
 
 using JetBrains.Application.Settings;
+using JetBrains.Application.Settings.Store;
 using JetBrains.ReSharper.Resources.Settings;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
-  [SettingsKey(typeof(CodeInspectionSettings), "Complexity Analysis")]
-  public class ComplexityAnalysisSettings
+  [SettingsKey(typeof (CodeInspectionSettings), "Cyclomatic complexity analysis")]
+  public class CyclomaticComplexityAnalysisSettings
   {
-    [SettingsEntry(20, "Threshold")]
-    public int Threshold;
+    public const int DefaultThreshold = 20;
+
+    [SettingsIndexedEntry("Threshold per language")]
+    public IIndexedEntry<string, int> Thresholds;
   }
 }

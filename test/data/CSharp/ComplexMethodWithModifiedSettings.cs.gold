@@ -1,4 +1,4 @@
-﻿Threshold = 10
+﻿Thresholds = CSHARP:10,
 using System;
 
 class |ComplexityExample|(0)
@@ -64,7 +64,7 @@ class |ComplexityExample|(0)
 (1): Cyclomatic Complexity Highlight: Method 'SomeComplexMethod' has cyclomatic complexity of 21 (210% of threshold)
 
 ================
-Threshold = 21
+Thresholds = CSHARP:21,
 using System;
 
 class |ComplexityExample|(0)
@@ -130,7 +130,7 @@ class |ComplexityExample|(0)
 (1): Cyclomatic Complexity Highlight: Method 'SomeComplexMethod' has cyclomatic complexity of 21 (100% of threshold)
 
 ================
-Threshold = 30
+Thresholds = CSHARP:30,
 using System;
 
 class |ComplexityExample|(0)

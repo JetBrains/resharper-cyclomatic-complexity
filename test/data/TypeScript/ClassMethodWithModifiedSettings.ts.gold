@@ -1,4 +1,4 @@
-﻿Threshold = 10
+﻿Thresholds = TYPE_SCRIPT:10,
 class MyClass {
   |ComplexMethod|(0)(age : int, name : string, isAdmin : bool) : bool {
     var result = false;
@@ -45,7 +45,7 @@ class MyClass {
 (0): Cyclomatic Complexity Highlight: Function member 'ComplexMethod' has cyclomatic complexity of 14 (140% of threshold)
 
 ================
-Threshold = 21
+Thresholds = TYPE_SCRIPT:21,
 class MyClass {
   |ComplexMethod|(0)(age : int, name : string, isAdmin : bool) : bool {
     var result = false;
@@ -92,7 +92,7 @@ class MyClass {
 (0): Cyclomatic Complexity Highlight: Function member 'ComplexMethod' has cyclomatic complexity of 14 (66% of threshold)
 
 ================
-Threshold = 30
+Thresholds = TYPE_SCRIPT:30,
 class MyClass {
   |ComplexMethod|(0)(age : int, name : string, isAdmin : bool) : bool {
     var result = false;

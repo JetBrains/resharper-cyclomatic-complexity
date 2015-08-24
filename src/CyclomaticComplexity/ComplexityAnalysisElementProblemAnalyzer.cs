@@ -40,7 +40,8 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       var state = data.GetOrCreateData(key, () => new State
       {
         File = element.GetContainingFile(),
-        ControlFlowBuilder = LanguageManager.Instance.TryGetService<IControlFlowBuilder>(element.Language)
+        ControlFlowBuilder = LanguageManager.Instance.TryGetService<IControlFlowBuilder>(element.Language),
+        Threshold = GetThreshold(data, element.Language)
       });
 
       if (state.File == null || state.ControlFlowBuilder == null || !state.ControlFlowBuilder.CanBuildFrom(element))
@@ -57,15 +58,24 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       if (graph == null)
         return;
 
-      var threshold = data.SettingsStore.GetValue((ComplexityAnalysisSettings s) => s.Threshold);
-
       var complexity = CalculateCyclomaticComplexity(graph);
-      var message = GetMessage(element, complexity, threshold);
+      var message = GetMessage(element, complexity, state.Threshold);
       var documentRange = GetDocumentRange(element);
 
       var highlight = new ComplexityHighlight(message, documentRange);
       consumer.AddHighlighting(highlight, highlight.CalculateRange(), state.File,
-        complexity > threshold ? Severity.WARNING : Severity.INFO);
+        complexity > state.Threshold ? Severity.WARNING : Severity.INFO);
+    }
+
+    private static int GetThreshold(ElementProblemAnalyzerData data, PsiLanguageType language)
+    {
+      var threshold = data.SettingsStore.GetIndexedValue((CyclomaticComplexityAnalysisSettings s) => s.Thresholds, language.Name);
+      if (threshold < 1)
+      {
+        data.SettingsStore.SetIndexedValue((CyclomaticComplexityAnalysisSettings s) => s.Thresholds, language.Name, CyclomaticComplexityAnalysisSettings.DefaultThreshold);
+        threshold = CyclomaticComplexityAnalysisSettings.DefaultThreshold;
+      }
+      return threshold;
     }
 
     private static int CalculateCyclomaticComplexity(IControlFlowGraph graph)
@@ -152,6 +162,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
     {
       public IFile File;
       public IControlFlowBuilder ControlFlowBuilder;
+      public int Threshold;
     }
   }
 }

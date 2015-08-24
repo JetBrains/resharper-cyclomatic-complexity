@@ -1,4 +1,4 @@
-﻿Threshold = 10
+﻿Thresholds = TYPE_SCRIPT:10,
 function |ComplexMethod|(0)(age, name, isAdmin) {
   var result = false;
   var value = false;
@@ -43,7 +43,7 @@ function |ComplexMethod|(0)(age, name, isAdmin) {
 (0): Cyclomatic Complexity Highlight: Module member 'ComplexMethod' has cyclomatic complexity of 14 (140% of threshold)
 
 ================
-Threshold = 21
+Thresholds = TYPE_SCRIPT:21,
 function |ComplexMethod|(0)(age, name, isAdmin) {
   var result = false;
   var value = false;
@@ -88,7 +88,7 @@ function |ComplexMethod|(0)(age, name, isAdmin) {
 (0): Cyclomatic Complexity Highlight: Module member 'ComplexMethod' has cyclomatic complexity of 14 (66% of threshold)
 
 ================
-Threshold = 30
+Thresholds = TYPE_SCRIPT:30,
 function |ComplexMethod|(0)(age, name, isAdmin) {
   var result = false;
   var value = false;

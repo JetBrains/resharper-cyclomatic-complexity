@@ -14,20 +14,26 @@
  * limitations under the License.
  */
 
+using System.IO;
+using System.Reflection;
+using JetBrains.Application;
 using JetBrains.Application.Settings;
 using JetBrains.DataFlow;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.Daemon;
+using JetBrains.Util;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
-  [SolutionComponent]
-  public class ComplexityAnalysisInvalidateOnThresholdChange
+  [ShellComponent]
+  public class DefaultCyclomaticComplexitySettings : IHaveDefaultSettingsStream
   {
-    public ComplexityAnalysisInvalidateOnThresholdChange(Lifetime lifetime, IDaemon daemon, ISettingsStore settingsStore)
+    public string Name { get { return "Default Cyclomatic Complexity Settings"; } }
+
+    public Stream GetDefaultSettingsStream(Lifetime lifetime)
     {
-      var settingsKey = settingsStore.Schema.GetKey<CyclomaticComplexityAnalysisSettings>();
-      settingsStore.AdviseChange(lifetime, settingsKey, daemon.Invalidate);
+      var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("JetBrains.ReSharper.Plugins.CyclomaticComplexity.Resources.DefaultSettings.xml");
+      Assertion.Assert(stream != null, "stream != null");
+      lifetime.AddDispose(stream);
+      return stream;
     }
   }
 }
