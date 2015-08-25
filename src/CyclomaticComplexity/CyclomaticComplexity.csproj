@@ -178,7 +178,6 @@
     <Compile Include="ZoneMarker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ThemedIconPng Include="CyclomaticComplexityIcons\ComplexityOptionPage.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -192,6 +191,12 @@
     <EmbeddedResource Include="Resources\DefaultSettings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ThemedIconsXamlV3 Include="CyclomaticComplexityIcons\CyclomaticComplexity.xaml">
+      <ThemeColumns>Gray;GrayDark;Color</ThemeColumns>
+      <RemoveBackgroundElement>True</RemoveBackgroundElement>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ThemedIconsXamlV3>
     <Page Include="Options\ComplexityAnalysisOptionsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

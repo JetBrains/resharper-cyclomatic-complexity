@@ -26,7 +26,7 @@ using JetBrains.UI.Options.OptionsDialog2.SimpleOptions;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
 {
-  [OptionsPage(PageId, "Cyclomatic Complexity", typeof(CyclomaticComplexityThemedIcons.ComplexityOptionPage), ParentId = CodeInspectionPage.PID)]
+  [OptionsPage(PageId, "Cyclomatic Complexity", typeof(CyclomaticComplexityThemedIcons.CyclomaticComplexity), ParentId = CodeInspectionPage.PID)]
   public class ComplexityAnalysisOptionPage : CustomSimpleOptionsPage
   {
     private const string PageId = "PowerToys.CyclomaticComplexity";
