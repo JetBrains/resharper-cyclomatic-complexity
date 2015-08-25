@@ -15,46 +15,17 @@
  */
 
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using JetBrains.Application.Settings;
 using JetBrains.DataFlow;
 using JetBrains.ReSharper.Feature.Services.Daemon.OptionPages;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ControlFlow;
 using JetBrains.ReSharper.Psi.JavaScript.WinRT.LanguageImpl;
-using JetBrains.UI.Avalon.TreeListView;
 using JetBrains.UI.Options;
 using JetBrains.UI.Options.OptionsDialog2.SimpleOptions;
-using JetBrains.UI.Wpf;
 
-namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
+namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
 {
-  public class ComplexityAnalysisOptionsViewModel : AAutomation
-  {
-    public ComplexityAnalysisOptionsViewModel(List<LanguageSpecificComplexityProperties> list)
-    {
-      PerLanguageProperties = new ObservableCollection<LanguageSpecificComplexityProperties>(list);
-    }
-
-    public ObservableCollection<LanguageSpecificComplexityProperties> PerLanguageProperties { get; private set; }
-  }
-
-  public class LanguageSpecificComplexityProperties : ObservableObject
-  {
-    public LanguageSpecificComplexityProperties(Lifetime lifetime, OptionsSettingsSmartContext settings, SettingsIndexedEntry settingsIndexedEntry, string index, string languagePresentableName, int defaultValue)
-    {
-      Name = languagePresentableName;
-
-      Threshold = new Property<int>(lifetime, index);
-      Threshold.Change.Advise(lifetime, () => OnPropertyChanged("Threshold"));
-      settings.SetBinding(lifetime, settingsIndexedEntry, index, Threshold, defaultValue);
-    }
-
-    public string Name { get; private set; }
-    public IProperty<int> Threshold { get; set; }
-  }
-
   [OptionsPage(PageId, "Cyclomatic Complexity", typeof(CyclomaticComplexityThemedIcons.ComplexityOptionPage), ParentId = CodeInspectionPage.PID)]
   public class ComplexityAnalysisOptionPage : CustomSimpleOptionsPage
   {

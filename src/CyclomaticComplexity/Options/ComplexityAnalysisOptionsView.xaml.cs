@@ -1,6 +1,6 @@
-﻿using JetBrains.UI.Wpf;
+using JetBrains.UI.Wpf;
 
-namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
+namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
 {
   [View]
   public partial class ComplexityAnalysisOptionsView : IView<ComplexityAnalysisOptionsViewModel>
