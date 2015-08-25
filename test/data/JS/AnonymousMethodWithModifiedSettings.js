@@ -1,4 +1,4 @@
-function(age, name, isAdmin) {
+(function(age, name, isAdmin) {
   var result = false;
   var value = false;
 
@@ -36,4 +36,4 @@ function(age, name, isAdmin) {
   }
 
   return result;
-}
+})();

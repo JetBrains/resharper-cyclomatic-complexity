@@ -1,5 +1,5 @@
 ﻿Thresholds = JAVA_SCRIPT:10,
-|function(age, name, isAdmin)|(0) {
+(|function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
 
@@ -37,14 +37,14 @@
   }
 
   return result;
-}
+})();
 
 ---------------------------------------------------------
 (0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (140% of threshold)
 
 ================
 Thresholds = JAVA_SCRIPT:21,
-|function(age, name, isAdmin)|(0) {
+(|function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
 
@@ -82,14 +82,14 @@ Thresholds = JAVA_SCRIPT:21,
   }
 
   return result;
-}
+})();
 
 ---------------------------------------------------------
 (0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (66% of threshold)
 
 ================
 Thresholds = JAVA_SCRIPT:30,
-|function(age, name, isAdmin)|(0) {
+(|function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
 
@@ -127,7 +127,7 @@ Thresholds = JAVA_SCRIPT:30,
   }
 
   return result;
-}
+})();
 
 ---------------------------------------------------------
 (0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (46% of threshold)
