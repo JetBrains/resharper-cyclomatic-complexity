@@ -14,20 +14,49 @@
  * limitations under the License.
  */
 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using JetBrains.Application.Settings;
 using JetBrains.DataFlow;
 using JetBrains.ReSharper.Feature.Services.Daemon.OptionPages;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ControlFlow;
+using JetBrains.ReSharper.Psi.JavaScript.WinRT.LanguageImpl;
+using JetBrains.UI.Avalon.TreeListView;
 using JetBrains.UI.Options;
 using JetBrains.UI.Options.OptionsDialog2.SimpleOptions;
-using JetBrains.UI.Options.OptionsDialog2.SimpleOptions.ViewModel;
+using JetBrains.UI.Wpf;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
-  [OptionsPage(PageId, "Complexity Analysis", typeof(CyclomaticComplexityThemedIcons.ComplexityOptionPage), ParentId = CodeInspectionPage.PID)]
-  public class ComplexityAnalysisOptionPage : SimpleOptionsPage
+  public class ComplexityAnalysisOptionsViewModel : AAutomation
+  {
+    public ComplexityAnalysisOptionsViewModel(List<LanguageSpecificComplexityProperties> list)
+    {
+      PerLanguageProperties = new ObservableCollection<LanguageSpecificComplexityProperties>(list);
+    }
+
+    public ObservableCollection<LanguageSpecificComplexityProperties> PerLanguageProperties { get; private set; }
+  }
+
+  public class LanguageSpecificComplexityProperties : ObservableObject
+  {
+    public LanguageSpecificComplexityProperties(Lifetime lifetime, OptionsSettingsSmartContext settings, SettingsIndexedEntry settingsIndexedEntry, string index, string languagePresentableName, int defaultValue)
+    {
+      Name = languagePresentableName;
+
+      Threshold = new Property<int>(lifetime, index);
+      Threshold.Change.Advise(lifetime, () => OnPropertyChanged("Threshold"));
+      settings.SetBinding(lifetime, settingsIndexedEntry, index, Threshold, defaultValue);
+    }
+
+    public string Name { get; private set; }
+    public IProperty<int> Threshold { get; set; }
+  }
+
+  [OptionsPage(PageId, "Cyclomatic Complexity", typeof(CyclomaticComplexityThemedIcons.ComplexityOptionPage), ParentId = CodeInspectionPage.PID)]
+  public class ComplexityAnalysisOptionPage : CustomSimpleOptionsPage
   {
     private const string PageId = "PowerToys.CyclomaticComplexity";
 
@@ -35,53 +64,31 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
                                         ILanguages languages, ILanguageManager languageManager)
       : base(lifetime, optionsSettingsSmartContext)
     {
+      AddText("Specify cyclomatic complexity thresholds:");
+
       var thresholds = OptionsSettingsSmartContext.Schema.GetIndexedEntry((CyclomaticComplexityAnalysisSettings s) => s.Thresholds);
-      foreach (var languageType in languages.All.Where(languageManager.HasService<IControlFlowBuilder>).OrderBy(l => l.PresentableName))
+
+      var list = new List<LanguageSpecificComplexityProperties>();
+      foreach (var languageType in languages.All.Where(languageManager.HasService<IControlFlowBuilder>).OrderBy(GetPresentableName))
       {
-        var property = new Property<int>(lifetime, string.Format("{0}_IntOptionViewModel_{1}intValueProperty", GetType(), languageType.Name));
-        OptionsSettingsSmartContext.SetBinding(lifetime, thresholds, languageType.Name, property, CyclomaticComplexityAnalysisSettings.DefaultThreshold);
-        var option = new IntOptionViewModel(property, languageType.PresentableName, string.Format("Threshold for {0}", languageType.PresentableName), 2, 1);
-        OptionEntities.Add(option);
+        var presentableName = GetPresentableName(languageType);
+        var thing = new LanguageSpecificComplexityProperties(lifetime, optionsSettingsSmartContext, thresholds, languageType.Name, presentableName, CyclomaticComplexityAnalysisSettings.DefaultThreshold);
+        list.Add(thing);
       }
+      AddCustomOption(new ComplexityAnalysisOptionsViewModel(list));
+
+      // TODO: AddLink - What is a good complexity threshold value?
+      // Link to wiki page on GitHub with details and links
     }
 
-#if false
-    private readonly Lifetime myLifetime;
-    private readonly OptionsSettingsSmartContext mySettings;
-    private const string PID = "PowerToys.CyclomaticComplexity";
-
-    public ComplexityAnalysisOptionPage(Lifetime lifetime, IUIApplication environment, OptionsSettingsSmartContext settings)
-      : base(lifetime, environment, PID)
+    private static string GetPresentableName(PsiLanguageType psiLanguageType)
     {
-      myLifetime = lifetime;
-      mySettings = settings;
-      InitControls();
+      // Bah, WinRT JS is a different language, that supports control flow,
+      // but has the same presentable name as normal JS. I don't like
+      // adding language specific fixes...
+      if (psiLanguageType is JavaScriptWinRTLanguage)
+        return "JavaScript (WinRT)";
+      return psiLanguageType.PresentableName;
     }
-
-    private void InitControls()
-    {
-      Controls.Spin spin; // This variable may be reused if there's more than one spin on the page
-      Controls.HorzStackPanel stack;
-
-      // The upper cue banner, stacked in the first line of our page, docked to full width with word wrapping, as needed
-      Controls.Add(new Controls.Label(Properties.Resources.Options_Banner));
-
-      // Some spacing
-      Controls.Add(UI.Options.Helpers.Controls.Separator.DefaultHeight);
-
-      // A horizontal stack of a text label and a spin-edit
-      Controls.Add(stack = new Controls.HorzStackPanel(Environment));
-      stack.Controls.Add(new Controls.Label(Properties.Resources.Options_ThresholdLabel)); // The first column of the stack
-      stack.Controls.Add(spin = new Controls.Spin());
-
-      // Set up the spin we've just added
-      spin.Maximum = new decimal(new[] {500, 0, 0, 0});
-      spin.Minimum = new decimal(new[] {1, 0, 0, 0});
-      spin.Value = new decimal(new[] {1, 0, 0, 0});
-
-      // This binding will take the initial value from ComplexityAnalysisOptionPage, put it into the edit, and pass back from UI to the control if the OK button is hit
-      //mySettings.SetBinding(myLifetime, (CyclomaticComplexityAnalysisSettings s) => s.Threshold, spin.IntegerValue);
-    }
-#endif
   }
 }

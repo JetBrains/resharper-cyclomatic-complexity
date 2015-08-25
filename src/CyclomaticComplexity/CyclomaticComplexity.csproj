@@ -157,13 +157,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComplexityAnalysisOptionsView.xaml.cs">
+      <DependentUpon>ComplexityAnalysisOptionsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ComplexityHighlight.cs" />
     <Compile Include="CyclomaticComplexityIcons\ThemedIcons.CyclomaticComplexity.Generated.cs" />
     <Compile Include="ComplexityAnalysisElementProblemAnalyzer.cs" />
     <Compile Include="ComplexityAnalysisInvalidateOnThresholdChange.cs" />
-    <Compile Include="ComplexityAnalysisOptionPage.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ComplexityAnalysisOptionPage.cs" />
     <Compile Include="CyclomaticComplexityAnalysisSettings.cs" />
     <Compile Include="DefaultCyclomaticComplexitySettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -179,6 +180,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +188,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\DefaultSettings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ComplexityAnalysisOptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

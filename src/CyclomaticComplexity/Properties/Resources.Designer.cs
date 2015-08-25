@@ -59,23 +59,5 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cyclomatic complexity threshold:.
-        /// </summary>
-        internal static string Options_Banner {
-            get {
-                return ResourceManager.GetString("Options_Banner", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cyclomatic complexity threshold:.
-        /// </summary>
-        internal static string Options_ThresholdLabel {
-            get {
-                return ResourceManager.GetString("Options_ThresholdLabel", resourceCulture);
-            }
-        }
     }
 }
