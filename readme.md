@@ -14,6 +14,6 @@ When the complexity reaches a configurable threshold, the tooltip is shown as a 
 
 ![Complexity exceeds the configurable threshold](docs/warning.png)
 
-And the complexity can be configured in the options, per language:
+And the complexity threshold can be configured in the options, per language:
 
 ![Options](docs/options.png)
