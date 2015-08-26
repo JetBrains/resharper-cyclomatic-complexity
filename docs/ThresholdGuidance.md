@@ -19,7 +19,7 @@ To get some idea of ranges, here are some examples:
    This Carnegie Mellon study offers a table, with a range of values. Anything over 20 is considered "complex, high risk", and is the basis for the default used in this plugin. Interestingly, this guide talks in terms of "risk", rather than "complexity". See page 145:
 
    > | **Cyclomatic Complexity** | **Risk Evaluation** |
-   > |--------------------------------|
+   > |---------------------------|---------------------|
    > | 1 - 10 | a simple program, without much risk |
    > | 11 - 20 | more complex, moderate risk |
    > | 21 - 50 | complex, high risk |
