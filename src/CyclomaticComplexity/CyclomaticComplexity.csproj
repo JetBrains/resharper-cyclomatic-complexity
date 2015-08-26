@@ -170,6 +170,10 @@
       <DependentUpon>ComplexityAnalysisOptionsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Options\ComplexityAnalysisOptionsViewModel.cs" />
+    <Compile Include="Options\HyperlinkOptionView.xaml.cs">
+      <DependentUpon>HyperlinkOptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Options\HyperlinkOptionViewModel.cs" />
     <Compile Include="Options\LanguageSpecificComplexityProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -193,6 +197,10 @@
     <EmbeddedResource Include="Resources\DefaultSettings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Options\HyperlinkOptionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <ThemedIconsXamlV3 Include="CyclomaticComplexityIcons\CyclomaticComplexity.xaml">
       <ThemeColumns>Gray;GrayDark;Color</ThemeColumns>
       <RemoveBackgroundElement>True</RemoveBackgroundElement>

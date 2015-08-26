@@ -15,12 +15,14 @@
  */
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using JetBrains.DataFlow;
 using JetBrains.ReSharper.Feature.Services.Daemon.OptionPages;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ControlFlow;
 using JetBrains.ReSharper.Psi.JavaScript.WinRT.LanguageImpl;
+using JetBrains.UI.Extensions.Commands;
 using JetBrains.UI.Options;
 using JetBrains.UI.Options.OptionsDialog2.SimpleOptions;
 
@@ -46,10 +48,15 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
         var thing = new LanguageSpecificComplexityProperties(lifetime, optionsSettingsSmartContext, thresholds, languageType.Name, presentableName, CyclomaticComplexityAnalysisSettings.DefaultThreshold);
         list.Add(thing);
       }
-      AddCustomOption(new ComplexityAnalysisOptionsViewModel(list));
 
-      // TODO: AddLink - What is a good complexity threshold value?
-      // Link to wiki page on GitHub with details and links
+      // TODO: Do we want to add any keywords for the list view?
+      // We would use OptionEntities.Add if the view model also implements IOptionEntity,
+      // or use RegisterWord if we just want to add keyword(s)
+      // (But the list view is just language name + threshold, so not very interesting)
+      AddCustomOption(new ComplexityAnalysisOptionsViewModel(list));
+      OptionEntities.Add(new HyperlinkOptionViewModel(lifetime, "What is a good threshold value?",
+        new DelegateCommand(() => Process.Start("https://github.com/JetBrains/resharper-cyclomatic-complexity/blob/master/docs/ThresholdGuidance.md#readme"))));
+      FinishPage();
     }
 
     private static string GetPresentableName(PsiLanguageType psiLanguageType)
