@@ -1,4 +1,4 @@
-﻿|function(age, name, isAdmin)|(0) {
+﻿var foo = |function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
 

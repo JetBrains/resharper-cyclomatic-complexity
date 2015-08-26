@@ -1,5 +1,5 @@
 ﻿Thresholds = TYPE_SCRIPT:10,
-|function(age, name, isAdmin)|(0) {
+var foo = |function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
 
@@ -40,11 +40,11 @@
 }
 
 ---------------------------------------------------------
-(0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (140% of threshold)
+(0): ReSharper Warning: Element has cyclomatic complexity of 14 (140% of threshold)
 
 ================
 Thresholds = TYPE_SCRIPT:21,
-|function(age, name, isAdmin)|(0) {
+var foo = |function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
 
@@ -89,7 +89,7 @@ Thresholds = TYPE_SCRIPT:21,
 
 ================
 Thresholds = TYPE_SCRIPT:30,
-|function(age, name, isAdmin)|(0) {
+var foo = |function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
 

@@ -1,4 +1,4 @@
-function(age, name, isAdmin) {
+var foo = function(age, name, isAdmin) {
   var result = false;
   var value = false;
 
