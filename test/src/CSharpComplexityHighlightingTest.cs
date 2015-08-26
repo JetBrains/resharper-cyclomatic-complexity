@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.FeaturesTestFramework.Daemon;
 using JetBrains.ReSharper.Psi;
@@ -32,6 +33,16 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
       return highlighting is IComplexityHighlighting;
     }
 
+    protected override void DoNamedTest2(params string[] auxFiles)
+    {
+      ExecuteWithinSettingsTransaction(store =>
+      {
+        // This will be done in the plugin by adding a .dotSettings file
+        RunGuarded(() => store.SetIndexedValue(HighlightingSettingsAccessor.InspectionSeverities, "FunctionComplexityOverflow", Severity.WARNING));
+        base.DoNamedTest2(auxFiles);
+      });
+    }
+
     [Test]
     public void TestComplexMethodWithDefaultSettings()
     {
@@ -43,6 +54,18 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     public void TestComplexMethodWithNonDefaultSettings()
     {
       DoOneTest("ComplexMethodWithModifiedSettings");
+    }
+
+    [Test]
+    public void TestMethodBodyTooComplexForValueAnalysisAndHighCyclomaticComplexity()
+    {
+      DoNamedTest2();
+    }
+
+    [Test]
+    public void TestMethodBodyTooComplexForValueAnalysisButLowCyclomaticComplexity()
+    {
+      DoNamedTest2();
     }
   }
 }
