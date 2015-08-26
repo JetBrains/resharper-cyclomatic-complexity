@@ -8,17 +8,22 @@
         <owners>JetBrains, Matt Ellis</owners>
         <projectUrl>https://github.com/JetBrains/resharper-cyclomatic-complexity</projectUrl>
         <licenseUrl>https://raw.githubusercontent.com/JetBrains/resharper-cyclomatic-complexity/LICENSE.txt</licenseUrl>
-        <iconUrl>http://resharper-plugins.jetbrains.com/Content/Images/packageReSharper.png</iconUrl>
+        <iconUrl>https://raw.githubusercontent.com/JetBrains/resharper-cyclomatic-complexity/master/logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Highlights a method if its cyclomatic complexity is greater than a configurable threshold</description>
-        <releaseNotes>Support for ReSharper 9.1</releaseNotes>
-        <copyright>Copyright © 2006-2015 JetBrains</copyright>
-        <tags>PowerToys cyclomatic complexity</tags>
+        <description>Calculates cyclomatic complexity for C#, VB, JavaScript, TypeScript and C++. Highlights any method that exceeds a configurable threshold</description>
+        <releaseNotes>Support for ReSharper 9.1
+&#8226; Added support for any language for which ReSharper generates a control flow graph (C#, VB, JavaScript, TypeScript and C++)
+&#8226; Added per-language threshold setting
+&#8226; Info tooltip on code elements to always show cyclomatic complexity. Shows warning highlight if the complexity is greater than a given threshold
+        </releaseNotes>
+        <copyright>Copyright ©2006-2015 JetBrains</copyright>
+        <tags>cyclomatic complexity analysis</tags>
         <dependencies>
             <dependency id="Wave" version="[2.0]" />
         </dependencies>
     </metadata>
     <files>
         <file src="..\src\CyclomaticComplexity\bin\Release\JetBrains.ReSharper.Plugins.CyclomaticComplexity.dll" target="DotFiles\" />
+        <file src="..\src\CyclomaticComplexity\CyclomaticComplexity.dotSettings" target="DotFiles\Extensions\PowerToys.CyclomaticComplexity\settings\" />
     </files>
 </package>
