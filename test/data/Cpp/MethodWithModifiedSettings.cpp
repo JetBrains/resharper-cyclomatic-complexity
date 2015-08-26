@@ -1,7 +1,7 @@
 #define true 1
 #define false 0
 
-int ComplexMethod(int age, string name, int isAdmin)
+int ComplexMethod(int age, char *name, int isAdmin)
 {
     int result = false;
     int value = false;

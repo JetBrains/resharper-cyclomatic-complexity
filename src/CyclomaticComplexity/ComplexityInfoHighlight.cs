@@ -19,19 +19,20 @@ using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Plugins.CyclomaticComplexity;
 using JetBrains.TextControl.DocumentMarkup;
 
-[assembly: RegisterHighlighter(ComplexityHighlight.HighlightAttributeId)]
+[assembly: RegisterHighlighter(ComplexityInfoHighlight.HighlightAttributeId)]
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
+  // TODO: What is "CSharpInfo"?
   [StaticSeverityHighlighting(Severity.INFO, "CSharpInfo", AttributeId = HighlightAttributeId)]
-  public class ComplexityHighlight : IHighlighting
+  public class ComplexityInfoHighlight : IComplexityHighlighting
   {
     public const string HighlightAttributeId = "Cyclomatic Complexity Highlight";
 
     private readonly string myTooltip;
     private readonly DocumentRange range;
 
-    public ComplexityHighlight(string toolTip, DocumentRange range)
+    public ComplexityInfoHighlight(string toolTip, DocumentRange range)
     {
       myTooltip = toolTip;
       this.range = range;

@@ -62,9 +62,13 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       var message = GetMessage(element, complexity, state.Threshold);
       var documentRange = GetDocumentRange(element);
 
-      var highlight = new ComplexityHighlight(message, documentRange);
-      consumer.AddHighlighting(highlight, highlight.CalculateRange(), state.File,
-        complexity > state.Threshold ? Severity.WARNING : Severity.INFO);
+      IHighlighting highlight;
+      if (complexity > state.Threshold)
+        highlight = new ComplexityWarningHighlight(message, documentRange);
+      else
+        highlight = new ComplexityInfoHighlight(message, documentRange);
+
+      consumer.AddHighlighting(highlight, state.File);
     }
 
     private static int GetThreshold(ElementProblemAnalyzerData data, PsiLanguageType language)

@@ -2,7 +2,7 @@
 #define true 1
 #define false 0
 
-|int ComplexMethod(int age, string name, int isAdmin)|(0)
+|int ComplexMethod(int age, char *name, int isAdmin)|(0)
 {
     int result = false;
     int value = false;
@@ -56,14 +56,14 @@
 }
 
 ---------------------------------------------------------
-(0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (140% of threshold)
+(0): ReSharper Warning: Element has cyclomatic complexity of 14 (140% of threshold)
 
 ================
 Thresholds = CPP:21,
 #define true 1
 #define false 0
 
-|int ComplexMethod(int age, string name, int isAdmin)|(0)
+|int ComplexMethod(int age, char *name, int isAdmin)|(0)
 {
     int result = false;
     int value = false;
@@ -124,7 +124,7 @@ Thresholds = CPP:30,
 #define true 1
 #define false 0
 
-|int ComplexMethod(int age, string name, int isAdmin)|(0)
+|int ComplexMethod(int age, char *name, int isAdmin)|(0)
 {
     int result = false;
     int value = false;

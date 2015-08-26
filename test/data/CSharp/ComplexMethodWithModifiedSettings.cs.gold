@@ -61,7 +61,7 @@ class |ComplexityExample|(0)
 
 ---------------------------------------------------------
 (0): Cyclomatic Complexity Highlight: Class 'ComplexityExample' has cyclomatic complexity of 1 (10% of threshold)
-(1): Cyclomatic Complexity Highlight: Method 'SomeComplexMethod' has cyclomatic complexity of 21 (210% of threshold)
+(1): ReSharper Warning: Method 'SomeComplexMethod' has cyclomatic complexity of 21 (210% of threshold)
 
 ================
 Thresholds = CSHARP:21,

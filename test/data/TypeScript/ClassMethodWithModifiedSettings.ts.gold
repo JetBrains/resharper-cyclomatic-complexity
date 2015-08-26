@@ -42,7 +42,7 @@ class MyClass {
 }
 
 ---------------------------------------------------------
-(0): Cyclomatic Complexity Highlight: Function member 'ComplexMethod' has cyclomatic complexity of 14 (140% of threshold)
+(0): ReSharper Warning: Function member 'ComplexMethod' has cyclomatic complexity of 14 (140% of threshold)
 
 ================
 Thresholds = TYPE_SCRIPT:21,

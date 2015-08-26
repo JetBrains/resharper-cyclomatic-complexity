@@ -40,7 +40,7 @@
 })();
 
 ---------------------------------------------------------
-(0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (140% of threshold)
+(0): ReSharper Warning: Element has cyclomatic complexity of 14 (140% of threshold)
 
 ================
 Thresholds = JAVA_SCRIPT:21,

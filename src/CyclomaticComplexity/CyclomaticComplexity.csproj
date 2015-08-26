@@ -157,12 +157,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComplexityHighlight.cs" />
+    <Compile Include="ComplexityInfoHighlight.cs" />
+    <Compile Include="ComplexityWarningHighlight.cs" />
     <Compile Include="CyclomaticComplexityIcons\ThemedIcons.CyclomaticComplexity.Generated.cs" />
     <Compile Include="ComplexityAnalysisElementProblemAnalyzer.cs" />
     <Compile Include="ComplexityAnalysisInvalidateOnThresholdChange.cs" />
     <Compile Include="CyclomaticComplexityAnalysisSettings.cs" />
     <Compile Include="DefaultCyclomaticComplexitySettings.cs" />
+    <Compile Include="IComplexityHighlighting.cs" />
     <Compile Include="Options\ComplexityAnalysisOptionPage.cs" />
     <Compile Include="Options\ComplexityAnalysisOptionsView.xaml.cs">
       <DependentUpon>ComplexityAnalysisOptionsView.xaml</DependentUpon>

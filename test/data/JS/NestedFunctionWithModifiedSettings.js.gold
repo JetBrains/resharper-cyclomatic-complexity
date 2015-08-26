@@ -44,7 +44,7 @@ function |outerFunction|(0)() {
 
 ---------------------------------------------------------
 (0): Cyclomatic Complexity Highlight: Property 'outerFunction' has cyclomatic complexity of 1 (10% of threshold)
-(1): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (140% of threshold)
+(1): ReSharper Warning: Element has cyclomatic complexity of 14 (140% of threshold)
 
 ================
 Thresholds = JAVA_SCRIPT:21,

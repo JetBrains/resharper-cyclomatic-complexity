@@ -40,7 +40,7 @@ function |ComplexMethod|(0)(age, name, isAdmin) {
 }
 
 ---------------------------------------------------------
-(0): Cyclomatic Complexity Highlight: Module member 'ComplexMethod' has cyclomatic complexity of 14 (140% of threshold)
+(0): ReSharper Warning: Module member 'ComplexMethod' has cyclomatic complexity of 14 (140% of threshold)
 
 ================
 Thresholds = TYPE_SCRIPT:21,

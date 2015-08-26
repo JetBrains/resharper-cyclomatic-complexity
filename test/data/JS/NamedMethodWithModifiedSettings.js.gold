@@ -40,7 +40,7 @@ function |ComplexMethod|(0)(age, name, isAdmin) {
 }
 
 ---------------------------------------------------------
-(0): Cyclomatic Complexity Highlight: Property 'ComplexMethod' has cyclomatic complexity of 14 (140% of threshold)
+(0): ReSharper Warning: Property 'ComplexMethod' has cyclomatic complexity of 14 (140% of threshold)
 
 ================
 Thresholds = JAVA_SCRIPT:21,
