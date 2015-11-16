@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>PowerToys.CyclomaticComplexity</id>
-        <version>9.2.0</version>
+        <version>10.0.0</version>
         <title>Cyclomatic Complexity</title>
         <authors>JetBrains, Matt Ellis</authors>
         <owners>JetBrains, Matt Ellis</owners>
@@ -11,7 +11,7 @@
         <iconUrl>https://raw.githubusercontent.com/JetBrains/resharper-cyclomatic-complexity/master/logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Calculates cyclomatic complexity for C#, VB, JavaScript, TypeScript and C++. Highlights any method that exceeds a configurable threshold</description>
-        <releaseNotes>Support for ReSharper 9.2
+        <releaseNotes>Support for ReSharper 10.0
 &#8226; Added support for any language for which ReSharper generates a control flow graph (C#, VB, JavaScript, TypeScript and C++)
 &#8226; Added per-language threshold setting
 &#8226; Info tooltip on code elements to always show cyclomatic complexity. Shows warning highlight if the complexity is greater than a given threshold
@@ -19,7 +19,7 @@
         <copyright>Copyright ©2006-2015 JetBrains</copyright>
         <tags>cyclomatic complexity analysis</tags>
         <dependencies>
-            <dependency id="Wave" version="[3.0]" />
+            <dependency id="Wave" version="[4.0]" />
         </dependencies>
     </metadata>
     <files>
