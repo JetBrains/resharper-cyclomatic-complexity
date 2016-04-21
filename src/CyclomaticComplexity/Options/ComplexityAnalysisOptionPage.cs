@@ -17,12 +17,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using JetBrains.Application.UI.Commands;
 using JetBrains.DataFlow;
 using JetBrains.ReSharper.Feature.Services.Daemon.OptionPages;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ControlFlow;
 using JetBrains.ReSharper.Psi.JavaScript.WinRT.LanguageImpl;
-using JetBrains.UI.Extensions.Commands;
 using JetBrains.UI.Options;
 using JetBrains.UI.Options.OptionsDialog2.SimpleOptions;
 

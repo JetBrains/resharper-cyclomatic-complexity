@@ -1,4 +1,4 @@
-﻿Thresholds = JAVA_SCRIPT:10,
+﻿  Thresholds = JAVA_SCRIPT:10,
 var myFunction = |function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
@@ -43,7 +43,7 @@ var myFunction = |function(age, name, isAdmin)|(0) {
 (0): ReSharper Warning: Element has cyclomatic complexity of 14 (140% of threshold)
 
 ================
-Thresholds = JAVA_SCRIPT:21,
+  Thresholds = JAVA_SCRIPT:21,
 var myFunction = |function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;
@@ -88,7 +88,7 @@ var myFunction = |function(age, name, isAdmin)|(0) {
 (0): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (66% of threshold)
 
 ================
-Thresholds = JAVA_SCRIPT:30,
+  Thresholds = JAVA_SCRIPT:30,
 var myFunction = |function(age, name, isAdmin)|(0) {
   var result = false;
   var value = false;

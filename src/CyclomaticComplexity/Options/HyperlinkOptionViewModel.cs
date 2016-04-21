@@ -15,8 +15,8 @@
  */
 
 using System.Collections.Generic;
+using System.Windows.Input;
 using JetBrains.DataFlow;
-using JetBrains.UI.Extensions.Commands;
 using JetBrains.UI.Options;
 using JetBrains.UI.Options.OptionsDialog2.SimpleOptions;
 
@@ -24,7 +24,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
 {
   public class HyperlinkOptionViewModel : OptionEntityPrimitive, IOptionCanBeEnabled, IOptionCanBeVisible
   {
-    public HyperlinkOptionViewModel(Lifetime lifetime, string text, DelegateCommand command)
+    public HyperlinkOptionViewModel(Lifetime lifetime, string text, ICommand command)
     {
       Text = text;
       Command = command;
@@ -34,7 +34,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
     }
 
     public string Text { get; private set; }
-    public DelegateCommand Command { get; set; }
+    public ICommand Command { get; set; }
 
     public IProperty<bool> IsEnabledProperty { get; private set; }
     public IProperty<bool> IsVisibleProperty { get; set; }

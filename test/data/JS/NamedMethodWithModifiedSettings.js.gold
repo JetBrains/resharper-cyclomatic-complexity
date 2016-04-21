@@ -1,4 +1,4 @@
-﻿Thresholds = JAVA_SCRIPT:10,
+﻿  Thresholds = JAVA_SCRIPT:10,
 function |ComplexMethod|(0)(age, name, isAdmin) {
   var result = false;
   var value = false;
@@ -43,7 +43,7 @@ function |ComplexMethod|(0)(age, name, isAdmin) {
 (0): ReSharper Warning: Property 'ComplexMethod' has cyclomatic complexity of 14 (140% of threshold)
 
 ================
-Thresholds = JAVA_SCRIPT:21,
+  Thresholds = JAVA_SCRIPT:21,
 function |ComplexMethod|(0)(age, name, isAdmin) {
   var result = false;
   var value = false;
@@ -88,7 +88,7 @@ function |ComplexMethod|(0)(age, name, isAdmin) {
 (0): Cyclomatic Complexity Highlight: Property 'ComplexMethod' has cyclomatic complexity of 14 (66% of threshold)
 
 ================
-Thresholds = JAVA_SCRIPT:30,
+  Thresholds = JAVA_SCRIPT:30,
 function |ComplexMethod|(0)(age, name, isAdmin) {
   var result = false;
   var value = false;
