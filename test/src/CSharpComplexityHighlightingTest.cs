@@ -67,5 +67,11 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
     {
       DoNamedTest2();
     }
+
+    [Test]
+    public void TestWorkaroundBoolAsConditional()
+    {
+      DoNamedTest2();
+    }
   }
 }
