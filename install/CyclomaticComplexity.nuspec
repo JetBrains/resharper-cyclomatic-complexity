@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>PowerToys.CyclomaticComplexity</id>
-        <version>10.0.0</version>
+        <version>2016.1.0</version>
         <title>Cyclomatic Complexity</title>
         <authors>JetBrains, Matt Ellis</authors>
         <owners>JetBrains, Matt Ellis</owners>
@@ -11,7 +11,11 @@
         <iconUrl>https://raw.githubusercontent.com/JetBrains/resharper-cyclomatic-complexity/master/logo.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Calculates cyclomatic complexity for C#, VB, JavaScript, TypeScript and C++. Highlights any method that exceeds a configurable threshold</description>
-        <releaseNotes>Support for ReSharper 10.0
+        <releaseNotes>
+&#8226; Support for ReSharper 2016.1
+&#8226; Improved accuracy of CC metric for boolean values in C# (#3 + RSPL-4445)
+
+From previous release:
 &#8226; Added support for any language for which ReSharper generates a control flow graph (C#, VB, JavaScript, TypeScript and C++)
 &#8226; Added per-language threshold setting
 &#8226; Info tooltip on code elements to always show cyclomatic complexity. Shows warning highlight if the complexity is greater than a given threshold
@@ -19,11 +23,11 @@
         <copyright>Copyright ©2006-2015 JetBrains</copyright>
         <tags>cyclomatic complexity analysis</tags>
         <dependencies>
-            <dependency id="Wave" version="[4.0]" />
+            <dependency id="Wave" version="[5.0]" />
         </dependencies>
     </metadata>
     <files>
-        <file src="..\src\CyclomaticComplexity\bin\Release\JetBrains.ReSharper.Plugins.CyclomaticComplexity.dll" target="DotFiles\" />
+        <file src="..\src\CyclomaticComplexity\bin\Debug\JetBrains.ReSharper.Plugins.CyclomaticComplexity.dll" target="DotFiles\" />
         <file src="..\src\CyclomaticComplexity\CyclomaticComplexity.dotSettings" target="DotFiles\Extensions\PowerToys.CyclomaticComplexity\settings\" />
     </files>
 </package>
