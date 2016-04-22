@@ -43,4 +43,4 @@
 
 ---------------------------------------------------------
 (0): Cyclomatic Complexity Highlight: Property 'outerFunction' has cyclomatic complexity of 1 (5% of threshold)
-(1): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 14 (70% of threshold)
+(1): Cyclomatic Complexity Highlight: Element has cyclomatic complexity of 12 (60% of threshold)

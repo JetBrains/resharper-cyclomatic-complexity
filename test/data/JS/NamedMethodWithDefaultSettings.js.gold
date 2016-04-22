@@ -39,4 +39,4 @@
 }
 
 ---------------------------------------------------------
-(0): Cyclomatic Complexity Highlight: Property 'ComplexMethod' has cyclomatic complexity of 14 (70% of threshold)
+(0): Cyclomatic Complexity Highlight: Property 'ComplexMethod' has cyclomatic complexity of 12 (60% of threshold)

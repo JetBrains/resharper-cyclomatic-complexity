@@ -15,6 +15,7 @@
  */
 
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Application.Settings;
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
@@ -22,6 +23,7 @@ using JetBrains.ReSharper.Daemon.Stages.Utils;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ControlFlow;
+using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.JavaScript.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
@@ -39,12 +41,11 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       // things a bit more efficient
       var state = data.GetOrCreateData(key, () => new State
       {
-        File = element.GetContainingFile(),
         ControlFlowBuilder = LanguageManager.Instance.TryGetService<IControlFlowBuilder>(element.Language),
         Threshold = GetThreshold(data, element.Language)
       });
 
-      if (state.File == null || state.ControlFlowBuilder == null || !state.ControlFlowBuilder.CanBuildFrom(element))
+      if (state.ControlFlowBuilder == null || !state.ControlFlowBuilder.CanBuildFrom(element))
         return;
 
       // We can build control flow information for a JS file section (e.g. inline event handlers, or <src>
@@ -68,7 +69,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       else
         highlight = new ComplexityInfoHighlight(message, documentRange);
 
-      consumer.AddHighlighting(highlight, state.File);
+      consumer.AddHighlighting(highlight);
     }
 
     private static int GetThreshold(ElementProblemAnalyzerData data, PsiLanguageType language)
@@ -87,12 +88,39 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       var edges = GetEdges(graph);
       var nodeCount = GetNodeCount(edges);
 
+      // Standard CC formula (edges - nodes + 2)
       return edges.Count - nodeCount + 2;
+    }
+
+    // ReSharper's C# graph treats boolean values as conditions, meaning we
+    // get two (duplicate) edges from one node to the next. This comparer
+    // will remove the duplicates. I.e. any edges that have the same source
+    // and target are considered equal
+    private class EdgeEqualityComparer : EqualityComparer<IControlFlowEdge>
+    {
+      public override bool Equals(IControlFlowEdge x, IControlFlowEdge y)
+      {
+        if (x == y)
+          return true;
+        if (x == null || y == null)
+          return false;
+        return x.Source == y.Source && x.Target == y.Target;
+      }
+
+      public override int GetHashCode(IControlFlowEdge obj)
+      {
+        if (obj == null)
+          return 0;
+        var hashCode = obj.Source.GetHashCode();
+        if (obj.Target != null)
+          hashCode ^= obj.Target.GetHashCode();
+        return hashCode;
+      }
     }
 
     private static HashSet<IControlFlowEdge> GetEdges(IControlFlowGraph graph)
     {
-      var edges = new HashSet<IControlFlowEdge>();
+      var edges = new HashSet<IControlFlowEdge>(new EdgeEqualityComparer());
       foreach (var element in graph.AllElements)
       {
         foreach (var edge in element.Exits)
@@ -100,28 +128,65 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
         foreach (var edge in element.Entries)
           edges.Add(edge);
       }
+      return FudgeGraph(graph, edges);
+    }
+
+    private static HashSet<IControlFlowEdge> FudgeGraph(IControlFlowGraph graph, HashSet<IControlFlowEdge> edges)
+    {
+      // The C# graph treats the unary negation operator `!` as a conditional. It's not,
+      // but having it so means that the CC can be way higher than it should be.
+      var dodgyEdges = new HashSet<IControlFlowEdge>(new EdgeEqualityComparer());
+
+      // Look at all of the non-leaf elements (the graph is a tree as well as a graph.
+      // The tree represents the structure of the code, with the control flow graph
+      // running through it)
+      foreach (var element in graph.AllElements.Where(e => e.Children.Count != 0))
+      {
+        var unaryOperatorExpression = element.SourceElement as IUnaryOperatorExpression;
+        if (unaryOperatorExpression != null && unaryOperatorExpression.UnaryOperatorType == UnaryOperatorType.EXCL)
+        {
+          // The unary operator shouldn't have 2 exits. It's not a conditional. If it does,
+          // remove one of the edges, and it's path, from the collected edges.
+          if (element.Exits.Count == 2)
+          {
+            var edge = element.Exits[0];
+            do
+            {
+              dodgyEdges.Add(edge);
+
+              // Get the source of the exit edge. This is the node in the control flow graph,
+              // not the element in the program structure tree.
+              var source = edge.Source;
+              edge = null;
+
+              // Walk back to the control flow graph node that represents the exit of the
+              // dodgy condition, so keep going until we have an element with 2 exits.
+              if (source.Entries.Count == 1 && source.Exits.Count == 1)
+                edge = source.Entries[0];
+            } while (edge != null);
+          }
+        }
+      }
+
+      edges.ExceptWith(dodgyEdges);
       return edges;
     }
 
     private static int GetNodeCount(IEnumerable<IControlFlowEdge> edges)
     {
-      var hasNullSource = false;
       var hasNullDestination = false;
 
       var nodes = new HashSet<IControlFlowElement>();
       foreach (var edge in edges)
       {
-        if (edge.Source != null)
-          nodes.Add(edge.Source);
-        else
-          hasNullSource = true;
+        nodes.Add(edge.Source);
 
         if (edge.Target != null)
           nodes.Add(edge.Target);
         else
           hasNullDestination = true;
       }
-      return nodes.Count + (hasNullDestination ? 1 : 0) + (hasNullSource ? 1 : 0);
+      return nodes.Count + (hasNullDestination ? 1 : 0);
     }
 
     private static string GetMessage(ITreeNode element, int complexity, int threshold)
@@ -164,7 +229,6 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 
     private class State
     {
-      public IFile File;
       public IControlFlowBuilder ControlFlowBuilder;
       public int Threshold;
     }
