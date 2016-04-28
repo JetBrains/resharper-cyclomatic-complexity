@@ -26,7 +26,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
   [TestSettingsKey(typeof(CyclomaticComplexityAnalysisSettings))]
   public class CSharpComplexityHighlightingTest : CSharpHighlightingTestNet4Base
   {
-    protected override string RelativeTestDataPath { get { return "CSharp"; } }
+    protected override string RelativeTestDataPath => "CSharp";
 
     protected override bool HighlightingPredicate(IHighlighting highlighting, IPsiSourceFile sourceFile)
     {

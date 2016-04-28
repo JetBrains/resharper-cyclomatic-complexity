@@ -26,7 +26,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
   [ShellComponent]
   public class DefaultCyclomaticComplexitySettings : IHaveDefaultSettingsStream
   {
-    public string Name { get { return "Default Cyclomatic Complexity Settings"; } }
+    public string Name => "Default Cyclomatic Complexity Settings";
 
     public Stream GetDefaultSettingsStream(Lifetime lifetime)
     {

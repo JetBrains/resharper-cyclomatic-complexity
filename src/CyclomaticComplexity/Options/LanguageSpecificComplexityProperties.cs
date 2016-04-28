@@ -28,7 +28,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
       Name = languagePresentableName;
 
       Threshold = new Property<int>(lifetime, index);
-      Threshold.Change.Advise(lifetime, () => OnPropertyChanged("Threshold"));
+      Threshold.Change.Advise(lifetime, () => OnPropertyChanged(nameof(Threshold)));
       settings.SetBinding(lifetime, settingsIndexedEntry, index, Threshold, defaultValue);
     }
 

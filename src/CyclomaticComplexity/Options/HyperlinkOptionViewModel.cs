@@ -33,10 +33,10 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
       IsVisibleProperty = new Property<bool>(lifetime, "IsVisibleProperty") { Value = true };
     }
 
-    public string Text { get; private set; }
+    public string Text { get; }
     public ICommand Command { get; set; }
 
-    public IProperty<bool> IsEnabledProperty { get; private set; }
+    public IProperty<bool> IsEnabledProperty { get; }
     public IProperty<bool> IsVisibleProperty { get; set; }
 
     public override IEnumerable<OptionsPageKeyword> GetKeywords()

@@ -194,7 +194,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       var type = "Element";
       IDeclaration declaration;
       GetBestTreeNode(element, out declaration);
-      if (declaration != null && declaration.DeclaredElement != null)
+      if (declaration?.DeclaredElement != null)
       {
         var declaredElement = declaration.DeclaredElement;
         var declarationType = DeclaredElementPresenter.Format(declaration.Language,
@@ -202,24 +202,23 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
         var declaredElementName = DeclaredElementPresenter.Format(declaration.Language,
           DeclaredElementPresenter.NAME_PRESENTER, declaredElement);
 
-        type = string.Format("{0} '{1}'", declarationType.Capitalize(), declaredElementName);
+        type = $"{declarationType.Capitalize()} '{declaredElementName}'";
       }
 
-      return string.Format("{0} has cyclomatic complexity of {1} ({2}% of threshold)", type,
-        complexity, (int) (complexity*100.0/threshold));
+      return $"{type} has cyclomatic complexity of {complexity} ({(int) (complexity*100.0/threshold)}% of threshold)";
     }
 
     private DocumentRange GetDocumentRange(ITreeNode element)
     {
       IDeclaration declaration;
       var node = GetBestTreeNode(element, out declaration);
-      return declaration != null && declaration.DeclaredElement != null ? declaration.GetNameDocumentRange() : node.GetDocumentRange();
+      return declaration?.DeclaredElement != null ? declaration.GetNameDocumentRange() : node.GetDocumentRange();
     }
 
     private static ITreeNode GetBestTreeNode(ITreeNode element, out IDeclaration declaration)
     {
       declaration = element as IDeclaration;
-      if (declaration != null && declaration.DeclaredElement != null)
+      if (declaration?.DeclaredElement != null)
         return element;
 
       // Don't have a declared element to highlight. Going to have to guess. Try the 

@@ -16,7 +16,6 @@
 
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using JetBrains.ProjectModel;
 using JetBrains.ProjectModel.Properties;
 using JetBrains.ProjectModel.Properties.VCXProj;
@@ -34,8 +33,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
   [TestFileExtension(CppProjectFileType.CPP_EXTENSION)]
   public class CppComplexityHighlightingTest : HighlightingTestBase
   {
-    [NotNull]
-    protected override string RelativeTestDataPath { get { return "Cpp"; } }
+    protected override string RelativeTestDataPath => "Cpp";
 
     protected override bool HighlightingPredicate(IHighlighting highlighting, IPsiSourceFile sourceFile)
     {
@@ -47,10 +45,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
       return VCXProjectPropertiesFactory.CreateVCXProjectProperties(platformId, flavours);
     }
 
-    protected override PsiLanguageType CompilerIdsLanguage
-    {
-      get { return CppLanguage.Instance; }
-    }
+    protected override PsiLanguageType CompilerIdsLanguage => CppLanguage.Instance;
 
     [Test]
     public void TestMethodWithDefaultSettings()

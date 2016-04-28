@@ -9,7 +9,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
   [TestSettingsKey(typeof(CyclomaticComplexityAnalysisSettings))]
   public class TypeScriptComplexityHighlightingTest : TypeScriptHighlightingTestBase
   {
-    protected override string RelativeTestDataPath { get { return "TypeScript"; } }
+    protected override string RelativeTestDataPath => "TypeScript";
 
     protected override bool HighlightingPredicate(IHighlighting highlighting, IPsiSourceFile sourceFile)
     {

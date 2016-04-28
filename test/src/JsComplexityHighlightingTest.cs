@@ -25,7 +25,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
   [TestSettingsKey(typeof(CyclomaticComplexityAnalysisSettings))]
   public class JsComplexityHighlightingTest : JavaScriptHighlightingTestBase
   {
-    protected override string RelativeTestDataPath { get { return "JS"; } }
+    protected override string RelativeTestDataPath => "JS";
 
     protected override bool HighlightingPredicate(IHighlighting highlighting, IPsiSourceFile sourceFile)
     {

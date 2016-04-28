@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 [assembly : AssemblyDescription("")]
 [assembly : AssemblyCompany("JetBrains")]
 [assembly : AssemblyProduct("ReSharper PowerToys")]
-[assembly : AssemblyCopyright("Copyright \u00A9 2006-2014 JetBrains All rights reserved.")]
+[assembly : AssemblyCopyright("Copyright \u00A9 2006-2016 JetBrains All rights reserved.")]
 [assembly : AssemblyTrademark("")]
 [assembly : AssemblyCulture("")]
 
@@ -49,5 +49,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly : AssemblyVersion("2016.1.0.0")]
-[assembly : AssemblyFileVersion("2016.1.0.0")]
+[assembly : AssemblyVersion("2016.1.1.0")]
+[assembly : AssemblyFileVersion("2016.1.1.0")]

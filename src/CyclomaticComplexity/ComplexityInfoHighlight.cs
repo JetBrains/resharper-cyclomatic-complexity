@@ -29,38 +29,17 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
   {
     public const string HighlightAttributeId = "Cyclomatic Complexity Highlight";
 
-    private readonly string myTooltip;
     private readonly DocumentRange range;
 
     public ComplexityInfoHighlight(string toolTip, DocumentRange range)
     {
-      myTooltip = toolTip;
+      ToolTip = toolTip;
       this.range = range;
     }
 
-    public DocumentRange CalculateRange()
-    {
-      return range;
-    }
-
-    public string ToolTip
-    {
-      get { return myTooltip; }
-    }
-
-    public string ErrorStripeToolTip
-    {
-      get { return myTooltip; }
-    }
-
-    public int NavigationOffsetPatch
-    {
-      get { return 0; }
-    }
-
-    public bool IsValid()
-    {
-      return true;
-    }
+    public DocumentRange CalculateRange() => range;
+    public string ToolTip { get; }
+    public string ErrorStripeToolTip => ToolTip;
+    public bool IsValid() => true;
   }
 }

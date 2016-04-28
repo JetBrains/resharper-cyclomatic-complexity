@@ -41,18 +41,9 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       this.range = range;
     }
 
-    public bool IsValid()
-    {
-      return true;
-    }
-
-    public DocumentRange CalculateRange()
-    {
-      return range;
-    }
-
-    public string ToolTip { get; private set; }
-    public string ErrorStripeToolTip { get { return ToolTip; } }
-    public int NavigationOffsetPatch { get { return 0; } }
+    public bool IsValid() => true;
+    public DocumentRange CalculateRange() => range;
+    public string ToolTip { get; }
+    public string ErrorStripeToolTip => ToolTip;
   }
 }
