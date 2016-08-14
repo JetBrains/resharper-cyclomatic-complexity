@@ -24,7 +24,7 @@ using NUnit.Framework;
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
 {
   [TestSettingsKey(typeof(CyclomaticComplexityAnalysisSettings))]
-  public class CSharpComplexityHighlightingTest : CSharpHighlightingTestNet4Base
+  public class CSharpComplexityHighlightingTest : CSharpHighlightingTestBase
   {
     protected override string RelativeTestDataPath => "CSharp";
 
