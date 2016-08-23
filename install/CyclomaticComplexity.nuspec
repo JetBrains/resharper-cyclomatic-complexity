@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>PowerToys.CyclomaticComplexity</id>
-        <version>2016.2.0-rc</version>
+        <version>2016.2.0</version>
         <title>Cyclomatic Complexity</title>
         <authors>JetBrains, Matt Ellis</authors>
         <owners>JetBrains, Matt Ellis</owners>
@@ -12,13 +12,12 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Calculates cyclomatic complexity for C#, VB, JavaScript, TypeScript and C++. Highlights any method that exceeds a configurable threshold</description>
         <releaseNotes>
-&#8226; Support for ReSharper 2016.2.0-rc
+&#8226; Support for ReSharper 2016.2.0
 
 From previous release:
 &#8226; Resolve installer errors (#6)
 &#8226; Support for ReSharper 2016.2.
 &#8226; Improved accuracy of CC metric for boolean values in C# (#3 + RSPL-4445)
-
         </releaseNotes>
         <copyright>Copyright ©2006-2016 JetBrains</copyright>
         <tags>cyclomatic complexity analysis</tags>
