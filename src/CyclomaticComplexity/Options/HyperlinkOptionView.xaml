@@ -14,7 +14,7 @@
              IsEnabled="{Binding IsEnabledProperty.Value, Converter={StaticResource BooleanToVisibilityConverter}}"
              Visibility="{Binding IsVisibleProperty.Value, Converter={StaticResource BooleanToVisibilityConverter}}">
     <Hyperlink Command="{Binding Command}">
-      <Run Text="{Binding Text}" />
+      <Run Text="{Binding Text, Mode=OneTime}" />
     </Hyperlink>
   </TextBlock>
 </UserControl>
