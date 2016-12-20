@@ -24,7 +24,7 @@ using JetBrains.ReSharper.Psi;
   "Element exceeds cyclomatic complexity",
   @"The cyclomatic complexity of the code element exceeds the configured threshold.
 You can configure the thresholds in the Cyclomatic Complexity options page.",
-  Severity.WARNING, false)]
+  Severity.WARNING)]
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
