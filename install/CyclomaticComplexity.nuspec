@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>PowerToys.CyclomaticComplexity</id>
-        <version>2016.2.2</version>
+        <version>2016.3.0</version>
         <title>Cyclomatic Complexity</title>
         <authors>JetBrains, Matt Ellis</authors>
         <owners>JetBrains, Matt Ellis</owners>
@@ -12,22 +12,21 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Calculates cyclomatic complexity for C#, VB, JavaScript, TypeScript and C++. Highlights any method that exceeds a configurable threshold</description>
         <releaseNotes>
-&#8226; Support for ReSharper 2016.2.0
-&#8226; Fix exception on options page (RSPL-6876)
+&#8226; Support for ReSharper 2016.3
 
-From previous release:
+From previous releases:
+&#8226; Fix exception on options page (RSPL-6876)
 &#8226; Resolve installer errors (#6)
-&#8226; Support for ReSharper 2016.2.
 &#8226; Improved accuracy of CC metric for boolean values in C# (#3 + RSPL-4445)
         </releaseNotes>
         <copyright>Copyright ©2006-2016 JetBrains</copyright>
         <tags>cyclomatic complexity analysis</tags>
         <dependencies>
-            <dependency id="Wave" version="[6.0]" />
+            <dependency id="Wave" version="[7.0]" />
         </dependencies>
     </metadata>
     <files>
-        <file src="..\src\CyclomaticComplexity\bin\Debug\JetBrains.ReSharper.Plugins.CyclomaticComplexity.dll" target="DotFiles\" />
+        <file src="..\src\CyclomaticComplexity\bin\Release\JetBrains.ReSharper.Plugins.CyclomaticComplexity.dll" target="DotFiles\" />
         <file src="..\src\CyclomaticComplexity\CyclomaticComplexity.dotSettings" target="DotFiles\Extensions\PowerToys.CyclomaticComplexity\settings\" />
     </files>
 </package>
