@@ -25,6 +25,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
   public class HyperlinkOptionViewModel : OptionEntityPrimitive, IOptionCanBeEnabled, IOptionCanBeVisible
   {
     public HyperlinkOptionViewModel(Lifetime lifetime, string text, ICommand command)
+      : base(lifetime)
     {
       Text = text;
       Command = command;
