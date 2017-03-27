@@ -9,6 +9,9 @@
   <PropertyGroup>
      <TargetFramework>net45</TargetFramework>
      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+     <AssemblyName>JetBrains.ReSharper.Plugins.CyclomaticComplexity</AssemblyName>
+     <RootNamespace>JetBrains.ReSharper.Plugins.CyclomaticComplexity</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
