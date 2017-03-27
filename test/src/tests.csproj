@@ -15,9 +15,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.Psi.Features.Cpp.Src.Core" Version="108.0.20170316.162630-eap05" />
-    <PackageReference Include="JetBrains.ReSharper.SDK" Version="2017.1.20170316.165446-eap05" />
-    <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="2017.1.20170316.165446-eap05" />
+    <PackageReference Include="JetBrains.Psi.Features.Cpp.Src.Core" Version="108.0.20170323.122557-eap06" />
+    <PackageReference Include="JetBrains.ReSharper.SDK" Version="2017.1.20170323.130014-eap06" />
+    <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="2017.1.20170323.130014-eap06" />
   </ItemGroup>
 
   <ItemGroup>
