@@ -25,6 +25,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
   public class HyperlinkOptionViewModel : OptionEntityPrimitive, IOptionCanBeEnabled, IOptionCanBeVisible
   {
     public HyperlinkOptionViewModel(Lifetime lifetime, string text, ICommand command)
+      : base(lifetime)
     {
       Text = text;
       Command = command;
@@ -36,8 +37,8 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
     public string Text { get; }
     public ICommand Command { get; set; }
 
-    public IProperty<bool> IsEnabledProperty { get; }
-    public IProperty<bool> IsVisibleProperty { get; set; }
+    public new IProperty<bool> IsEnabledProperty { get; }
+    public new IProperty<bool> IsVisibleProperty { get; }
 
     public override IEnumerable<OptionsPageKeyword> GetKeywords()
     {
