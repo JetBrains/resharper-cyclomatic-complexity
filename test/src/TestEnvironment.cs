@@ -1,6 +1,5 @@
 ﻿using JetBrains.Application.BuildScript.Application.Zones;
 using JetBrains.ReSharper.Psi;
-using JetBrains.ReSharper.Psi.Cpp;
 using JetBrains.ReSharper.TestFramework;
 using JetBrains.TestFramework;
 using JetBrains.TestFramework.Application.Zones;

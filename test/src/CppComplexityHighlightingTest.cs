@@ -20,13 +20,11 @@ using JetBrains.Metadata.Reader.API;
 using JetBrains.ProjectModel;
 using JetBrains.ProjectModel.Properties;
 using JetBrains.ProjectModel.Properties.VCXProj;
-using JetBrains.ProjectModel.Update;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.FeaturesTestFramework.Daemon;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.Cpp.Language;
 using JetBrains.ReSharper.TestFramework;
-using JetBrains.Util;
 using NUnit.Framework;
 using PlatformID = JetBrains.Application.platforms.PlatformID;
 

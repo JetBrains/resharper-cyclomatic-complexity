@@ -16,7 +16,7 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using JetBrains.UI.Wpf;
+using JetBrains.Application.UI.UIAutomation;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
 {
