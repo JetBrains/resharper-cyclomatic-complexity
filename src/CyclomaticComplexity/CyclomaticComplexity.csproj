@@ -54,6 +54,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\DefaultSettings.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DefaultSettings.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
