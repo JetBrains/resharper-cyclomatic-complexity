@@ -39,7 +39,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
     {
       // We get a fresh data for each file, so we can cache some state to make
       // things a bit more efficient
-      var state = data.GetOrCreateData(key, () => new State
+      var state = data.GetOrCreateDataUnderLock(key, () => new State
       {
         ControlFlowBuilder = LanguageManager.Instance.TryGetService<IControlFlowBuilder>(element.Language),
         Threshold = GetThreshold(data, element.Language)
