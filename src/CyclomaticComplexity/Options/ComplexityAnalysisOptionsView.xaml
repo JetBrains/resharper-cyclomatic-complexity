@@ -6,6 +6,7 @@
              xmlns:extensions="urn:schemas-jetbrains-com:jetbrains-ui-extensions"
              xmlns:controls="urn:schemas-jetbrains-com:jetbrains-ui-wpf-controls"
              xmlns:options="clr-namespace:JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options"
+             xmlns:Impl="clr-namespace:JetBrains.UI.Wpf.Controls.NumericUpDown.Impl;assembly=JetBrains.Platform.UIInteractive.Shell"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" 
              d:DataContext="{d:DesignInstance options:ComplexityAnalysisOptionsViewModel}">
@@ -26,9 +27,9 @@
               <GridViewColumn.CellTemplate>
                 <DataTemplate DataType="{x:Type options:LanguageSpecificComplexityProperties}">
                   <StackPanel>
-                    <controls:NumericUpDown Value="{Binding Threshold.Value}"
-                                            MinValue="1"
-                                            MaxValue="200" />
+                    <Impl:NumericUpDown Value="{Binding Threshold.Value}"
+                                        MinValue="1"
+                                        MaxValue="200" />
                   </StackPanel>
                 </DataTemplate>
               </GridViewColumn.CellTemplate>
