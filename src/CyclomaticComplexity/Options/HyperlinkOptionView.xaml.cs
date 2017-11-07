@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-using JetBrains.UI.Wpf;
+using JetBrains.Application.UI.Automation;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
 {

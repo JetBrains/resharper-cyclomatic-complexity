@@ -15,7 +15,6 @@
  */
 
 using JetBrains.Application.Settings;
-using JetBrains.Application.Settings.Store;
 using JetBrains.ReSharper.Resources.Settings;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity

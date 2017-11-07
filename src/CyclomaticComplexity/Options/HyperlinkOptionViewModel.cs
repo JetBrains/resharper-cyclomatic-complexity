@@ -16,9 +16,9 @@
 
 using System.Collections.Generic;
 using System.Windows.Input;
+using JetBrains.Application.UI.Options;
+using JetBrains.Application.UI.Options.OptionsDialog.SimpleOptions;
 using JetBrains.DataFlow;
-using JetBrains.UI.Options;
-using JetBrains.UI.Options.OptionsDialog2.SimpleOptions;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
 {

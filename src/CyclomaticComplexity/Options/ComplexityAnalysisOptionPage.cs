@@ -18,13 +18,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using JetBrains.Application.UI.Commands;
+using JetBrains.Application.UI.Options;
+using JetBrains.Application.UI.Options.OptionsDialog;
 using JetBrains.DataFlow;
 using JetBrains.ReSharper.Feature.Services.Daemon.OptionPages;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ControlFlow;
 using JetBrains.ReSharper.Psi.JavaScript.WinRT.LanguageImpl;
-using JetBrains.UI.Options;
-using JetBrains.UI.Options.OptionsDialog2.SimpleOptions;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
 {
