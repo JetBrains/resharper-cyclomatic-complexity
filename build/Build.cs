@@ -32,7 +32,7 @@ using static Nuke.Core.IO.PathConstruction;
 
 class Build : NukeBuild
 {
-  public static int Main () => Execute<Build>(x => x.Compile);
+  public static int Main () => Execute<Build>(x => x.Pack);
 
   [GitVersion] readonly GitVersion GitVersion;
   [Parameter] readonly string ReSharperGalleryApiKey;
@@ -82,7 +82,7 @@ class Build : NukeBuild
   Target Push => _ => _
       .Requires(() => Configuration.EqualsOrdinalIgnoreCase("Release"))
       .Requires(() => ReSharperGalleryApiKey)
-      .DependsOn(Pack)
+      .DependsOn(Test, Pack)
       .Executes(() =>
       {
         GlobFiles(OutputDirectory, "*.nupkg")
