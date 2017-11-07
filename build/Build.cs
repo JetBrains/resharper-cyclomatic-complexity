@@ -16,14 +16,13 @@
 
 using System;
 using System.Linq;
-using System.Web.UI.WebControls.WebParts;
 using Nuke.Common.Tools;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.NuGet;
 using Nuke.Common.Tools.Nunit;
 using Nuke.Core;
-using Nuke.Core.IO;
 using Nuke.Core.Tooling;
+using Nuke.Core.Utilities;
 using Nuke.Core.Utilities.Collections;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
 using static Nuke.Common.Tools.NuGet.NuGetTasks;
@@ -36,10 +35,9 @@ class Build : NukeBuild
   public static int Main () => Execute<Build>(x => x.Compile);
 
   [GitVersion] readonly GitVersion GitVersion;
-  [Parameter] readonly string MyGetApiKey;
+  [Parameter] readonly string ReSharperGalleryApiKey;
 
   Target Clean => _ => _
-      .OnlyWhen(() => false) // Disabled for safety.
       .Executes(() =>
       {
         DeleteDirectories(GlobDirectories(SourceDirectory, "**/bin", "**/obj"));
@@ -81,5 +79,16 @@ class Build : NukeBuild
                 .SetOutputDirectory(OutputDirectory)));
       });
 
-
+  Target Push => _ => _
+      .Requires(() => Configuration.EqualsOrdinalIgnoreCase("Release"))
+      .Requires(() => ReSharperGalleryApiKey)
+      .DependsOn(Pack)
+      .Executes(() =>
+      {
+        GlobFiles(OutputDirectory, "*.nupkg")
+            .ForEach(x => NuGetPush(s => s
+                .SetTargetPath(x)
+                .SetSource("https://resharper-plugins.jetbrains.com/api/v2/package")
+                .SetApiKey(ReSharperGalleryApiKey)));
+      });
 }

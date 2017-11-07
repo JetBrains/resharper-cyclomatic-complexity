@@ -28,7 +28,7 @@ From previous releases:
         </dependencies>
     </metadata>
     <files>
-        <file src="..\src\CyclomaticComplexity\bin\Release\JetBrains.ReSharper.Plugins.CyclomaticComplexity.dll" target="DotFiles\" />
+        <file src="..\src\CyclomaticComplexity\bin\$configuration$\JetBrains.ReSharper.Plugins.CyclomaticComplexity.dll" target="DotFiles\" />
         <file src="..\src\CyclomaticComplexity\CyclomaticComplexity.dotSettings" target="DotFiles\Extensions\PowerToys.CyclomaticComplexity\settings\" />
     </files>
 </package>
