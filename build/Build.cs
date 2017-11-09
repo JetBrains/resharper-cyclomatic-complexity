@@ -15,12 +15,22 @@
 //  */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.XPath;
+using JetBrains.Annotations;
+using Nuke.Common.Git;
+using Nuke.Common.IO;
 using Nuke.Common.Tools;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.NuGet;
 using Nuke.Common.Tools.Nunit;
 using Nuke.Core;
+using Nuke.Core.IO;
 using Nuke.Core.Tooling;
 using Nuke.Core.Utilities;
 using Nuke.Core.Utilities.Collections;
@@ -29,6 +39,7 @@ using static Nuke.Common.Tools.NuGet.NuGetTasks;
 using static Nuke.Common.Tools.Nunit.NunitTasks;
 using static Nuke.Core.IO.FileSystemTasks;
 using static Nuke.Core.IO.PathConstruction;
+using static VersionUpdater;
 
 class Build : NukeBuild
 {
@@ -36,6 +47,15 @@ class Build : NukeBuild
 
   [GitVersion] readonly GitVersion GitVersion;
   [Parameter] readonly string ReSharperGalleryApiKey;
+  [GitRepository] readonly GitRepository GitRepository;
+
+  Target Update => _ => _
+      .OnlyWhen(() => GitRepository.Branch.EqualsOrdinalIgnoreCase("sdk-update"))
+      .Executes(() =>
+      {
+        var projectFile = GlobFiles(SolutionDirectory, "**/*.csproj").Single();
+        UpdateToLatestVersion(projectFile, "JetBrains.Platform.VisualStudio");
+      });
 
   Target Clean => _ => _
       .Executes(() =>
@@ -45,7 +65,7 @@ class Build : NukeBuild
       });
 
   Target Restore => _ => _
-      .DependsOn(Clean)
+      .DependsOn(Clean, Update)
       .Executes(() =>
       {
         MSBuild(s => DefaultMSBuildRestore);
@@ -64,8 +84,7 @@ class Build : NukeBuild
       {
         Nunit3(s => s
             .AddInputFiles(GlobFiles(RootDirectory / "test", $"**/bin/{Configuration}/tests.dll"))
-            .EnableNoResults()
-            .SetToolPath(ToolPathResolver.GetPackageExecutable("NUnit.ConsoleRunner", "nunit3-console.exe")));
+            .EnableNoResults());
       });
 
   Target Pack => _ => _
@@ -75,14 +94,13 @@ class Build : NukeBuild
         GlobFiles(RootDirectory / "install", "*.nuspec")
             .ForEach(x => NuGetPack(s => DefaultNuGetPack
                 .SetTargetPath(x)
-                .SetBasePath(RootDirectory / "install")
-                .SetOutputDirectory(OutputDirectory)));
+                .SetBasePath(RootDirectory / "install")));
       });
 
   Target Push => _ => _
-      .Requires(() => Configuration.EqualsOrdinalIgnoreCase("Release"))
-      .Requires(() => ReSharperGalleryApiKey)
       .DependsOn(Test, Pack)
+      .Requires(() => ReSharperGalleryApiKey)
+      .Requires(() => Configuration.EqualsOrdinalIgnoreCase("Release"))
       .Executes(() =>
       {
         GlobFiles(OutputDirectory, "*.nupkg")
