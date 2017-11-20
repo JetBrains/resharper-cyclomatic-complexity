@@ -49,12 +49,13 @@ class Build : NukeBuild
   [Parameter] readonly string ReSharperGalleryApiKey;
   [GitRepository] readonly GitRepository GitRepository;
 
+  string ProjectFile => GlobFiles(SolutionDirectory, "**/*.csproj").Single();
+
   Target Update => _ => _
       .OnlyWhen(() => GitRepository.Branch.EqualsOrdinalIgnoreCase("sdk-update"))
       .Executes(() =>
       {
-        var projectFile = GlobFiles(SolutionDirectory, "**/*.csproj").Single();
-        UpdateToLatestVersion(projectFile, "JetBrains.Platform.VisualStudio");
+        UpdateToLatestVersion(ProjectFile, "JetBrains.Platform.VisualStudio");
       });
 
   Target Clean => _ => _
@@ -94,7 +95,8 @@ class Build : NukeBuild
         GlobFiles(RootDirectory / "install", "*.nuspec")
             .ForEach(x => NuGetPack(s => DefaultNuGetPack
                 .SetTargetPath(x)
-                .SetBasePath(RootDirectory / "install")));
+                .SetBasePath(RootDirectory / "install")
+                .SetProperty("wave", GetWaveVersion(ProjectFile) + ".0")));
       });
 
   Target Push => _ => _
@@ -109,4 +111,11 @@ class Build : NukeBuild
                 .SetSource("https://resharper-plugins.jetbrains.com/api/v2/package")
                 .SetApiKey(ReSharperGalleryApiKey)));
       });
+
+  static string GetWaveVersion (string projectFile)
+  {
+    var fullWaveVersion = NuGetPackageResolver.GetLocalInstalledPackages(projectFile, includeDependencies: true)
+        .SingleOrDefault(x => x.Id == "Wave").NotNull("fullWaveVersion != null").Version.ToString();
+    return fullWaveVersion.Substring(startIndex: 0, length: fullWaveVersion.IndexOf(value: '.'));
+  }
 }

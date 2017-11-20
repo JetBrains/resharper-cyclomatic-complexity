@@ -24,7 +24,7 @@ From previous releases:
         <copyright>Copyright ©2006-2016 JetBrains</copyright>
         <tags>cyclomatic complexity analysis</tags>
         <dependencies>
-            <dependency id="Wave" version="[9.0]" />
+            <dependency id="Wave" version="[$wave$]" />
         </dependencies>
     </metadata>
     <files>
