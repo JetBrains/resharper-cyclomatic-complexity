@@ -12,6 +12,7 @@
      <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
      <AssemblyName>JetBrains.ReSharper.Plugins.CyclomaticComplexity</AssemblyName>
      <RootNamespace>JetBrains.ReSharper.Plugins.CyclomaticComplexity</RootNamespace>
+     <InstallationHive>Exp</InstallationHive>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -69,4 +70,5 @@
   </ItemGroup>
   
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <Import Project="..\CopyToReSharperInstallationsDirectory.targets" />
 </Project>

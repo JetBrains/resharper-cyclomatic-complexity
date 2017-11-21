@@ -2,7 +2,7 @@
 
 # Cyclomatic complexity plugin for ReSharper
 
-This is a ReSharper plugin that measures [cyclomatic complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity) as you type. If the complexity of a method, function or property exceeds a configurable threshold, the method, function or property is marked with a warning highlight ("squiggly"). It supports ReSharper 9.1, and calculates cyclomatic complexity for C#, VB, JavaScript, TypeScript and C++. 
+This is a ReSharper plugin that measures [cyclomatic complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity) as you type. If the complexity of a method, function or property exceeds a configurable threshold, the method, function or property is marked with a warning highlight ("squiggly"). Supported languages are C#, VB, JavaScript, TypeScript and C++. 
 
 It can be installed by going to **ReSharper &rarr; Extensions Manager** and searching for "Cyclomatic Complexity".
 
