@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = ".build", "..\build\.build.csproj", "{500D453D-FD1F-410C-9D3B-A29A182C091A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyclomaticComplexity", "CyclomaticComplexity\CyclomaticComplexity.csproj", "{4FF42D42-187D-4332-8154-49506B1DB698}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tests", "..\test\src\tests.csproj", "{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "..\test\src\tests.csproj", "{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyclomaticComplexity.RS", "CyclomaticComplexity\CyclomaticComplexity.RS.csproj", "{8EABAF43-D01B-498C-9083-E16721E02D45}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyclomaticComplexity.RD", "CyclomaticComplexity\CyclomaticComplexity.RD.csproj", "{21269302-83A8-46FE-AD08-7B9BB7D7207F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,16 +19,23 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{500D453D-FD1F-410C-9D3B-A29A182C091A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{500D453D-FD1F-410C-9D3B-A29A182C091A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4FF42D42-187D-4332-8154-49506B1DB698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4FF42D42-187D-4332-8154-49506B1DB698}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4FF42D42-187D-4332-8154-49506B1DB698}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4FF42D42-187D-4332-8154-49506B1DB698}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EABAF43-D01B-498C-9083-E16721E02D45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EABAF43-D01B-498C-9083-E16721E02D45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EABAF43-D01B-498C-9083-E16721E02D45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EABAF43-D01B-498C-9083-E16721E02D45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21269302-83A8-46FE-AD08-7B9BB7D7207F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21269302-83A8-46FE-AD08-7B9BB7D7207F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21269302-83A8-46FE-AD08-7B9BB7D7207F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21269302-83A8-46FE-AD08-7B9BB7D7207F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4CFAAB40-A3B9-4EFB-A519-0C12A82AF458}
 	EndGlobalSection
 EndGlobal

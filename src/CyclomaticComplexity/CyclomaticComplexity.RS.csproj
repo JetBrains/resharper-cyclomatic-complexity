@@ -8,20 +8,10 @@
 
   <PropertyGroup>
      <TargetFramework>net45</TargetFramework>
-     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
      <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
      <AssemblyName>JetBrains.ReSharper.Plugins.CyclomaticComplexity</AssemblyName>
      <RootNamespace>JetBrains.ReSharper.Plugins.CyclomaticComplexity</RootNamespace>
      <InstallationHive>Exp</InstallationHive>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;DEBUG;NET45;JET_MODE_ASSERT</DefineConstants>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>

@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CyclomaticComplexity\CyclomaticComplexity.csproj" />
+    <ProjectReference Include="..\..\src\CyclomaticComplexity\CyclomaticComplexity.RS.csproj" />
   </ItemGroup>
 
 </Project>

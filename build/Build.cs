@@ -20,6 +20,7 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using Nuke.Common.Git;
 using Nuke.Common.Tools.GitVersion;
+using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Tools.NuGet;
 using Nuke.Common.Tools.Nunit;
 using Nuke.Core;
@@ -50,7 +51,9 @@ class Build : NukeBuild
   [GitVersion] readonly GitVersion GitVersion;
   [GitRepository] readonly GitRepository GitRepository;
 
-  string ProjectFile => GlobFiles(SolutionDirectory, "**/*.csproj").Single();
+  string ProjectFile => GlobFiles(SolutionDirectory, "**/*.RS.csproj").Single();
+  AbsolutePath RiderDirectory => SourceDirectory / "RiderPlugin";
+
 
   Target InstallHive => _ => _
       .Executes(() =>
@@ -72,6 +75,7 @@ class Build : NukeBuild
       .Executes(() =>
       {
         DeleteDirectories(GlobDirectories(SourceDirectory, "**/bin", "**/obj"));
+        DeleteDirectory(RiderDirectory / "build");
         EnsureCleanDirectory(OutputDirectory);
       });
 
@@ -86,7 +90,14 @@ class Build : NukeBuild
       .DependsOn(Restore)
       .Executes(() =>
       {
-        MSBuild(s => DefaultMSBuildCompile);
+        MSBuild(s => DefaultMSBuildCompile
+            .SetMaxCpuCount(maxCpuCount: 1));
+
+        StartProcess(
+                RiderDirectory / "gradlew.bat",
+                $"buildPlugin -Pconfiguration={Configuration} -Pversion={GitVersion.FullSemVer}",
+                workingDirectory: RiderDirectory)
+            .AssertZeroExitCode();
       });
 
   Target Test => _ => _
@@ -117,6 +128,9 @@ class Build : NukeBuild
                 .SetProperty("currentyear", DateTime.Now.Year.ToString())
                 .SetProperty("releasenotes", releaseNotes)
                 .EnableNoPackageAnalysis()));
+
+        var riderPlugin = GlobFiles(RiderDirectory / "build" / "distributions", "*.zip").Single();
+        File.Copy(riderPlugin, OutputDirectory / Path.GetFileName(riderPlugin));
       });
 
   Target Push => _ => _

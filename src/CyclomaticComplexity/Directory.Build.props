@@ -1,0 +1,27 @@
+<Project>
+  <PropertyGroup>
+    <_ProjectNameRegex>(.*)(?:\.(RS|RD))</_ProjectNameRegex>
+    <ProjectNameWithoutVersion>$([System.Text.RegularExpressions.Regex]::Match($(MSBuildProjectName), $(_ProjectNameRegex)).Groups[1].Value)</ProjectNameWithoutVersion>
+    <ReSharperVersionIdentifier>$([System.Text.RegularExpressions.Regex]::Match($(MSBuildProjectName), $(_ProjectNameRegex)).Groups[2].Value)</ReSharperVersionIdentifier>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>obj\$(ReSharperVersionIdentifier)\</BaseIntermediateOutputPath>
+    <DefaultItemExcludes>$(DefaultItemExcludes);obj\**</DefaultItemExcludes>
+    <RootNamespace>$(ProjectNameWithoutVersion)</RootNamespace>
+    <OutputPath>bin\$(ReSharperVersionIdentifier)\$(Configuration)\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);$(ReSharperVersionIdentifier)</DefineConstants>
+    <DefineConstants Condition="'$(ReSharperVersionIdentifier)' == 'RS'">$(DefineConstants);RESHARPER</DefineConstants>
+    <DefineConstants Condition="'$(ReSharperVersionIdentifier)' == 'RD'">$(DefineConstants);RIDER</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)'=='Debug'">$(DefineConstants);JET_MODE_ASSERT</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ReSharperInstallationsDirectoryInstancePart>Exp$(ReSharperVersionIdentifier)</ReSharperInstallationsDirectoryInstancePart>
+  </PropertyGroup>
+  <!--<Import Project="..\..\Shared\Build\CopyToReSharperInstallationsDirectory.targets" />-->
+
+</Project>
