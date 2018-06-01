@@ -15,7 +15,7 @@ To get some idea of ranges, here are some examples:
    > The original limit of 10 as proposed by McCabe has significant supporting evidence, but limits as high as 15 have been used successfully as well. Limits over 10 should be reserved for projects that have several operational advantages over typical projects, for example experienced staff, formal design, a modern programming language, structured programming, code walkthroughs, and a comprehensive test plan. In other words, an organization can pick a complexity limit greater than 10, but only if it is sure it knows what it is doing and is willing to devote the additional testing effort required by more complex modules.
 
 2. **C4 Software Technology Reference Guide** - 1997  
-   http://www.sei.cmu.edu/reports/97hb001.pdf  
+   https://resources.sei.cmu.edu/asset_files/Handbook/1997_002_001_16523.pdf 
    This Carnegie Mellon study offers a table, with a range of values. Anything over 20 is considered "complex, high risk", and is the basis for the default used in this plugin. Interestingly, this guide talks in terms of "risk", rather than "complexity". See page 145:
 
    > | **Cyclomatic Complexity** | **Risk Evaluation** |
