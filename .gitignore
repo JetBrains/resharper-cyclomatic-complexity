@@ -1,6 +1,7 @@
 src/resharper-jsdoc/Psi/JSDoc/Parsing/Unicode.lex
 .vs/
 output
+.idea
 
 #################
 ## Eclipse

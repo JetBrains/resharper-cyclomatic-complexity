@@ -7,7 +7,7 @@
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
 
   <PropertyGroup>
-     <TargetFramework>net45</TargetFramework>
+     <TargetFramework>net461</TargetFramework>
      <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
      <AssemblyName>JetBrains.ReSharper.Plugins.CyclomaticComplexity</AssemblyName>
      <RootNamespace>JetBrains.ReSharper.Plugins.CyclomaticComplexity</RootNamespace>
@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.Rider.SDK" Version="2017.3.0" />
+    <PackageReference Include="JetBrains.Rider.SDK" Version="2018.2.0-*" />
   </ItemGroup>
 
   <ItemGroup>

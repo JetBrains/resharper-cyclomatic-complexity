@@ -43,7 +43,7 @@ using static Nuke.Core.Tooling.ProcessTasks;
 
 class Build : NukeBuild
 {
-  public static int Main () => Execute<Build>(x => x.Pack);
+  public static int Main() => Execute<Build>(x => x.Pack);
 
   [Parameter] readonly string Source = "https://resharper-plugins.jetbrains.com/api/v2/package";
   [Parameter] readonly string ApiKey;
@@ -54,102 +54,103 @@ class Build : NukeBuild
   string ProjectFile => GlobFiles(SolutionDirectory, "**/*.RS.csproj").Single();
   AbsolutePath RiderDirectory => SourceDirectory / "RiderPlugin";
 
-
   Target InstallHive => _ => _
-      .Executes(() =>
-      {
-        var jsonResponse = HttpDownloadString("https://data.services.jetbrains.com/products/releases?code=RSU&latest=true");
-        var downloadUrl = JsonDeserialize<JObject>(jsonResponse)["RSU"].First["downloads"]["windows"]["link"].ToString();
-        var installer = TemporaryDirectory / new Uri(downloadUrl).Segments.Last();
-        var installationHive = MSBuildParseProject(ProjectFile).Properties["InstallationHive"];
+    .Executes(() =>
+    {
+      var jsonResponse =
+        HttpDownloadString("https://data.services.jetbrains.com/products/releases?code=RSU&latest=true");
+      var downloadUrl = JsonDeserialize<JObject>(jsonResponse)["RSU"].First["downloads"]["windows"]["link"].ToString();
+      var installer = TemporaryDirectory / new Uri(downloadUrl).Segments.Last();
+      var installationHive = MSBuildParseProject(ProjectFile).Properties["InstallationHive"];
 
-        if (!File.Exists(installer))
-          HttpDownloadFile(downloadUrl, installer);
+      if (!File.Exists(installer))
+        HttpDownloadFile(downloadUrl, installer);
 
-        Info($"Installing '{Path.GetFileNameWithoutExtension(installer)}' into '{installationHive}' hive...");
-        StartProcess(installer, $"/VsVersion=12.0;14.0;15.0 /SpecificProductNames=ReSharper /Hive={installationHive} /Silent=True")
-            .AssertZeroExitCode();
-      });
+      Info($"Installing '{Path.GetFileNameWithoutExtension(installer)}' into '{installationHive}' hive...");
+      StartProcess(installer,
+          $"/VsVersion=12.0;14.0;15.0 /SpecificProductNames=ReSharper /Hive={installationHive} /Silent=True")
+        .AssertZeroExitCode();
+    });
 
   Target Clean => _ => _
-      .Executes(() =>
-      {
-        DeleteDirectories(GlobDirectories(SourceDirectory, "**/bin", "**/obj"));
-        DeleteDirectory(RiderDirectory / "build");
-        EnsureCleanDirectory(OutputDirectory);
-      });
+    .Executes(() =>
+    {
+      DeleteDirectories(GlobDirectories(SourceDirectory, "**/bin", "**/obj"));
+      DeleteDirectory(RiderDirectory / "build");
+      EnsureCleanDirectory(OutputDirectory);
+    });
 
   Target Restore => _ => _
-      .DependsOn(Clean)
-      .Executes(() =>
-      {
-        MSBuild(s => DefaultMSBuildRestore);
-      });
+    .DependsOn(Clean)
+    .Executes(() =>
+    {
+      MSBuild(s => DefaultMSBuildRestore);
+    });
 
   Target Compile => _ => _
-      .DependsOn(Restore)
-      .Executes(() =>
-      {
-        MSBuild(s => DefaultMSBuildCompile
-            .SetMaxCpuCount(maxCpuCount: 1));
+    .DependsOn(Restore)
+    .Executes(() =>
+    {
+      MSBuild(s => DefaultMSBuildCompile
+        .SetMaxCpuCount(maxCpuCount: 1));
 
-        StartProcess(
-                RiderDirectory / "gradlew.bat",
-                $"buildPlugin -Pconfiguration={Configuration} -Pversion={GitVersion.FullSemVer}",
-                workingDirectory: RiderDirectory)
-            .AssertZeroExitCode();
-      });
+      StartProcess(
+          RiderDirectory / "gradlew.bat",
+          $"buildPlugin -Pconfiguration={Configuration} -Pversion={GitVersion.FullSemVer}",
+          workingDirectory: RiderDirectory)
+        .AssertZeroExitCode();
+    });
 
   Target Test => _ => _
-      .DependsOn(Compile)
-      .Executes(() =>
-      {
-        Nunit3(s => s
-            .AddInputFiles(GlobFiles(RootDirectory / "test", $"**/bin/{Configuration}/tests.dll"))
-            .EnableNoResults());
-      });
+    .DependsOn(Compile)
+    .Executes(() =>
+    {
+      Nunit3(s => s
+        .AddInputFiles(GlobFiles(RootDirectory / "test", $"**/bin/{Configuration}/tests.dll"))
+        .EnableNoResults());
+    });
 
   Target Pack => _ => _
-      .DependsOn(Compile)
-      .Executes(() =>
-      {
-        var releaseNotes = ReadAllLines(RootDirectory / "CHANGELOG.md")
-            .SkipWhile(x => !x.StartsWith("##"))
-            .Skip(count: 1)
-            .TakeWhile(x => !string.IsNullOrWhiteSpace(x))
-            .Select(x => $"\u2022{x.TrimStart('-')}")
-            .JoinNewLine();
+    .DependsOn(Compile)
+    .Executes(() =>
+    {
+      var releaseNotes = ReadAllLines(RootDirectory / "CHANGELOG.md")
+        .SkipWhile(x => !x.StartsWith("##"))
+        .Skip(count: 1)
+        .TakeWhile(x => !string.IsNullOrWhiteSpace(x))
+        .Select(x => $"\u2022{x.TrimStart('-')}")
+        .JoinNewLine();
 
-        GlobFiles(RootDirectory / "install", "*.nuspec")
-            .ForEach(x => NuGetPack(s => DefaultNuGetPack
-                .SetTargetPath(x)
-                .SetBasePath(RootDirectory / "install")
-                .SetProperty("wave", GetWaveVersion(ProjectFile) + ".0")
-                .SetProperty("currentyear", DateTime.Now.Year.ToString())
-                .SetProperty("releasenotes", releaseNotes)
-                .EnableNoPackageAnalysis()));
+      GlobFiles(RootDirectory / "install", "*.nuspec")
+        .ForEach(x => NuGetPack(s => DefaultNuGetPack
+          .SetTargetPath(x)
+          .SetBasePath(RootDirectory / "install")
+          .SetProperty("wave", GetWaveVersion(ProjectFile) + ".0")
+          .SetProperty("currentyear", DateTime.Now.Year.ToString())
+          .SetProperty("releasenotes", releaseNotes)
+          .EnableNoPackageAnalysis()));
 
-        var riderPlugin = GlobFiles(RiderDirectory / "build" / "distributions", "*.zip").Single();
-        File.Copy(riderPlugin, OutputDirectory / Path.GetFileName(riderPlugin));
-      });
+      var riderPlugin = GlobFiles(RiderDirectory / "build" / "distributions", "*.zip").Single();
+      File.Copy(riderPlugin, OutputDirectory / Path.GetFileName(riderPlugin));
+    });
 
   Target Push => _ => _
-      .DependsOn(Test, Pack)
-      .Requires(() => ApiKey)
-      .Requires(() => Configuration.EqualsOrdinalIgnoreCase("Release"))
-      .Executes(() =>
-      {
-        GlobFiles(OutputDirectory, "*.nupkg")
-            .ForEach(x => NuGetPush(s => s
-                .SetTargetPath(x)
-                .SetSource(Source)
-                .SetApiKey(ApiKey)));
-      });
+    .DependsOn(Test, Pack)
+    .Requires(() => ApiKey)
+    .Requires(() => Configuration.EqualsOrdinalIgnoreCase("Release"))
+    .Executes(() =>
+    {
+      GlobFiles(OutputDirectory, "*.nupkg")
+        .ForEach(x => NuGetPush(s => s
+          .SetTargetPath(x)
+          .SetSource(Source)
+          .SetApiKey(ApiKey)));
+    });
 
-  static string GetWaveVersion (string projectFile)
+  static string GetWaveVersion(string projectFile)
   {
     var fullWaveVersion = GetLocalInstalledPackages(projectFile, includeDependencies: true)
-        .SingleOrDefault(x => x.Id == "Wave").NotNull("fullWaveVersion != null").Version.ToString();
+      .SingleOrDefault(x => x.Id == "Wave").NotNull("fullWaveVersion != null").Version.ToString();
     return fullWaveVersion.Substring(startIndex: 0, length: fullWaveVersion.IndexOf(value: '.'));
   }
 }

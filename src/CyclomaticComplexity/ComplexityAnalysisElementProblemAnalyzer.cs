@@ -18,14 +18,13 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Application.Settings;
 using JetBrains.DocumentModel;
-using JetBrains.ReSharper.Daemon.Stages.Dispatcher;
-using JetBrains.ReSharper.Daemon.Stages.Utils;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Psi;
 using JetBrains.ReSharper.Psi.ControlFlow;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.JavaScript.Tree;
 using JetBrains.ReSharper.Psi.Tree;
+using JetBrains.UI.RichText;
 using JetBrains.Util;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
@@ -55,7 +54,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       if (element is IJavaScriptFileSection)
         return;
 
-      var graph = ControlFlowDaemonUtil.GetOrBuild(element, data);
+      var graph = data.GetOrBuildControlFlowGraph(element);
       if (graph == null)
         return;
 
