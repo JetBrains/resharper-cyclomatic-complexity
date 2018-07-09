@@ -23,23 +23,22 @@ using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Tools.MSBuild;
 using Nuke.Common.Tools.NuGet;
 using Nuke.Common.Tools.Nunit;
-using Nuke.Core;
-using Nuke.Core.Tooling;
-using Nuke.Core.Utilities;
-using Nuke.Core.Utilities.Collections;
-using static Nuke.Core.IO.HttpTasks;
-using static Nuke.Core.IO.SerializationTasks;
-using static Nuke.Core.IO.TextTasks;
-using static Nuke.Core.IO.XmlTasks;
+using Nuke.Common;
+using Nuke.Common.Tooling;
+using Nuke.Common.Utilities;
+using Nuke.Common.Utilities.Collections;
+using static Nuke.Common.IO.HttpTasks;
+using static Nuke.Common.IO.SerializationTasks;
+using static Nuke.Common.IO.TextTasks;
 using static Nuke.Common.Tools.MSBuild.MSBuildTasks;
 using static Nuke.Common.Tools.NuGet.NuGetTasks;
-using static Nuke.Core.Tooling.NuGetPackageResolver;
+using static Nuke.Common.Tooling.NuGetPackageResolver;
 using static Nuke.Common.Tools.Nunit.NunitTasks;
-using static Nuke.Core.EnvironmentInfo;
-using static Nuke.Core.IO.FileSystemTasks;
-using static Nuke.Core.IO.PathConstruction;
-using static Nuke.Core.Logger;
-using static Nuke.Core.Tooling.ProcessTasks;
+using static Nuke.Common.IO.FileSystemTasks;
+using static Nuke.Common.IO.PathConstruction;
+using static Nuke.Common.Logger;
+using static Nuke.Common.Tooling.ProcessTasks;
+using static Nuke.Common.Tools.Git.GitTasks;
 
 class Build : NukeBuild
 {
@@ -84,7 +83,8 @@ class Build : NukeBuild
     .DependsOn(Clean)
     .Executes(() =>
     {
-      MSBuild(s => DefaultMSBuildRestore);
+      MSBuild(s => DefaultMSBuildRestore
+        .SetVerbosity(MSBuildVerbosity.Minimal));
     });
 
   Target Compile => _ => _
@@ -92,7 +92,8 @@ class Build : NukeBuild
     .Executes(() =>
     {
       MSBuild(s => DefaultMSBuildCompile
-        .SetMaxCpuCount(maxCpuCount: 1));
+        .SetMaxCpuCount(maxCpuCount: 1)
+        .SetVerbosity(MSBuildVerbosity.Minimal));
 
       StartProcess(
           RiderDirectory / "gradlew.bat",
@@ -106,7 +107,7 @@ class Build : NukeBuild
     .Executes(() =>
     {
       Nunit3(s => s
-        .AddInputFiles(GlobFiles(RootDirectory / "test", $"**/bin/{Configuration}/tests.dll"))
+        .AddInputFiles(GlobFiles(RootDirectory / "test", $"**/bin/{Configuration}/tests.dll").NotEmpty())
         .EnableNoResults());
     });
 
@@ -137,6 +138,7 @@ class Build : NukeBuild
   Target Push => _ => _
     .DependsOn(Test, Pack)
     .Requires(() => ApiKey)
+    .Requires(() => !GitHasUncommitedChanges())
     .Requires(() => Configuration.EqualsOrdinalIgnoreCase("Release"))
     .Executes(() =>
     {
