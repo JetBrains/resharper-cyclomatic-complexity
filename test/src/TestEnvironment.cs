@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
 {
   [ZoneDefinition]
-  public interface ICyclomaticComplexityTestZone : ITestsZone, IRequire<PsiFeatureTestZone>
+  public interface ICyclomaticComplexityTestZone : ITestsEnvZone, IRequire<PsiFeatureTestZone>
   {
   }
 

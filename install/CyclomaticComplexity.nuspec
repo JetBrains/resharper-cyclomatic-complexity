@@ -19,7 +19,7 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="..\src\CyclomaticComplexity\bin\RS\$configuration$\JetBrains.ReSharper.Plugins.CyclomaticComplexity.dll" target="DotFiles\" />
-        <file src="..\src\CyclomaticComplexity\CyclomaticComplexity.dotSettings" target="DotFiles\Extensions\PowerToys.CyclomaticComplexity\settings\" />
+        <file src="src\CyclomaticComplexity\bin\RS\$configuration$\JetBrains.ReSharper.Plugins.CyclomaticComplexity.dll" target="DotFiles\" />
+        <file src="src\CyclomaticComplexity\CyclomaticComplexity.dotSettings" target="DotFiles\Extensions\PowerToys.CyclomaticComplexity\settings\" />
     </files>
 </package>

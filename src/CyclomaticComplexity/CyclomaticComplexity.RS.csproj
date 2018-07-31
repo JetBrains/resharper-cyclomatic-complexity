@@ -12,10 +12,11 @@
      <AssemblyName>JetBrains.ReSharper.Plugins.CyclomaticComplexity</AssemblyName>
      <RootNamespace>JetBrains.ReSharper.Plugins.CyclomaticComplexity</RootNamespace>
      <InstallationHive>Exp</InstallationHive>
+     <HostFullIdentifier>asd</HostFullIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.ReSharper.SDK" Version="2018.2.0-*" />
+    <PackageReference Include="JetBrains.ReSharper.SDK" Version="2018.3.0-*" />
   </ItemGroup>
 
   <ItemGroup>

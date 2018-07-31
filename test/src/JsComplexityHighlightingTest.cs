@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using JetBrains.Application.Settings;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.FeaturesTestFramework.Daemon;
 using JetBrains.ReSharper.Psi;
@@ -27,7 +28,8 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
   {
     protected override string RelativeTestDataPath => "JS";
 
-    protected override bool HighlightingPredicate(IHighlighting highlighting, IPsiSourceFile sourceFile)
+    protected override bool HighlightingPredicate(IHighlighting highlighting, IPsiSourceFile sourceFile,
+      IContextBoundSettingsStore settingsStore)
     {
       return highlighting is IComplexityHighlighting;
     }

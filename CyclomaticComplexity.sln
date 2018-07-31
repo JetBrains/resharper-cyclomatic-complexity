@@ -3,13 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = ".build", "..\build\.build.csproj", "{500D453D-FD1F-410C-9D3B-A29A182C091A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{500D453D-FD1F-410C-9D3B-A29A182C091A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tests", "..\test\src\tests.csproj", "{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tests", "test\src\tests.csproj", "{4C980A6F-C0F0-42D1-8AB0-C6F47A6F098A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyclomaticComplexity.RS", "CyclomaticComplexity\CyclomaticComplexity.RS.csproj", "{8EABAF43-D01B-498C-9083-E16721E02D45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyclomaticComplexity.RS", "src\CyclomaticComplexity\CyclomaticComplexity.RS.csproj", "{8EABAF43-D01B-498C-9083-E16721E02D45}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyclomaticComplexity.RD", "CyclomaticComplexity\CyclomaticComplexity.RD.csproj", "{21269302-83A8-46FE-AD08-7B9BB7D7207F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CyclomaticComplexity.RD", "src\CyclomaticComplexity\CyclomaticComplexity.RD.csproj", "{21269302-83A8-46FE-AD08-7B9BB7D7207F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{2724EE1A-B8D8-42D4-8CB6-002FD6EBF7AA}"
+ProjectSection(SolutionItems) = preProject
+	README.md = README.md
+	LICENSE = LICENSE
+	CHANGELOG.md = CHANGELOG.md
+	.gitignore = .gitignore
+	.gitattributes = .gitattributes
+	.editorconfig = .editorconfig
+	install\CyclomaticComplexity.nuspec = install\CyclomaticComplexity.nuspec
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

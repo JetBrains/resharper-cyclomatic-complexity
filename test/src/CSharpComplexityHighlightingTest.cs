@@ -28,7 +28,8 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Tests
   {
     protected override string RelativeTestDataPath => "CSharp";
 
-    protected override bool HighlightingPredicate(IHighlighting highlighting, IPsiSourceFile sourceFile)
+    protected override bool HighlightingPredicate(IHighlighting highlighting, IPsiSourceFile sourceFile,
+      IContextBoundSettingsStore settingsStore)
     {
       return highlighting is IComplexityHighlighting;
     }
