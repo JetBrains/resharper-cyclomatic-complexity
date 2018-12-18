@@ -21,7 +21,7 @@
   <ItemGroup>
     <!--<PackageReference Include="JetBrains.Psi.Features.Cpp.Src.Core" Version="109.0.20170720.101506-eap09" />-->
     <!--<PackageReference Include="JetBrains.Psi.Features.Cpp.Src.VisualStudio" Version="109.0.20170720.101506-eap09" />-->
-    <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="2018.3.0-*" />
+    <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="2018.3.0" />
   </ItemGroup>
 
   <ItemGroup>
