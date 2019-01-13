@@ -1,2 +1,0 @@
-rootProject.name = 'rider-CyclomaticComplexity'
-gradle.ext.resharperPluginProjectName = 'CyclomaticComplexity'

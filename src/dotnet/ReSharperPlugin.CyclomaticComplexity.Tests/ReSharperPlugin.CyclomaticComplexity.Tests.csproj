@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <!--<PackageReference Include="JetBrains.Psi.Features.Cpp.Src.Core" Version="109.0.20170720.101506-eap09" />-->
+    <!--<PackageReference Include="JetBrains.Psi.Features.Cpp.Src.VisualStudio" Version="109.0.20170720.101506-eap09" />-->
+    <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="2018.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReSharperPlugin.CyclomaticComplexity\ReSharperPlugin.CyclomaticComplexity.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="CppComplexityHighlightingTest.cs" />
+    <Compile Remove="data/**/*" />
+  </ItemGroup>
+
+</Project>
