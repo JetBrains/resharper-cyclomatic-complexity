@@ -18,8 +18,28 @@ using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Plugins.CyclomaticComplexity;
 using JetBrains.TextControl.DocumentMarkup;
+using Severity = JetBrains.ReSharper.Feature.Services.Daemon.Severity;
+#if RIDER
+using System.Collections.Generic;
+using JetBrains.ProjectModel;
+using JetBrains.ReSharper.Daemon.CodeInsights;
+using JetBrains.ReSharper.Features.SolBuilderDuo.Src;
+using JetBrains.ReSharper.Host.Platform.Icons;
+using JetBrains.ReSharper.Psi.Tree;
+using JetBrains.Rider.Model;
+using JetBrains.UI.Icons;
+#endif
 
+#if RIDER
+[assembly: RegisterHighlighter(
+  ComplexityCodeInsightsHighlight.HighlightAttributeId,
+  EffectType = EffectType.NONE,
+  TransmitUpdates = true,
+  Layer = HighlighterLayer.SYNTAX + 1,
+  GroupId = HighlighterGroupIds.HIDDEN)]
+#else
 [assembly: RegisterHighlighter(ComplexityInfoHighlight.HighlightAttributeId)]
+#endif
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
@@ -42,4 +62,70 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
     public string ErrorStripeToolTip => ToolTip;
     public bool IsValid() => true;
   }
+  
+  
+#if RIDER
+  [SolutionComponent]
+  public class ComplexityCodeInsightsProvider : ICodeInsightsProvider
+  {
+    public void OnClick(CodeInsightsHighlighting highlighting)
+    {
+    }
+
+    public void OnExtraActionClick(CodeInsightsHighlighting highlighting, string actionId)
+    {
+    }
+
+    public string ProviderId => nameof(ComplexityCodeInsightsProvider);
+    public string DisplayName => "Cyclomatic Complexity";
+    public CodeLensAnchorKind DefaultAnchor => CodeLensAnchorKind.Top;
+
+    public ICollection<CodeLensRelativeOrdering> RelativeOrderings => new CodeLensRelativeOrdering[]
+      {new CodeLensRelativeOrderingFirst()};
+  }
+  
+  // TODO: What is "CSharpInfo"?
+  [StaticSeverityHighlighting(Severity.INFO, "CSharpInfo", AttributeId = HighlightAttributeId)]
+  public class ComplexityCodeInsightsHighlight : CodeInsightsHighlighting
+  {
+    public const string HighlightAttributeId = "Cyclomatic Complexity Code Insight Highlight";
+
+    private const int c_warningThreshold = 80;
+
+    private static string GetLensText(int percentage)
+      => percentage < c_warningThreshold
+        ? "simple enough"
+        : percentage <= 100
+          ? "mildly complex"
+          : percentage <= 200
+            ? "too complex"
+            : "refactor meee!!1";
+
+    private static IconId GetIconId(int percentage)
+      => percentage < c_warningThreshold
+        ? SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuild.Id
+        : percentage <= 100
+          ? SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning.Id
+          : SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError.Id;
+    
+    private static string GetMoreText(int complexity, int percentage)
+      => $"Cyclomatic complexity of {complexity} ({percentage}% of threshold)";
+
+    public ComplexityCodeInsightsHighlight(
+      ITypeMemberDeclaration declaration,
+      int complexity,
+      int percentage,
+      ICodeInsightsProvider provider,
+      IconHost iconHost)
+      : base(
+        declaration.GetDocumentRange(),
+        GetLensText(percentage),
+        GetMoreText(complexity, percentage),
+        provider,
+        declaration.DeclaredElement,
+        iconHost.Transform(GetIconId(percentage)))
+    {
+    }
+  }
+#endif
 }

@@ -26,6 +26,11 @@ using JetBrains.ReSharper.Psi.JavaScript.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.UI.RichText;
 using JetBrains.Util;
+#if RIDER
+using JetBrains.Application.UI.Icons.ComposedIcons;
+using JetBrains.ReSharper.Host.Platform.Icons;
+using JetBrains.ReSharper.Features.SolBuilderDuo.Src;
+#endif
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
@@ -33,7 +38,18 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
   public class ComplexityAnalysisElementProblemAnalyzer : ElementProblemAnalyzer<ITreeNode>
   {
     private readonly Key<State> key = new Key<State>("ComplexityAnalyzerState");
+    
+#if RIDER
+    private readonly ComplexityCodeInsightsProvider _provider;
+    private readonly IconHost _iconHost;
 
+    public ComplexityAnalysisElementProblemAnalyzer(ComplexityCodeInsightsProvider provider, IconHost iconHost)
+    {
+      _provider = provider;
+      _iconHost = iconHost;
+    }
+#endif
+    
     protected override void Run(ITreeNode element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
     {
       // We get a fresh data for each file, so we can cache some state to make
@@ -59,16 +75,30 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
         return;
 
       var complexity = CalculateCyclomaticComplexity(graph);
-      var message = GetMessage(element, complexity, state.Threshold);
       var documentRange = GetDocumentRange(element);
 
-      IHighlighting highlight;
       if (complexity > state.Threshold)
-        highlight = new ComplexityWarningHighlight(message, documentRange);
+      {
+        consumer.AddHighlighting(
+          new ComplexityWarningHighlight(
+            GetMessage(element, complexity, state.Threshold),
+            documentRange));
+      }
+#if !RIDER
       else
-        highlight = new ComplexityInfoHighlight(message, documentRange);
-
-      consumer.AddHighlighting(highlight);
+        consumer.AddHighlighting(new ComplexityInfoHighlight(GetMessage(element, complexity, state.Threshold), documentRange));
+#else
+      if (element is ITypeMemberDeclaration memberDeclaration && memberDeclaration.DeclaredElement != null)
+      {
+        var percentage = GetPercentage(complexity, state.Threshold);
+        consumer.AddHighlighting(new ComplexityCodeInsightsHighlight(
+          memberDeclaration,
+          complexity,
+          percentage,
+          _provider,
+          _iconHost));
+      }
+#endif
     }
 
     private static int GetThreshold(ElementProblemAnalyzerData data, PsiLanguageType language)
@@ -204,7 +234,12 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
         type = $"{declarationType.Capitalize()} '{declaredElementName}'";
       }
 
-      return $"{type} has cyclomatic complexity of {complexity} ({(int) (complexity*100.0/threshold)}% of threshold)";
+      return $"{type} has cyclomatic complexity of {complexity} ({GetPercentage(complexity, threshold)}% of threshold)";
+    }
+
+    private static int GetPercentage(int complexity, int threshold)
+    {
+      return (int) (complexity*100.0/threshold);
     }
 
     private DocumentRange GetDocumentRange(ITreeNode element)
