@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2018.3.3
+- Added CodeVision support
+
+## 2018.3.2
+- Fixed icons for ReSharper
+
 ## 2018.3.1
 - Common UI for settings
 
