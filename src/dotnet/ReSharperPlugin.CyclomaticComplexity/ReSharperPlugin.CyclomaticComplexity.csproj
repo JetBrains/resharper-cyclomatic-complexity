@@ -1,4 +1,4 @@
-﻿<Project>
+<Project>
 
   <PropertyGroup>
     <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
@@ -37,8 +37,7 @@
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
-
-  <ItemGroup>
+  <ItemGroup Condition="'$(OS)' != 'Unix'">
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
 
