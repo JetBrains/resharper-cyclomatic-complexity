@@ -138,11 +138,16 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 
       public override int GetHashCode(IControlFlowEdge obj)
       {
-        if (obj == null)
-          return 0;
-        var hashCode = obj.Source.GetHashCode();
-        if (obj.Target != null)
-          hashCode ^= obj.Target.GetHashCode();
+        var hashCode = 0;
+        if (obj != null)
+        {
+          if (obj.Source != null)
+            hashCode ^= obj.Source.GetHashCode();
+
+          if (obj.Target != null)
+            hashCode ^= obj.Target.GetHashCode();
+        }
+
         return hashCode;
       }
     }
