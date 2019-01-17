@@ -93,13 +93,13 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
     private const int c_warningThreshold = 80;
 
     private static string GetLensText(int percentage)
-      => percentage < c_warningThreshold
+      => (percentage < c_warningThreshold
         ? "simple enough"
         : percentage <= 100
           ? "mildly complex"
           : percentage <= 200
-            ? "too complex"
-            : "refactor meee!!1";
+            ? "very complex"
+            : "refactor me?!") + $" ({percentage}%)";
 
     private static IconId GetIconId(int percentage)
       => percentage < c_warningThreshold
