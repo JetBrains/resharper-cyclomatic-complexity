@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 2019.1.0
 - Added support for ReSharper and Rider 2019.1
 
+## 2018.3.4
+- Fixed NRE
+- Fixed DocumentRange to be declaration name
+
 ## 2018.3.3
 - Added CodeVision support
 
