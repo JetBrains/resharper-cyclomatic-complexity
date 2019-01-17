@@ -118,7 +118,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       ICodeInsightsProvider provider,
       IconHost iconHost)
       : base(
-        declaration.GetDocumentRange(),
+        declaration.GetNameDocumentRange(),
         GetLensText(percentage),
         GetMoreText(complexity, percentage),
         provider,
