@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Compile Remove="CppComplexityHighlightingTest.cs" />
-    <Compile Remove="data/**/*" />
+    <Compile Remove="test/data/**/*" />
   </ItemGroup>
 
 </Project>

@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="CyclomaticComplexity.dotSettings" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>

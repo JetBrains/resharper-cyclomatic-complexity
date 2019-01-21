@@ -30,7 +30,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 
     public Stream GetDefaultSettingsStream(Lifetime lifetime)
     {
-      var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("ReSharperPlugin.CyclomaticComplexity.Resources.DefaultSettings.xml");
+      var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("ReSharperPlugin.CyclomaticComplexity.CyclomaticComplexity.dotSettings");
       Assertion.Assert(stream != null, "stream != null");
       lifetime.AddDispose(stream);
       return stream;
