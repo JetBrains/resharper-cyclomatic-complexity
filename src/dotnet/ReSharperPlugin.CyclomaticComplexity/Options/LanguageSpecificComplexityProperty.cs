@@ -18,6 +18,7 @@ using JetBrains.Application.Settings;
 using JetBrains.Application.UI.Controls.TreeListView;
 using JetBrains.Application.UI.Options;
 using JetBrains.DataFlow;
+using JetBrains.Lifetimes;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity.Options
 {

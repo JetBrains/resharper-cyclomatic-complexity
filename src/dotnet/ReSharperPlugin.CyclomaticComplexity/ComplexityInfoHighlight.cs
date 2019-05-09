@@ -68,11 +68,16 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
   [SolutionComponent]
   public class ComplexityCodeInsightsProvider : ICodeInsightsProvider
   {
-    public void OnClick(CodeInsightsHighlighting highlighting)
+    public bool IsAvailableIn(ISolution solution)
+    {
+      return true;
+    }
+
+    public void OnClick(CodeInsightsHighlighting highlighting, ISolution solution)
     {
     }
 
-    public void OnExtraActionClick(CodeInsightsHighlighting highlighting, string actionId)
+    public void OnExtraActionClick(CodeInsightsHighlighting highlighting, string actionId, ISolution solution)
     {
     }
 
