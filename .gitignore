@@ -4,6 +4,7 @@
 build
 output
 .gradle
+packages
 .tmp
 
 # User-specific files
