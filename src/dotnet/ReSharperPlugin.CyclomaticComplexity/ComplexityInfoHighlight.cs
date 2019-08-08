@@ -126,6 +126,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
         declaration.GetNameDocumentRange(),
         GetLensText(percentage),
         GetMoreText(complexity, percentage),
+        GetMoreText(complexity, percentage),
         provider,
         declaration.DeclaredElement,
         iconHost.Transform(GetIconId(percentage)))
