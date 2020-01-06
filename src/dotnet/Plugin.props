@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <SdkVersion>2019.2.0</SdkVersion>
+    <SdkVersion>2019.3.0</SdkVersion>
     <Title>CyclomaticComplexity</Title>
     <Description>Calculates cyclomatic complexity for C#, VB, JavaScript, TypeScript and C++. Highlights any method that exceeds a configurable threshold</Description>
     <Authors>Author</Authors>
