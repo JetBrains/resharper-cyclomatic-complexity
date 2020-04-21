@@ -10,6 +10,7 @@ ProjectSection(SolutionItems) = preProject
 	src\dotnet\Plugin.props = src\dotnet\Plugin.props
 	CHANGELOG.md = CHANGELOG.md
 	README.md = README.md
+	gradle.properties = gradle.properties
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReSharperPlugin.CyclomaticComplexity.Tests", "src\dotnet\ReSharperPlugin.CyclomaticComplexity.Tests\ReSharperPlugin.CyclomaticComplexity.Tests.csproj", "{6B2CDBAE-6AF4-4893-8DA9-0A1B2FDAC94A}"
