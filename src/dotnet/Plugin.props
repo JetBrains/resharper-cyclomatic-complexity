@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
-    <SdkVersion>2020.1.0-eap02</SdkVersion>
+    <SdkVersion>2020.2.0-eap02</SdkVersion>
+
     <Title>CyclomaticComplexity</Title>
     <Description>Calculates cyclomatic complexity for C#, VB, JavaScript, TypeScript and C++. Highlights any method that exceeds a configurable threshold</Description>
     <Authors>Author</Authors>
