@@ -30,21 +30,11 @@ using JetBrains.Rider.Model;
 using JetBrains.UI.Icons;
 #endif
 
-#if RIDER
-[assembly: RegisterHighlighter(
-  ComplexityCodeInsightsHighlight.HighlightAttributeId,
-  EffectType = EffectType.NONE,
-  TransmitUpdates = true,
-  Layer = HighlighterLayer.SYNTAX + 1,
-  GroupId = HighlighterGroupIds.HIDDEN)]
-#else
-[assembly: RegisterHighlighter(ComplexityInfoHighlight.HighlightAttributeId)]
-#endif
-
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
-  // TODO: What is "CSharpInfo"?
-  [StaticSeverityHighlighting(Severity.INFO, "CSharpInfo", AttributeId = HighlightAttributeId)]
+#if RESHARPER
+  [RegisterHighlighter(HighlightAttributeId)]
+  [StaticSeverityHighlighting(Severity.INFO, typeof(HighlightingGroupIds.CodeSmellStatic), AttributeId = HighlightAttributeId)]
   public class ComplexityInfoHighlight : IComplexityHighlighting
   {
     public const string HighlightAttributeId = "Cyclomatic Complexity Highlight";
@@ -62,9 +52,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
     public string ErrorStripeToolTip => ToolTip;
     public bool IsValid() => true;
   }
-  
-  
-#if RIDER
+#else
   [SolutionComponent]
   public class ComplexityCodeInsightsProvider : ICodeInsightsProvider
   {
@@ -88,9 +76,14 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
     public ICollection<CodeLensRelativeOrdering> RelativeOrderings => new CodeLensRelativeOrdering[]
       {new CodeLensRelativeOrderingFirst()};
   }
-  
-  // TODO: What is "CSharpInfo"?
-  [StaticSeverityHighlighting(Severity.INFO, "CSharpInfo", AttributeId = HighlightAttributeId)]
+
+  [RegisterHighlighter(
+    HighlightAttributeId,
+    EffectType = EffectType.NONE,
+    TransmitUpdates = true,
+    Layer = HighlighterLayer.SYNTAX + 1,
+    GroupId = HighlighterGroupIds.HIDDEN)]
+  [StaticSeverityHighlighting(Severity.INFO, typeof(HighlightingGroupIds.CodeInsights), AttributeId = HighlightAttributeId)]
   public class ComplexityCodeInsightsHighlight : CodeInsightsHighlighting
   {
     public const string HighlightAttributeId = "Cyclomatic Complexity Code Insight Highlight";
@@ -112,7 +105,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
         : percentage <= 100
           ? SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildWarning.Id
           : SolBuilderDuoThemedIcons.SolBuilderDuoRunningBuildError.Id;
-    
+
     private static string GetMoreText(int complexity, int percentage)
       => $"Cyclomatic complexity of {complexity} ({percentage}% of threshold)";
 

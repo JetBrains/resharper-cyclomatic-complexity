@@ -19,15 +19,15 @@ using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.ReSharper.Plugins.CyclomaticComplexity;
 using JetBrains.ReSharper.Psi;
 
-[assembly: RegisterConfigurableSeverity(ComplexityWarningHighlight.SeverityId,
-  null, HighlightingGroupIds.CodeSmell,
-  "Element exceeds cyclomatic complexity",
-  @"The cyclomatic complexity of the code element exceeds the configured threshold.
-You can configure the thresholds in the Cyclomatic Complexity options page.",
-  Severity.WARNING)]
-
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
+
+  [RegisterConfigurableSeverity(SeverityId,
+    null, HighlightingGroupIds.CodeSmell,
+    "Element exceeds cyclomatic complexity",
+    @"The cyclomatic complexity of the code element exceeds the configured threshold.
+You can configure the thresholds in the Cyclomatic Complexity options page.",
+    Severity.WARNING)]
   [ConfigurableSeverityHighlighting(SeverityId, KnownLanguage.ANY_LANGUAGEID, OverlapResolve = OverlapResolveKind.WARNING)]
   public class ComplexityWarningHighlight : IComplexityHighlighting
   {
