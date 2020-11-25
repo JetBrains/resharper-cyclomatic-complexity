@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
+    <RootNamespace>ReSharperPlugin.CyclomaticComplexity</RootNamespace>
   </PropertyGroup>
 
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
-    <PackageId>PowerToys.CyclomaticComplexity</PackageId>
     <IsPackable>True</IsPackable>
     <DefineConstants>$(DefineConstants);RESHARPER</DefineConstants>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -34,7 +34,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Content Include="bin\ReSharperPlugin.CyclomaticComplexity\$(Configuration)\ReSharperPlugin.CyclomaticComplexity.*" PackagePath="dotFiles" Pack="true" />
+    <Content Include="bin\$(AssemblyName)\$(Configuration)\$(AssemblyName).dll" PackagePath="dotFiles" Pack="true" />
+    <Content Include="bin\$(AssemblyName)\$(Configuration)\$(AssemblyName).pdb" PackagePath="dotFiles" Pack="true" />
   </ItemGroup>
   
   <ItemGroup>

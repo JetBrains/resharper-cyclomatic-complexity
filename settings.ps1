@@ -1,4 +1,4 @@
-$PluginId = "ReSharperPlugin.CyclomaticComplexity"
+$PluginId = "PowerToys.CyclomaticComplexity"
 $SolutionPath = "$PSScriptRoot\CyclomaticComplexity.sln"
 $SourceBasePath = "$PSScriptRoot\src\dotnet"
 

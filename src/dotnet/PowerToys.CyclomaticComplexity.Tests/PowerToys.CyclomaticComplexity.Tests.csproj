@@ -3,16 +3,13 @@
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <IsPackable>false</IsPackable>
+    <RootNamespace>ReSharperPlugin.CyclomaticComplexity.Tests</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>
     <!--<PackageReference Include="JetBrains.Psi.Features.Cpp.Src.Core" Version="109.0.20170720.101506-eap09" />-->
     <!--<PackageReference Include="JetBrains.Psi.Features.Cpp.Src.VisualStudio" Version="109.0.20170720.101506-eap09" />-->
     <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="$(SdkVersion)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ReSharperPlugin.CyclomaticComplexity\ReSharperPlugin.CyclomaticComplexity.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +21,10 @@
     <Reference Include="JetBrains.ReSharper.TestFramework, Version=777.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
       <HintPath>..\..\..\..\..\Users\matthias.koch\.nuget\packages\jetbrains.psi.features.test.framework\191.0.20190429.185738\DotFiles\JetBrains.ReSharper.TestFramework.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PowerToys.CyclomaticComplexity\PowerToys.CyclomaticComplexity.csproj" />
   </ItemGroup>
 
 </Project>
