@@ -1,4 +1,3 @@
-$PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 $PluginId = "ReSharperPlugin.CyclomaticComplexity"
 $SolutionPath = "$PSScriptRoot\CyclomaticComplexity.sln"
 $SourceBasePath = "$PSScriptRoot\src\dotnet"
