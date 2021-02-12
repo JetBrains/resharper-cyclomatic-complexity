@@ -38,7 +38,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
   public class ComplexityAnalysisElementProblemAnalyzer : ElementProblemAnalyzer<ITreeNode>
   {
     private readonly Key<State> key = new Key<State>("ComplexityAnalyzerState");
-    
+
 #if RIDER
     private readonly ComplexityCodeInsightsProvider _provider;
     private readonly IconHost _iconHost;
@@ -49,7 +49,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       _iconHost = iconHost;
     }
 #endif
-    
+
     protected override void Run(ITreeNode element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
     {
       // We get a fresh data for each file, so we can cache some state to make
@@ -104,12 +104,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
     private static int GetThreshold(ElementProblemAnalyzerData data, PsiLanguageType language)
     {
       var threshold = data.SettingsStore.GetIndexedValue((CyclomaticComplexityAnalysisSettings s) => s.Thresholds, language.Name);
-      if (threshold < 1)
-      {
-        data.SettingsStore.SetIndexedValue((CyclomaticComplexityAnalysisSettings s) => s.Thresholds, language.Name, CyclomaticComplexityAnalysisSettings.DefaultThreshold);
-        threshold = CyclomaticComplexityAnalysisSettings.DefaultThreshold;
-      }
-      return threshold;
+      return threshold < 1 ? CyclomaticComplexityAnalysisSettings.DefaultThreshold : threshold;
     }
 
     private static int CalculateCyclomaticComplexity(IControlFlowGraph graph)
@@ -260,7 +255,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       if (declaration?.DeclaredElement != null)
         return element;
 
-      // Don't have a declared element to highlight. Going to have to guess. Try the 
+      // Don't have a declared element to highlight. Going to have to guess. Try the
       // first meaningful child
       return element.GetNextMeaningfulChild(null);
     }
