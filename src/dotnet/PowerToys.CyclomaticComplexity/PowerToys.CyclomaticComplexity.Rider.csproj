@@ -9,7 +9,7 @@
     <PropertyGroup>
         <TargetFramework>net461</TargetFramework>
         <AssemblyName>PowerToys.CyclomaticComplexity</AssemblyName>
-        <RootNamespace>$(AssemblyName)</RootNamespace>
+        <RootNamespace>ReSharperPlugin.CyclomaticComplexity</RootNamespace>
         <IsPackable>false</IsPackable>
         <DefineConstants>$(DefineConstants);RIDER</DefineConstants>
     </PropertyGroup>

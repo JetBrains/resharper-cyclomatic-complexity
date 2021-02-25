@@ -69,6 +69,7 @@ task setBuildTool {
         ext.args << "${DotnetSolution}"
         ext.args << "/p:Configuration=${BuildConfiguration}"
         ext.args << "/p:HostFullIdentifier="
+        ext.args << "-verbosity:minimal"
     }
 }
 
