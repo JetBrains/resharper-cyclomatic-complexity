@@ -27,9 +27,7 @@ using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.UI.RichText;
 using JetBrains.Util;
 #if RIDER
-using JetBrains.Application.UI.Icons.ComposedIcons;
-using JetBrains.ReSharper.Host.Platform.Icons;
-using JetBrains.ReSharper.Features.SolBuilderDuo.Src;
+using JetBrains.Rider.Backend.Platform.Icons;
 #endif
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
@@ -178,7 +176,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
           // remove one of the edges, and it's path, from the collected edges.
           if (element.Exits.Count == 2)
           {
-            var edge = element.Exits[0];
+            var edge = element.Exits.FirstOrDefault();
             do
             {
               dodgyEdges.Add(edge);
@@ -191,7 +189,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
               // Walk back to the control flow graph node that represents the exit of the
               // dodgy condition, so keep going until we have an element with 2 exits.
               if (source.Entries.Count == 1 && source.Exits.Count == 1)
-                edge = source.Entries[0];
+                edge = source.Entries.FirstOrDefault();
             } while (edge != null);
           }
         }

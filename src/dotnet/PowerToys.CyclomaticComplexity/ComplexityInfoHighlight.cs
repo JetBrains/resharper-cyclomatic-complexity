@@ -16,7 +16,6 @@
 
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Feature.Services.Daemon;
-using JetBrains.ReSharper.Plugins.CyclomaticComplexity;
 using JetBrains.TextControl.DocumentMarkup;
 using Severity = JetBrains.ReSharper.Feature.Services.Daemon.Severity;
 #if RIDER
@@ -24,8 +23,8 @@ using System.Collections.Generic;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon.CodeInsights;
 using JetBrains.ReSharper.Features.SolBuilderDuo.Src;
-using JetBrains.ReSharper.Host.Platform.Icons;
 using JetBrains.ReSharper.Psi.Tree;
+using JetBrains.Rider.Backend.Platform.Icons;
 using JetBrains.Rider.Model;
 using JetBrains.UI.Icons;
 #endif

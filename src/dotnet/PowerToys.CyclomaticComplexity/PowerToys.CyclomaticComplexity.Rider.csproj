@@ -7,7 +7,7 @@
     <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
 
     <PropertyGroup>
-        <TargetFramework>net461</TargetFramework>
+        <TargetFramework>net472</TargetFramework>
         <AssemblyName>PowerToys.CyclomaticComplexity</AssemblyName>
         <RootNamespace>ReSharperPlugin.CyclomaticComplexity</RootNamespace>
         <IsPackable>false</IsPackable>

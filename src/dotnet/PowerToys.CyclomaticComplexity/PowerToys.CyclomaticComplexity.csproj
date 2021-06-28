@@ -7,7 +7,7 @@
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <IsPackable>True</IsPackable>
     <RootNamespace>ReSharperPlugin.CyclomaticComplexity</RootNamespace>
     <DefineConstants>$(DefineConstants);RESHARPER</DefineConstants>
