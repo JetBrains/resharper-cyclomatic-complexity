@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## vNext
 - Added support for ReSharper, and Rider 2021.2
 
+## 2021.2.0
+- Added support for ReSharper, and Rider 2021.2
+
 ## 2021.1.0
 - Added support for ReSharper and Rider 2021.1
 
