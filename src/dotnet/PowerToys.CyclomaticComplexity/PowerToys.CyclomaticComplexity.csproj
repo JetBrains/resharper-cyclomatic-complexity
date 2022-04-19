@@ -30,10 +30,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <EmbeddedResource Include="CyclomaticComplexity.dotSettings" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <Content Include="bin\$(AssemblyName)\$(Configuration)\$(AssemblyName).dll" PackagePath="dotFiles" Pack="true" />
     <Content Include="bin\$(AssemblyName)\$(Configuration)\$(AssemblyName).pdb" PackagePath="dotFiles" Pack="true" />
   </ItemGroup>
