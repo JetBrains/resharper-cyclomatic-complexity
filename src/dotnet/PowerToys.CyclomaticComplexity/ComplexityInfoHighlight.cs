@@ -60,11 +60,11 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
       return true;
     }
 
-    public void OnClick(CodeInsightsHighlighting highlighting, ISolution solution)
+    public void OnClick(CodeInsightHighlightInfo highlightInfo, ISolution solution)
     {
     }
 
-    public void OnExtraActionClick(CodeInsightsHighlighting highlighting, string actionId, ISolution solution)
+    public void OnExtraActionClick(CodeInsightHighlightInfo highlightInfo, string actionId, ISolution solution)
     {
     }
 
