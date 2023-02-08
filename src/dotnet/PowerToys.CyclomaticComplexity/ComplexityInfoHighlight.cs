@@ -70,10 +70,10 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 
     public string ProviderId => nameof(ComplexityCodeInsightsProvider);
     public string DisplayName => "Cyclomatic Complexity";
-    public CodeLensAnchorKind DefaultAnchor => CodeLensAnchorKind.Top;
+    public CodeVisionAnchorKind DefaultAnchor => CodeVisionAnchorKind.Top;
 
-    public ICollection<CodeLensRelativeOrdering> RelativeOrderings => new CodeLensRelativeOrdering[]
-      {new CodeLensRelativeOrderingFirst()};
+    public ICollection<CodeVisionRelativeOrdering> RelativeOrderings => new CodeVisionRelativeOrdering[]
+      {new CodeVisionRelativeOrderingFirst()};
   }
 
   [RegisterHighlighter(
