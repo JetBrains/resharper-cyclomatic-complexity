@@ -15,7 +15,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="JetBrains.ReSharper.SDK" Version="$(SdkVersion)" PrivateAssets="all" />
+        <PackageReference Include="JetBrains.Rider.SDK" Version="$(SdkVersion)" PrivateAssets="all" />
         <PackageReference Include="Wave" Version="$(WaveVersion)" />
     </ItemGroup>
 
