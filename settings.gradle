@@ -17,6 +17,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'cyclomaticcomplexity'
+rootProject.name = 'ReSharperPlugin.CyclomaticComplexity'
 
 include ':protocol'
