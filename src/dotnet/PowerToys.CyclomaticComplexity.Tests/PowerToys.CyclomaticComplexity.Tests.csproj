@@ -7,9 +7,12 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <PackageReference Include="GitHubActionsTestLogger" Version="2.0.1" />
     <!--<PackageReference Include="JetBrains.Psi.Features.Cpp.Src.Core" Version="109.0.20170720.101506-eap09" />-->
     <!--<PackageReference Include="JetBrains.Psi.Features.Cpp.Src.VisualStudio" Version="109.0.20170720.101506-eap09" />-->
     <PackageReference Include="JetBrains.ReSharper.SDK.Tests" Version="$(SdkVersion)" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.3.1" />
   </ItemGroup>
 
   <ItemGroup>
