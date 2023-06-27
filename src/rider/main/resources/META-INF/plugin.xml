@@ -6,8 +6,15 @@
   <idea-version since-build="_PLACEHOLDER_" until-build="_PLACEHOLDER_" />
   <depends>com.intellij.modules.rider</depends>
 
+  <resource-bundle>messages.CyclomaticComplexityBundle</resource-bundle>
+
   <extensions defaultExtensionNs="com.intellij">
-    <applicationConfigurable groupId="language" instance="com.jetbrains.rider.plugins.cyclomaticcomplexity.options.CyclomaticComplexityOptionsPage" id="PowerToys.CyclomaticComplexity" />
+    <applicationConfigurable
+            groupId="language"
+            instance="com.jetbrains.rider.plugins.cyclomaticcomplexity.options.CyclomaticComplexityOptionsPage"
+            id="PowerToys.CyclomaticComplexity"
+            bundle="messages.CyclomaticComplexityBundle"
+            key="configurable.name.cyclomaticcomplexity.options.title"/>
   </extensions>
 
   <description>
