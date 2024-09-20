@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using JetBrains.Application.Parts;
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.TextControl.DocumentMarkup;
@@ -52,7 +53,7 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
     public bool IsValid() => true;
   }
 #else
-  [SolutionComponent]
+  [SolutionComponent(Instantiation.DemandAnyThreadSafe)]
   public class ComplexityCodeInsightsProvider : ICodeInsightsProvider
   {
     public bool IsAvailableIn(ISolution solution)
