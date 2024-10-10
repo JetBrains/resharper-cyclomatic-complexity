@@ -16,16 +16,14 @@
 
 using System.IO;
 using System.Reflection;
-using JetBrains.Application;
 using JetBrains.Application.Settings;
-using JetBrains.DataFlow;
 using JetBrains.Diagnostics;
 using JetBrains.Lifetimes;
-using JetBrains.Util;
+using JetBrains.ReSharper.Resources.Settings;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
-  [ShellComponent]
+  [DefaultSettings(typeof (CodeInspectionSettings))]
   public class DefaultCyclomaticComplexitySettings : IHaveDefaultSettingsStream
   {
     public string Name => "Default Cyclomatic Complexity Settings";
