@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-using JetBrains.Application.Parts;
 using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 using JetBrains.TextControl.DocumentMarkup;
 using Severity = JetBrains.ReSharper.Feature.Services.Daemon.Severity;
 #if RIDER
 using System.Collections.Generic;
+using JetBrains.Application;
+using JetBrains.Application.Parts;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Daemon.CodeInsights;
 using JetBrains.ReSharper.Features.SolBuilderDuo.Src;
@@ -53,7 +54,8 @@ namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
     public bool IsValid() => true;
   }
 #else
-  [SolutionComponent(Instantiation.DemandAnyThreadSafe)]
+  [ShellComponent(Instantiation.ContainerAsyncPrimaryThread)]
+  [HighlightingSource]
   public class ComplexityCodeInsightsProvider : ICodeInsightsProvider
   {
     public bool IsAvailableIn(ISolution solution)
