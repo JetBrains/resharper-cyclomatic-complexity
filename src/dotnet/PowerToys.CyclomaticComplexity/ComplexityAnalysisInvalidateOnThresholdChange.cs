@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
+using JetBrains.Application.Components;
 using JetBrains.Application.Parts;
 using JetBrains.Application.Settings;
-using JetBrains.DataFlow;
 using JetBrains.Lifetimes;
 using JetBrains.ProjectModel;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 
 namespace JetBrains.ReSharper.Plugins.CyclomaticComplexity
 {
-  [SolutionComponent(Instantiation.LaterAsyncAnyThreadSafe)]
-  public class ComplexityAnalysisInvalidateOnThresholdChange
+  [SolutionComponent(Instantiation.DemandAnyThreadSafe)]
+  public class ComplexityAnalysisInvalidateOnThresholdChange : IStartupActivity
   {
     public ComplexityAnalysisInvalidateOnThresholdChange(Lifetime lifetime, IDaemon daemon, ISettingsStore settingsStore)
     {
