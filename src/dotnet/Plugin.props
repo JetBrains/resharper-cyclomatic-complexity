@@ -2,12 +2,11 @@
   <PropertyGroup>
     <SdkVersion>2025.3.0.1</SdkVersion>
 
-    <Title>CyclomaticComplexity</Title>
-    <Description>Calculates cyclomatic complexity for C#, VB, JavaScript, TypeScript and C++. Highlights any method that exceeds a configurable threshold</Description>
-    <Authors>Author</Authors>
+    <Title>(Obsolete) CyclomaticComplexity</Title>
+    <Description>This plugin is planned to be sunsetted. Please check the GitHub repository for further information. --- Calculates cyclomatic complexity for C#, VB, JavaScript, TypeScript and C++. Highlights any method that exceeds a configurable threshold</Description>
     <Copyright>Copyright 2006-$([System.DateTime]::Now.Year) JetBrains</Copyright>
     <PackageTags>cyclomatic complexity analysis</PackageTags>
-    <Authors>JetBrains, Matt Ellis</Authors>
+    <Authors>JetBrains, Matt Ellis, Matthias Koch</Authors>
     <PackageProjectUrl>https://github.com/JetBrains/resharper-cyclomatic-complexity</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/JetBrains/resharper-cyclomatic-complexity/blob/master/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/JetBrains/resharper-cyclomatic-complexity/master/logo.png</PackageIconUrl>
