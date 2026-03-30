@@ -1,6 +1,6 @@
 ﻿<Project>
   <PropertyGroup>
-    <SdkVersion>2025.3.0.1</SdkVersion>
+    <SdkVersion>2026.1.0</SdkVersion>
 
     <Title>(Obsolete) CyclomaticComplexity</Title>
     <Description>This plugin is planned to be sunsetted. Please check the GitHub repository for further information. --- Calculates cyclomatic complexity for C#, VB, JavaScript, TypeScript and C++. Highlights any method that exceeds a configurable threshold</Description>
